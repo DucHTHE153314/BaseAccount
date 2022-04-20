@@ -29,23 +29,33 @@ and open the template in the editor.
                                                 <form action="#" method="post" class="card-body p-4 p-lg-5 text-black">
                                                     <div class="align-items-center">
                                                         <img class="rounded mx-auto d-block small-img" src="images/logo.png" alt="Logo"/>
-                                                        <h1 class="text-center">Login</h1>
+                                                        <h1 class="text-center">Register</h1>
+                                                    </div>
+                                                    <!-- Full name input -->
+                                                    <div class="form-outline mb-4">
+                                                        <label class="form-label" for="fullname">Full Name</label>
+                                                        <input type="text" id="fullname" class="form-control" placeholder="Your name" maxlength="128" required/>
                                                     </div>
                                                     <!-- Email input -->
                                                     <div class="form-outline mb-4">
-                                                        <input type="email" id="form2Example1" class="form-control" placeholder="Your email" maxlength="48"/>
-                                                        <label class="form-label" for="form2Example1">Email address</label>
+                                                        <label class="form-label" for="email">Email</label>
+                                                        <input type="email" id="email" class="form-control none-space" placeholder="Your email" maxlength="48" required/>
                                                     </div>
-
+                                                    <!-- Phone input -->
+                                                    <div class="form-outline mb-4">
+                                                        <label class="form-label" for="phone">Phone</label>
+                                                        <input type="text" id="phone" class="form-control none-space" placeholder="Your phone" maxlength="10" required/>
+                                                    </div>
                                                     <!-- Password input -->
                                                     <div class="form-outline mb-4">
-                                                        <input type="password" id="form2Example2" class="form-control" placeholder="Password" maxlength="32"/>
-                                                        <label class="form-label" for="form2Example2">Password</label>
+                                                        <label class="form-label" for="password">New Password</label>
+                                                        <input type="password" id="password" class="form-control none-space" placeholder="Password" maxlength="32" required/>
                                                     </div>
 
                                                     <!-- 2 column grid layout for inline styling -->
                                                     <div class="row mb-4">
-                                                        <div class="col d-flex justify-content-center">
+                                                        <div class="col-md-2"></div>
+                                                        <div class="col-md-4 d-flex justify-content-center">
                                                             <!-- Checkbox -->
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox" value="" id="form2Example34" checked />
@@ -53,7 +63,7 @@ and open the template in the editor.
                                                             </div>
                                                         </div>
 
-                                                        <div class="col">
+                                                        <div class="col-md-4">
                                                             <!-- Simple link -->
                                                             <a href="#!">Forgot password?</a>
                                                         </div>
@@ -61,13 +71,14 @@ and open the template in the editor.
 
                                                     <!-- Submit button -->
                                                     <div class="form-outline mb-4 row">
-                                                        <button type="submit" class="btn btn-primary btn-block mb-4 center">Log in</button>
+                                                        <div class="col-md-2"></div>
+                                                        <button type="submit" class="btn btn-primary btn-block mb-4 col-md-8" id="btn-register">Register</button>
                                                     </div>
 
 
                                                     <!-- Register buttons -->
                                                     <div class="text-center">
-                                                        <p>Not a member? <a href="">Register</a></p>
+                                                        <p>You are member? <a href="login.php">Login</a></p>
                                                         <p>or sign up with:</p>
                                                         <button type="button" class="btn btn-primary btn-floating mx-1">
                                                             <i class="fab fa-facebook-f"></i>
@@ -88,5 +99,13 @@ and open the template in the editor.
                 </div>
             </div>
         </section>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="js/commonevent.js"></script>
+        <script>
+            $('#btn-register').click(function () {
+                var account = new AccountRegister($('#fullname').val(), $('#email').val(), $('#phone').val(), $('#password').val());
+                account.checkEmail();
+            });
+        </script>
     </body>
 </html>

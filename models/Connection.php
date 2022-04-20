@@ -1,9 +1,13 @@
 <?php
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright(C) 2022, Base
+ * Base Account:
+ * Model - class Connection
+ *
+ * Record of change:
+ * DATE            Version             AUTHOR           DESCRIPTION
+ * 2022-04-19       1.0                DucHT             First Implement
  */
 
 /**
