@@ -3,8 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/xampp/htdocs/BaseAccount/css/indexstyle.css</file>
+            <file>file:/C:/xampp/htdocs/BaseAccount/login.php</file>
             <file>file:/C:/xampp/htdocs/BaseAccount/index.php</file>
-            <file>file:/C:/xampp/htdocs/BaseAccount/models/UserDB.php</file>
+            <file>file:/C:/xampp/htdocs/BaseAccount/js/checkemail.php</file>
+            <file>file:/C:/xampp/htdocs/BaseAccount/js/commonevent.js</file>
+            <file>file:/C:/xampp/htdocs/BaseAccount/models/CustomerDB.php</file>
+            <file>file:/C:/xampp/htdocs/BaseAccount/register.php</file>
         </group>
     </open-files>
 </project-private>

@@ -9,5 +9,5 @@ include '../models/CustomerDB.php';
 if (isset($_REQUEST['email'])) {
     $phone = $_REQUEST['email'];
     $CustomerDB = new CustomerDB();
-    echo "{$CustomerDB->searchEmail($phone)}";
+    echo "{$CustomerDB->searchPhone($phone)}";
 }

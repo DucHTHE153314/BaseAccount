@@ -1,5 +1,7 @@
 <?php
 
+include 'Connection.php';
+include 'BaseDB.php';
 /*
  * Copyright(C) 2022, Base
  * Base Account:
@@ -56,7 +58,7 @@ class CustomerDB extends Connection implements BaseDB {
         
     }
 
-    public function searchEmail($email): bool {
+    public function searchEmail($email) {
         $servername = "localhost";
         $username = "root";
         $password = "";
@@ -69,19 +71,41 @@ class CustomerDB extends Connection implements BaseDB {
         }
         $sql = "SELECT * FROM Customer WHERE Email = ?";
         $prst = $conn->prepare($sql);
-        $prst->bind_param("i", $email);
+        $prst->bind_param("s", $email);
         $prst->execute();
         $result = $prst->get_result();
-
         if (mysqli_num_rows($result) > 0) {
             // output data of each row
-            while ($row = mysqli_fetch_assoc($result)) {
-                mysqli_close($conn);
-                return TRUE;
-            }
+            mysqli_close($conn);
+            return 1;
         }
         mysqli_close($conn);
-        return FALSE;
+        return 0;
+    }
+
+    public function searchPhone($phone) {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "baseaccount";
+        // Create connection
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+        // Check connection
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+        $sql = "SELECT * FROM Customer WHERE Phone = ?";
+        $prst = $conn->prepare($sql);
+        $prst->bind_param("s", $phone);
+        $prst->execute();
+        $result = $prst->get_result();
+        if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            mysqli_close($conn);
+            return 1;
+        }
+        mysqli_close($conn);
+        return 0;
     }
 
 }

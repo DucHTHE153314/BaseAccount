@@ -1,5 +1,6 @@
 <?php
-
+include 'Connection.php';
+include 'BaseDB.php';
 /*
  * Copyright(C) 2022, Base
  * Base Account:

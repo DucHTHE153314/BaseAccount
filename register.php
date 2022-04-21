@@ -17,16 +17,16 @@ and open the template in the editor.
     </head>
     <body>
         <section class="vh-100">
-            <div class="container main">
+            <div class="container ">
                 <div class="row">
-                    <section class="vh-100" style="position: fixed; left: 0;top: 0;">
+                    <section class="main vh-100" style="position: fixed; left: 0;top: 0; background-image: url(images/background.png); background-size: contain;">
                         <div class="container py-5 h-100">
                             <div class="row d-flex justify-content-center align-items-center h-100">
-                                <div class="col col-xl-8">
+                                <div class="col col-xl-6">
                                     <div class="card" style="border-radius: 1rem;">
                                         <div class="row g-0">
                                             <div class="col-md-12 col-lg-12 d-flex align-items-center">
-                                                <form action="#" method="post" class="card-body p-4 p-lg-5 text-black">
+                                                <form action="base.register.php" method="post" id="form-register" class="card-body p-4 p-lg-5 text-black">
                                                     <div class="align-items-center">
                                                         <img class="rounded mx-auto d-block small-img" src="images/logo.png" alt="Logo"/>
                                                         <h1 class="text-center">Register</h1>
@@ -34,39 +34,32 @@ and open the template in the editor.
                                                     <!-- Full name input -->
                                                     <div class="form-outline mb-4">
                                                         <label class="form-label" for="fullname">Full Name</label>
-                                                        <input type="text" id="fullname" class="form-control" placeholder="Your name" maxlength="128" required/>
+                                                        <input type="text" name="fullname" id="fullname" class="form-control" placeholder="Your name" maxlength="128" required/>
+                                                        <p class="message" id="mfullname"></p>
                                                     </div>
                                                     <!-- Email input -->
                                                     <div class="form-outline mb-4">
                                                         <label class="form-label" for="email">Email</label>
-                                                        <input type="email" id="email" class="form-control none-space" placeholder="Your email" maxlength="48" required/>
+                                                        <input type="email" name="email" id="email" class="form-control" placeholder="Your email" maxlength="48" required/>
+                                                        <p class="message" id="memail"></p>
                                                     </div>
                                                     <!-- Phone input -->
                                                     <div class="form-outline mb-4">
                                                         <label class="form-label" for="phone">Phone</label>
-                                                        <input type="text" id="phone" class="form-control none-space" placeholder="Your phone" maxlength="10" required/>
+                                                        <input type="text" name="phone" id="phone" class="form-control" placeholder="Your phone" maxlength="10" required/>
+                                                        <p class="message" id="mphone"></p>
                                                     </div>
                                                     <!-- Password input -->
                                                     <div class="form-outline mb-4">
                                                         <label class="form-label" for="password">New Password</label>
-                                                        <input type="password" id="password" class="form-control none-space" placeholder="Password" maxlength="32" required/>
+                                                        <input type="password" name="password" id="password" class="form-control" placeholder="Password" minlength="6" maxlength="32" required/>
+                                                        <p class="message" id="mpassword"></p>
                                                     </div>
-
-                                                    <!-- 2 column grid layout for inline styling -->
-                                                    <div class="row mb-4">
-                                                        <div class="col-md-2"></div>
-                                                        <div class="col-md-4 d-flex justify-content-center">
-                                                            <!-- Checkbox -->
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" value="" id="form2Example34" checked />
-                                                                <label class="form-check-label" for="form2Example34"> Remember me </label>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-4">
-                                                            <!-- Simple link -->
-                                                            <a href="#!">Forgot password?</a>
-                                                        </div>
+                                                    <!-- Password confirm -->
+                                                    <div class="form-outline mb-4">
+                                                        <label class="form-label" for="passwordcf">Confirm Password</label>
+                                                        <input type="password" name="passwordcf" id="password" class="form-control" placeholder="Confirm Password" minlength="6" maxlength="32" required/>
+                                                        <p class="message" id="mpassword"></p>
                                                     </div>
 
                                                     <!-- Submit button -->
@@ -74,7 +67,6 @@ and open the template in the editor.
                                                         <div class="col-md-2"></div>
                                                         <button type="submit" class="btn btn-primary btn-block mb-4 col-md-8" id="btn-register">Register</button>
                                                     </div>
-
 
                                                     <!-- Register buttons -->
                                                     <div class="text-center">
@@ -102,9 +94,16 @@ and open the template in the editor.
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="js/commonevent.js"></script>
         <script>
-            $('#btn-register').click(function () {
+            $('#form-register').submit(function () {
                 var account = new AccountRegister($('#fullname').val(), $('#email').val(), $('#phone').val(), $('#password').val());
-                account.checkEmail();
+                return account.checkRegister();
+            });
+        </script>
+        <script>
+            $.each($('.form-control'), function () {
+                $(this).focus(function () {
+                    $(this).parent().children('.message').hide();
+                });
             });
         </script>
     </body>

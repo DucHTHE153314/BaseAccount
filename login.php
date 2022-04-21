@@ -17,12 +17,12 @@ and open the template in the editor.
     </head>
     <body>
         <section class="vh-100">
-            <div class="container main">
+            <div class="container">
                 <div class="row">
-                    <section class="vh-100" style="position: fixed; left: 0;top: 0;">
+                    <section class="main vh-100" style="position: fixed; left: 0;top: 0; background-image: url(images/background.png); background-size: contain;">
                         <div class="container py-5 h-100">
                             <div class="row d-flex justify-content-center align-items-center h-100">
-                                <div class="col col-xl-8">
+                                <div class="col col-xl-6">
                                     <div class="card" style="border-radius: 1rem;">
                                         <div class="row g-0">
                                             <div class="col-md-12 col-lg-12 d-flex align-items-center">
