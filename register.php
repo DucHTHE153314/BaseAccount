@@ -58,8 +58,8 @@ and open the template in the editor.
                                                     <!-- Password confirm -->
                                                     <div class="form-outline mb-4">
                                                         <label class="form-label" for="passwordcf">Confirm Password</label>
-                                                        <input type="password" name="passwordcf" id="password" class="form-control" placeholder="Confirm Password" minlength="6" maxlength="32" required/>
-                                                        <p class="message" id="mpassword"></p>
+                                                        <input type="password" name="passwordcf" id="passwordcf" class="form-control" placeholder="Confirm Password" minlength="6" maxlength="32" required/>
+                                                        <p class="message" id="mcfpassword"></p>
                                                     </div>
 
                                                     <!-- Submit button -->
@@ -95,7 +95,7 @@ and open the template in the editor.
         <script src="js/commonevent.js"></script>
         <script>
             $('#form-register').submit(function () {
-                var account = new AccountRegister($('#fullname').val(), $('#email').val(), $('#phone').val(), $('#password').val());
+                var account = new AccountRegister($('#fullname').val(), $('#email').val(), $('#phone').val(), $('#password').val(),$('#passwordcf').val());
                 return account.checkRegister();
             });
         </script>

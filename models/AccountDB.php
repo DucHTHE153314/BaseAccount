@@ -1,6 +1,7 @@
 <?php
 include 'Connection.php';
 include 'BaseDB.php';
+include 'Account.php';
 /*
  * Copyright(C) 2022, Base
  * Base Account:

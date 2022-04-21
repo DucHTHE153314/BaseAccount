@@ -5,17 +5,16 @@
  */
 
 class AccountRegister {
-    constructor(fullname, email, phone, password) {
+    constructor(fullname, email, phone, password, confirm) {
         this.fullname = fullname;
         this.email = email;
         this.phone = phone;
         this.password = password;
-        this.message = ['', '', '', ''];
+        this.confirm = confirm;
+        this.message = ['', '', '', '', ''];
     }
     checkName() {
-        alert(this.fullname);
         var reg = new RegExp(/[^a-zA-Z\s_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]/);
-        alert(this.fullname);
         if (!reg.test(this.fullname)) {
             this.message[0] = '';
             return true;
@@ -79,9 +78,19 @@ class AccountRegister {
             return true;
         }
     }
+    checkConfirm(){
+        alert(this.password +'---'+ this.confirm);
+        if(this.password === this.confirm){
+            this.message[4] = '';
+            return true;
+        }else{
+            this.message[4] = 'Password confirmation mismatch!';
+            return false;
+        }
+    }
     checkRegister() {
-        var x = this.checkPhone() && this.checkEmail() && this.checkName() && this.checkPassword();
-        for (var i = 0; i < 4; i++) {
+        var x = this.checkPhone() && this.checkEmail() && this.checkName() && this.checkPassword() && this.checkConfirm();
+        for (var i = 0; i < 5; i++) {
             $('.message').eq(i).html(this.message[i]);
             $('.message').eq(i).css('color', 'red');
             $('.message').eq(i).show();
