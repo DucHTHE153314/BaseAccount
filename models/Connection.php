@@ -18,15 +18,15 @@
 class Connection {
 
     //put your code here
-    function __construct() {
+    public function __construct() {
         
     }
 
-    function getConnection() {
+    public function getConnection() {
         $servername = "localhost";
         $username = "root";
         $password = "";
-        $dbname = "northwind";
+        $dbname = "base_account";
         // Create connection
         $conn = mysqli_connect($servername, $username, $password, $dbname);
         // Check connection
@@ -36,7 +36,7 @@ class Connection {
         return $conn;
     }
 
-    function closeConnection($conn) {
+    public function closeConnection($conn) {
         mysqli_close($conn);
     }
 

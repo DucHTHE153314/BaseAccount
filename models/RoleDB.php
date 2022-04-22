@@ -1,6 +1,8 @@
 <?php
-include 'Connection.php';
-include 'BaseDB.php';
+
+require_once('Connection.php');
+require_once('BaseDB.php');
+require_once('Role.php');
 /*
  * Copyright(C) 2022, Base
  * Base Account:
@@ -36,8 +38,24 @@ class RoleDB extends Connection implements BaseDB {
     /**
      * 
      */
-    public function getOne() {
-        
+    public function getOne($key) {
+        ini_set('display_errors', 0);
+        $conn = $this->getConnection();
+        $sql = "SELECT * FROM Role WHERE Role_id = ?";
+        $prst = $conn->prepare($sql);
+        $prst->bind_param("i", $key);
+        $prst->execute();
+        $result = $prst->get_result();
+        if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            while ($row = mysqli_fetch_assoc($result)) {
+                $re = new Role($row["Role_id"], $row["Description"]);
+                $this->closeConnection($conn);
+                return $re;
+            }
+        } else {
+            return NULL;
+        }
     }
 
     /**

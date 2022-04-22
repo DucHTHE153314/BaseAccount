@@ -1,6 +1,7 @@
 <?php
-include 'Connection.php';
-include 'BaseDB.php';
+
+require_once('Connection.php');
+require_once('BaseDB.php');
 /*
  * Copyright(C) 2022, Base
  * Base Account:
@@ -36,7 +37,7 @@ class UserDB extends Connection implements BaseDB {
     /**
      * 
      */
-    public function getOne() {
+    public function getOne($key) {
         
     }
 
@@ -45,7 +46,13 @@ class UserDB extends Connection implements BaseDB {
      * @param type $obj
      */
     public function insert($obj) {
-        
+        ini_set('display_errors', 0);
+        $conn = $this->getConnection();
+        $sql = "INSERT INTO User(Customer_id,Username,Status) Values (?,?,?)";
+        $prst = $conn->prepare($sql);
+        $prst->bind_param("isi", $obj->getCustomer()->getCustomer_id(), $obj->getAccount()->getUsername(), $obj->getStatus());
+        $prst->execute();
+        $this->closeConnection($conn);
     }
 
     /**
@@ -56,7 +63,5 @@ class UserDB extends Connection implements BaseDB {
     public function update($old, $new) {
         
     }
-
-   
 
 }

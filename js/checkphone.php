@@ -6,8 +6,8 @@ include '../models/CustomerDB.php';
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-if (isset($_REQUEST['email'])) {
-    $phone = $_REQUEST['email'];
+if (isset($_GET['phone'])) {
+    $phone = $_GET['phone'];
     $CustomerDB = new CustomerDB();
     echo "{$CustomerDB->searchPhone($phone)}";
 }

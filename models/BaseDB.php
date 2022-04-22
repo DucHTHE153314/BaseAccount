@@ -18,7 +18,7 @@ interface BaseDB {
 
     public function getAll();
 
-    public function getOne();
+    public function getOne($key);
 
     public function insert($obj);
 

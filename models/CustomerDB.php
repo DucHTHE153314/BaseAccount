@@ -1,8 +1,11 @@
 <?php
 
-include 'Connection.php';
-include 'BaseDB.php';
-include 'Customer.php';
+require_once('Connection.php');
+require_once('BaseDB.php');
+require_once('Customer.php');
+require_once('UserDB.php');
+require_once('User.php');
+require_once('AccountDB.php');
 /*
  * Copyright(C) 2022, Base
  * Base Account:
@@ -38,7 +41,7 @@ class CustomerDB extends Connection implements BaseDB {
     /**
      * 
      */
-    public function getOne() {
+    public function getOne($key) {
         
     }
 
@@ -47,23 +50,13 @@ class CustomerDB extends Connection implements BaseDB {
      * @param type $obj
      */
     public function insert($obj) {
-        $this->clear();
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "baseaccount";
-        // Create connection
-        $conn = mysqli_connect($servername, $username, $password, $dbname);
-        // Check connection
-        if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
+        ini_set('display_errors', 0);
+        $conn = $this->getConnection();
         $sql = "INSERT INTO Customer(Gender,Name,Date_of_birth,Phone,Email,Address) Values (?,?,?,?,?,?)";
         $prst = $conn->prepare($sql);
         $prst->bind_param("isssss", $obj->getGender(), $obj->getName(), $obj->getDate_of_birth(), $obj->getPhone(), $obj->getEmail(), $obj->getAddress());
         $prst->execute();
-        mysqli_close($conn);
-        return NULL;
+        $this->closeConnection($conn);
     }
 
     /**
@@ -75,21 +68,34 @@ class CustomerDB extends Connection implements BaseDB {
         
     }
 
+    private function getLast() {
+        ini_set('display_errors', 0);
+        $conn = $this->getConnection();
+        $sql = "Select Max(Customer_id) as 'maxid' FROM Customer";
+        $result = mysqli_query($conn, $sql);
+        if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            while ($row = mysqli_fetch_assoc($result)) {
+                $this->closeConnection($conn);
+                return $row["maxid"];
+            }
+        }
+        return 1;
+    }
+
     public function register($cus, $acc) {
         $this->insert($cus);
+        $AccountDB = new AccountDB();
+        $AccountDB->insert($acc);
+        $UserDB = new UserDB();
+        $cus->setCustomer_id($this->getLast());
+        $user = new User($cus, $acc, 1);
+        $UserDB->insert($user);
     }
 
     public function searchEmail($email) {
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "baseaccount";
-        // Create connection
-        $conn = mysqli_connect($servername, $username, $password, $dbname);
-        // Check connection
-        if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
+        ini_set('display_errors', 0);
+        $conn = $this->getConnection();
         $sql = "SELECT * FROM Customer WHERE Email = ?";
         $prst = $conn->prepare($sql);
         $prst->bind_param("s", $email);
@@ -97,24 +103,16 @@ class CustomerDB extends Connection implements BaseDB {
         $result = $prst->get_result();
         if (mysqli_num_rows($result) > 0) {
             // output data of each row
-            mysqli_close($conn);
-            return 1;
+            $this->closeConnection($conn);
+            return '1';
         }
-        mysqli_close($conn);
-        return 0;
+        $this->closeConnection($conn);
+        return '0';
     }
 
     public function searchPhone($phone) {
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "baseaccount";
-        // Create connection
-        $conn = mysqli_connect($servername, $username, $password, $dbname);
-        // Check connection
-        if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
+        ini_set('display_errors', 0);
+        $conn = $this->getConnection();
         $sql = "SELECT * FROM Customer WHERE Phone = ?";
         $prst = $conn->prepare($sql);
         $prst->bind_param("s", $phone);
@@ -122,11 +120,11 @@ class CustomerDB extends Connection implements BaseDB {
         $result = $prst->get_result();
         if (mysqli_num_rows($result) > 0) {
             // output data of each row
-            mysqli_close($conn);
-            return 1;
+            $this->closeConnection($conn);
+            return '1';
         }
-        mysqli_close($conn);
-        return 0;
+        $this->closeConnection($conn);
+        return '0';
     }
 
 }

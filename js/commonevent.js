@@ -17,10 +17,8 @@ class AccountRegister {
         var reg = new RegExp(/[^a-zA-Z\s_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]/);
         if (!reg.test(this.fullname)) {
             this.message[0] = '';
-            return true;
         } else {
             this.message[0] = 'Check your name again!';
-            return false;
         }
     }
     checkEmail() {
@@ -31,17 +29,12 @@ class AccountRegister {
                 email: this.email
             },
             success: function (data) {
-                if (data === 1) {
-                    this.message[1] = 'This email has been used!';
-                } else {
-                    this.message[1] = '';
-                }
+                $('#resultE').val(data);
             },
             error: function (xhr) {
                 //Do Something to handle error
             }
         });
-        return this.message[1] === '';
     }
     checkPhone() {
         var phone = this.phone.replaceAll(' ', '');
@@ -52,49 +45,63 @@ class AccountRegister {
         } else {
             $.ajax({
                 url: 'js/checkphone.php',
-                type: 'get',
+                type: 'get', //send it through get method
                 data: {
                     phone: this.phone
                 },
                 success: function (data) {
-                    if (data === 1) {
-                        this.message[2] = 'This phone has been registered!';
-                    } else {
-                        this.message[2] = '';
-                    }
+                    $('#resultP').val(data);
+                },
+                error: function (xhr) {
+                    //Do Something to handle error
                 }
             });
         }
-        return this.message[2] === '';
     }
     checkPassword() {
         var pass = this.password;
         var reg = new RegExp(/^[a-zA-Z0-9!@#$%^&*]{6,16}/);
         if (!reg.test(pass)) {
             this.message[3] = 'Error Password Format!';
-            return false;
         } else {
             this.message[3] = '';
-            return true;
         }
     }
-    checkConfirm(){
-        alert(this.password +'---'+ this.confirm);
-        if(this.password === this.confirm){
+    checkConfirm() {
+        if (this.password === this.confirm) {
             this.message[4] = '';
-            return true;
-        }else{
+        } else {
             this.message[4] = 'Password confirmation mismatch!';
-            return false;
         }
     }
     checkRegister() {
-        var x = this.checkPhone() && this.checkEmail() && this.checkName() && this.checkPassword() && this.checkConfirm();
+        this.checkName();
+        this.checkPassword();
+        this.checkConfirm();
+        this.checkPhone();
+        this.checkEmail();
+
+//        if ($('#resultP').val() === 1) {
+//            this.message[2] = 'This phone has been registered!';
+//        } else {
+//            this.message[2] = 'Phone ko vao ne`';
+//        }
+//
+//        this.x = this.x && (this.message[2] === '');
+//        if ($('#resultE').val() === 1) {
+//            this.message[1] = 'This email has been used!';
+//        } else {
+//            this.message[1] = 'Email ko vao ne`';
+//        }
+//        this.x = this.x && (this.message[1] === '');
         for (var i = 0; i < 5; i++) {
             $('.message').eq(i).html(this.message[i]);
             $('.message').eq(i).css('color', 'red');
             $('.message').eq(i).show();
         }
-        return x;
+        return false;
+    }
+    showMess() {
+        alert(this.message[0] + '--' + this.message[1] + '--' + this.message[2] + '--' + this.message[3] + '--' + this.message[4] + '--' + this.x);
     }
 }

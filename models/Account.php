@@ -51,5 +51,8 @@ class Account {
     function setRole($role) {
         $this->role = $role;
     }
+    public function __toString() {
+        return $this->getUsername().'++'.$this->getPassword().'++'.$this->getRole()->getDescription();
+    }
 
 }
