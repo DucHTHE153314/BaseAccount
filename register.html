@@ -18,17 +18,17 @@ and open the template in the editor.
     <body>
         <section class="vh-100">
             <div class="row">
-                <section class="main vh-100" style="position: fixed; left: 0;top: 0; background-image: url(images/background.png); background-size: contain;">
-                    <div class="container py-5 h-100">
-                        <div class="row d-flex justify-content-center align-items-center h-100">
-                            <div class="col col-xl-6">
-                                <div class="card" style="border-radius: 1rem;">
+                <section class="main vh-100">
+                    <div class="h-100">
+                        <div class="row d-flex h-100">
+                            <div class="col col-xl-4">
+                                <div class="card " style="border-radius: 1rem; height: calc(100vh);">
                                     <div class="row g-0">
                                         <div class="col-md-12 col-lg-12 d-flex align-items-center">
-                                            <form action="base.register.php" method="post" id="form-register" class="card-body p-4 p-lg-5 text-black">
+                                            <form action="register.php" method="post" id="form-register" class="card-body p-4 p-lg-5 text-black">
                                                 <div class="align-items-center">
                                                     <img class="rounded mx-auto d-block small-img" src="images/logo.png" alt="Logo"/>
-                                                    <h1 class="text-center">Register</h1>
+                                                    <h2 class="text-center">Register</h2>
                                                 </div>
                                                 <!-- Full name input -->
                                                 <div class="form-outline mb-4">
@@ -66,9 +66,6 @@ and open the template in the editor.
                                                     <div class="col-md-2"></div>
                                                     <button type="submit" class="btn btn-primary btn-block mb-4 col-md-8" id="btn-register">Register</button>
                                                 </div>
-                                                <input type="text" id="resultE" value=""/>
-                                                <input type="text" id="resultP" value=""/>
-
                                                 <!-- Register buttons -->
                                                 <div class="text-center">
                                                     <p>You are member? <a href="login.html">Login</a></p>
@@ -85,6 +82,9 @@ and open the template in the editor.
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col col-md-8">
+                                <img style="width: calc(66vw);height: calc(100vh);" src="images/background.png" alt="back-ground"/>
                             </div>
                         </div>
                     </div>

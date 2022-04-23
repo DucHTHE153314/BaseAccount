@@ -81,19 +81,16 @@ class AccountRegister {
         this.checkPhone();
         this.checkEmail();
 
-//        if ($('#resultP').val() === 1) {
-//            this.message[2] = 'This phone has been registered!';
-//        } else {
-//            this.message[2] = 'Phone ko vao ne`';
-//        }
-//
-//        this.x = this.x && (this.message[2] === '');
-//        if ($('#resultE').val() === 1) {
-//            this.message[1] = 'This email has been used!';
-//        } else {
-//            this.message[1] = 'Email ko vao ne`';
-//        }
-//        this.x = this.x && (this.message[1] === '');
+        if ($('#resultP').val() === 1) {
+            this.message[2] = 'This phone has been registered!';
+        } else {
+            this.message[2] = 'Phone ko vao ne`';
+        }
+        if ($('#resultE').val() === 1) {
+            this.message[1] = 'This email has been used!';
+        } else {
+            this.message[1] = 'Email ko vao ne`';
+        }
         for (var i = 0; i < 5; i++) {
             $('.message').eq(i).html(this.message[i]);
             $('.message').eq(i).css('color', 'red');
@@ -102,6 +99,6 @@ class AccountRegister {
         return false;
     }
     showMess() {
-        alert(this.message[0] + '--' + this.message[1] + '--' + this.message[2] + '--' + this.message[3] + '--' + this.message[4] + '--' + this.x);
+        alert(this.message[0] + '--' + this.message[1] + '--' + this.message[2] + '--' + this.message[3] + '--' + this.message[4] + $('#resultE').val() + $('#resultP').val());
     }
 }

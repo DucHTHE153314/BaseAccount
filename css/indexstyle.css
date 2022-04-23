@@ -21,8 +21,18 @@ and open the template in the editor.
     margin: auto;
 }
 .main{
-    position: fixed; left: 0;top: 0; background-image: url(images/background.png); background-size: contain;
+    position: fixed; left: 0;top: 0;
+}
+.img-fill{
+    width: calc(67vw);
+    height: calc(100vh);
 }
 .message{
     position: absolute;
+}
+.fillin{
+    object-fit: fill;
+}
+.content-log{
+    background-color: white;
 }

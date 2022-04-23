@@ -10,11 +10,11 @@ require_once 'models/Account.php';
  */
 
 if (isset($_POST["lemail"]) && isset($_POST["lpassword"]) && isset($_POST["remember"])) {
-    $email = $_POST["lemail"];
+    $phone = $_POST["lemail"];
     $password = $_POST["lpassword"];
     $remember = $_POST["remember"];
     $AccountDB = new AccountDB();
-    $result = $AccountDB->checkAccount($email,$password);
+    $result = $AccountDB->checkAccount($phone,$password);
     if($result == 1){
         echo 'Login Success!';
     }else{
