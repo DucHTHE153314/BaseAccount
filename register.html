@@ -7,90 +7,55 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
         <link rel='icon' href="images/logo.png"/>
-        <link href="css/indexstyle.css" rel="stylesheet"/>
-        <title>Base</title>
+        <link href="css/content.css" rel="stylesheet"/>
+        <title>Base Register</title>
     </head>
     <body>
-        <section class="vh-100">
-            <div class="row">
-                <section class="main vh-100">
-                    <div class="h-100">
-                        <div class="row d-flex h-100">
-                            <div class="col col-xl-4">
-                                <div class="card " style="border-radius: 1rem; height: calc(100vh);">
-                                    <div class="row g-0">
-                                        <div class="col-md-12 col-lg-12 d-flex align-items-center">
-                                            <form action="register.php" method="post" id="form-register" class="card-body p-4 p-lg-5 text-black">
-                                                <div class="align-items-center">
-                                                    <img class="rounded mx-auto d-block small-img" src="images/logo.png" alt="Logo"/>
-                                                    <h2 class="text-center">Register</h2>
-                                                </div>
-                                                <!-- Full name input -->
-                                                <div class="form-outline mb-4">
-                                                    <label class="form-label" for="fullname">Full Name</label>
-                                                    <input type="text" name="fullname" id="fullname" class="form-control" placeholder="Your name" maxlength="128" required/>
-                                                    <p class="message" id="mfullname"></p>
-                                                </div>
-                                                <!-- Email input -->
-                                                <div class="form-outline mb-4">
-                                                    <label class="form-label" for="email">Email</label>
-                                                    <input type="email" name="email" id="email" class="form-control" placeholder="Your email" maxlength="48" required/>
-                                                    <p class="message" id="memail"></p>
-                                                </div>
-                                                <!-- Phone input -->
-                                                <div class="form-outline mb-4">
-                                                    <label class="form-label" for="phone">Phone</label>
-                                                    <input type="text" name="phone" id="phone" class="form-control" placeholder="Your phone" maxlength="10" required/>
-                                                    <p class="message" id="mphone"></p>
-                                                </div>
-                                                <!-- Password input -->
-                                                <div class="form-outline mb-4">
-                                                    <label class="form-label" for="password">New Password</label>
-                                                    <input type="password" name="password" id="password" class="form-control" placeholder="Password" minlength="6" maxlength="32" required/>
-                                                    <p class="message" id="mpassword"></p>
-                                                </div>
-                                                <!-- Password confirm -->
-                                                <div class="form-outline mb-4">
-                                                    <label class="form-label" for="passwordcf">Confirm Password</label>
-                                                    <input type="password" name="passwordcf" id="passwordcf" class="form-control" placeholder="Confirm Password" minlength="6" maxlength="32" required/>
-                                                    <p class="message" id="mcfpassword"></p>
-                                                </div>
-
-                                                <!-- Submit button -->
-                                                <div class="form-outline mb-4 row">
-                                                    <div class="col-md-2"></div>
-                                                    <button type="submit" class="btn btn-primary btn-block mb-4 col-md-8" id="btn-register">Register</button>
-                                                </div>
-                                                <!-- Register buttons -->
-                                                <div class="text-center">
-                                                    <p>You are member? <a href="login.html">Login</a></p>
-                                                    <p>or sign up with:</p>
-                                                    <button type="button" class="btn btn-primary btn-floating mx-1">
-                                                        <i class="fab fa-facebook-f"></i>
-                                                    </button>
-
-                                                    <button type="button" class="btn btn-primary btn-floating mx-1">
-                                                        <i class="fab fa-google"></i>
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
+        <div id="content">
+            <div id="main-content">
+                <div class="concentrate">
+                    <div class="logo">
+                        <a href="#">
+                            <img class="small-img" src="images/logo.png"/>
+                        </a>
+                    </div>
+                    <div class="form-wrap">
+                        <form id="login-form" action="register.php" method="post">
+                            <h1>Register</h1>
+                            <div class="sub-title">Welcome to Base. Register to start working.</div>
+                            <div class="form">
+                                <div class="row">
+                                    <div class="label">Full name</div>
+                                    <div class="input"><input type="text" name="full_name" placeholder="Your name"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="label">Email</div>
+                                    <div class="input"><input type="email" name="register_email" placeholder="Your email"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="label">Phone</div>
+                                    <div class="input"><input type="text" name="register_phone" placeholder="Your phone"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="label">New Password</div>
+                                    <div class="input"><input type="password" name="register_password" placeholder="New password"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="label">Confirm Password</div>
+                                    <div class="input"><input type="password" name="confirm_password" placeholder="Confirm password"></div>
+                                </div>
+                                <div class="row relative hd-ov">
+                                    <a class="right" href="login.html">Have an account?</a>
+                                    <div class="submit btn-register" onclick="">Register</div>
                                 </div>
                             </div>
-                            <div class="col col-md-8">
-                                <img style="width: calc(66vw);height: calc(100vh);" src="images/background.png" alt="back-ground"/>
-                            </div>
-                        </div>
+                        </form>
                     </div>
-                </section>
+                </div>
             </div>
-        </section>
+            <div id="bg-content"></div>
+        </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="js/commonevent.js"></script>
         <script>

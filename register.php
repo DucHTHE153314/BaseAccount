@@ -10,7 +10,7 @@ require_once('models/RoleDB.php');
  * and open the template in the editor.
  */
 
-if (isset($_POST["fullname"]) && isset($_POST["email"]) && isset($_POST["phone"]) && isset($_POST["password"])) {
+if (isset($_POST["full_name"]) && isset($_POST["register_email"]) && isset($_POST["register_phone"]) && isset($_POST["register_password"])) {
     $full_name = $_POST["fullname"];
     $phone = $_POST["email"];
     $phone = $_POST["phone"];

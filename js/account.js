@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-class AccountRegister {
+class Account {
     constructor(fullname, email, phone, password, confirm) {
         this.fullname = fullname;
         this.email = email;
@@ -97,8 +97,5 @@ class AccountRegister {
             $('.message').eq(i).show();
         }
         return false;
-    }
-    showMess() {
-        alert(this.message[0] + '--' + this.message[1] + '--' + this.message[2] + '--' + this.message[3] + '--' + this.message[4] + $('#resultE').val() + $('#resultP').val());
     }
 }
