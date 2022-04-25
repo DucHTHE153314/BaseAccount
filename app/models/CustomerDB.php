@@ -52,7 +52,7 @@ class CustomerDB extends Connection implements BaseDB {
     public function insert($obj) {
         ini_set('display_errors', 0);
         $conn = $this->getConnection();
-        $sql = "INSERT INTO Customer(Gender,Name,Date_of_birth,Phone,Email,Address) Values (?,?,?,?,?,?)";
+        $sql = "INSERT INTO Customer(Gender,Name,birth_date,Phone,Email,Address) Values (?,?,?,?,?,?)";
         $prst = $conn->prepare($sql);
         $prst->bind_param("isssss", $obj->getGender(), $obj->getName(), $obj->getDate_of_birth(), $obj->getPhone(), $obj->getEmail(), $obj->getAddress());
         $prst->execute();

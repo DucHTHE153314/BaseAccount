@@ -1,0 +1,72 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+
+
+/* 
+    Created on : Apr 20, 2022, 10:52:41 AM
+    Author     : DucHT
+*/
+
+body {
+    font-family: 'Roboto', 'Segoe UI', 'sans-serif'
+}
+
+.relative {
+    position: relative;
+}
+
+.hd-ov {
+    overflow: hidden;
+}
+
+.right {
+    float: right;
+}
+
+.message-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    width: calc(100vw);
+    height: calc(100vh);
+}
+
+.message-box .card {
+    position: absolute;
+    width: calc(36vw);
+    top: calc(30vh);
+    left: calc(32vw);
+    border: 1px solid black;
+}
+
+.img-125 {
+    height: 25%;
+    width: 25%;
+    margin: 7.5px;
+}
+
+.input {
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 0;
+}
+
+.btn {
+    border: none;
+    box-shadow: none;
+}
+
+.form .submit {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    padding: 11px 25px;
+    border-radius: 3px;
+    margin-top: 40px;
+}

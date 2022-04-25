@@ -3,164 +3,178 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
+
+
 /* 
     Created on : Apr 23, 2022, 11:52:57 AM
-    Author     : PC
+    Author     : DucHT
 */
-#content{
-    position:absolute;
-    padding:0;
-    bottom:0px;
-    left:0px;
-    right:0px;
-    top:0px;
-    z-index:3;
+
+#container {
+    position: absolute;
+    padding: 0;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    z-index: 3;
 }
-#bg-content{
-    position:absolute;
+
+#bg-content {
+    position: absolute;
     left: 600px;
-    right:0px;
-    top:0px;
-    bottom:0px;
-    background-image:url(https://static-gcdn.basecdn.net/account/image/background.png);
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    background-image: url(https://static-gcdn.basecdn.net/account/image/background.png);
     background-position: right bottom;
     background-repeat: repeat-x;
     background-size: cover;
 }
-.relative {
-    position: relative;
-}
-.hd-ov{
-    overflow:hidden;
-}
-.right{
-    float: right;
-}
-#main-content{
-    width:600px;
-    position:absolute;
+
+#main-content {
+    width: 600px;
+    position: absolute;
     box-sizing: border-box;
     background-color: #fff;
-    top:0px;
-    left:0px;
-    bottom:0px;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
 }
-#main-content .concentrate{
-    max-width:550px;
-    margin:auto;
-    padding:20px;
+
+#main-content .concentrate {
+    max-width: 550px;
+    margin: auto;
+    padding: 20px;
     box-sizing: border-box;
 }
-#main-content .concentrate .logo{
-    text-align:center;
-    padding-bottom:0px;
-    padding-top:10px;
+
+#main-content .concentrate .logo {
+    text-align: center;
+    padding-bottom: 0px;
+    padding-top: 10px;
 }
-.small-img{
-    height: 25%;
-    width: 25%;
-    margin: 7.5px;
+
+#main-content .concentrate h1 {
+    font-weight: 500;
+    font-size: 24px;
+    text-align: center;
+    padding: 35px 0px 8px 0px;
 }
-#main-content .concentrate h1{
-    font-weight:500;
-    font-size:24px;
-    text-align:center;
-    padding:35px 0px 8px 0px;
+
+#main-content .concentrate .sub-title {
+    color: #888;
+    font-size: 14px;
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #eee;
 }
-#main-content .concentrate .sub-title{
-    color:#888;
-    font-size:14px;
-    text-align:center;
-    padding-bottom:20px;
-    border-bottom:2px solid #eee;
+
+#main-content .form-wrap .form {
+    padding: 30px 0;
 }
-#main-content .form-wrap .form{
-    padding:30px 0;
+
+#main-content .form-wrap .form .row {
+    padding-bottom: 20px;
 }
-#main-content .form-wrap .form .row{
-    padding-bottom:20px;
+
+#main-content .form-wrap .form .row .label {
+    padding-bottom: 10px;
+    font-weight: bold;
+    font-size: 13px;
 }
-#main-content .form-wrap .form .row .label{
-    padding-bottom:10px;
-    font-weight:bold;
-    font-size:13px;
+
+#main-content .form-wrap .form .another .label:before {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 40%;
+    height: 1px;
+    background-color: #eee;
+    content: "";
 }
-#main-content .form-wrap .form .row .label .sub{
-    color:#888;
+
+#main-content .form-wrap .form .row .label .sub {
+    color: #888;
 }
-#main-content .form-wrap .form .row .input{
+
+#main-content .form-wrap .form .row .input {
     background-color: #fff;
     border-radius: 3px;
-    padding:0;
+    padding: 0;
 }
-#main-content .form-wrap .form .row .input input{
-    font-size:15px;
-    padding:10px;
+
+#main-content .form-wrap .form .row .input input {
+    font-size: 15px;
+    padding: 10px;
     width: 95%;
 }
-#main-content .form-wrap .form .row .submit{
-    font-size:14px;
-    font-weight:bold;
-    color:#fff;
-    cursor:pointer;
-    text-align:center;
-    padding:11px 25px;
-    border-radius: 3px;
-    margin-top:40px;
+
+.btn-login {
+    background-color: rgb(43, 209, 78);
+    width: 100%;
 }
-.btn-login{
-    background-color: rgb(43, 209, 78);    
+
+.btn-register {
+    background-color: rgb(43, 134, 209);
+    width: 100%;
 }
-.btn-register{    
-    background-color: rgb(43, 134, 209);  
-}
-#main-content .form-wrap .form .row .submit:hover{
+
+#main-content .form-wrap .form .row .submit:hover {
     opacity: 0.7;
 }
-#main-content .form-wrap .form .row .another{
-    overflow:hidden;
-    padding-top:35px;
+
+#main-content .form-wrap .form .row .another {
+    overflow: hidden;
+    padding-top: 35px;
 }
-#main-content .form-wrap .form .row .another .label{
-    text-align:center;
-    position:relative;
+
+#main-content .form-wrap .form .row .another .label {
+    text-align: center;
+    position: relative;
 }
-#main-content .form-wrap .form .row .another .label span{
-    position:relative;
-    font-weight:normal;
-    color:#aaa;
-    padding:2px 10px;
+
+#main-content .form-wrap .form .row .another .label span {
+    position: relative;
+    font-weight: normal;
+    color: #aaa;
+    padding: 2px 10px;
     background-color: #fff;
 }
-#main-content .form-wrap .form .row .another-login{
+
+#main-content .form-wrap .form .row .another-login {
     background-color: #f3f3f3;
-    border:1px solid rgba(0,0,0,0.05);
-    font-size:13px;
-    text-align:center;
-    display:inline-block;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 13px;
+    text-align: center;
+    display: inline-block;
     box-sizing: border-box;
-    color:#267cde;
-    padding:10px 10px;
+    color: #267cde;
+    padding: 10px 10px;
     border-radius: 3px;
-    margin-top:20px;
+    margin-top: 20px;
     margin-right: 2%;
-    width:31%;
+    width: 31%;
 }
-#main-content .form-wrap .form .row .another-login .right{
+
+#main-content .form-wrap .form .row .another-login .right {
     margin-right: 0px;
 }
-#main-content .form-wrap .form .row .another-login:hover{
+
+#main-content .form-wrap .form .row .another-login:hover {
     background-color: #267cde;
-    color:#fff;
+    color: #fff;
 }
-#main-content .form-wrap .form .row .checkbox{
-    position:absolute;
-    font-size:15px;
-    color:#888;
-    left:0px;
-    top:0px;
+
+#main-content .form-wrap .form .row .checkbox {
+    position: absolute;
+    font-size: 15px;
+    color: #888;
+    left: 0px;
+    top: 0px;
 }
-#content .message-box{
+
+#content .message-box {
     position: fixed;
     top: 0;
     left: 0;
@@ -168,7 +182,8 @@ and open the template in the editor.
     width: calc(100vw);
     height: calc(100vh);
 }
-.message-box .card{
+
+.message-box .card {
     position: absolute;
     width: calc(36vw);
     top: calc(30vh);

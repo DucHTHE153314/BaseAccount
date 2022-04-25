@@ -50,7 +50,7 @@ class AccountDB extends Connection implements BaseDB {
         ini_set('display_errors', 0);
         // Create connection
         $conn = $this->getConnection();
-        $sql = "INSERT INTO Account(Username,Password,Role_id) Values (?,?,?)";
+        $sql = "INSERT INTO Account(User_name,Pass_word,Role_id) Values (?,?,?)";
         $prst = $conn->prepare($sql);
         $prst->bind_param("ssi", $obj->getUsername(), $obj->getPassword(), $obj->getRole()->getRole_id());
         $prst->execute();
@@ -60,7 +60,7 @@ class AccountDB extends Connection implements BaseDB {
     public function checkAccount($email, $pass) {
         ini_set('display_errors', 0);
         $conn = $this->getConnection();
-        $sql = "SELECT * FROM Account WHERE Username = ? and Password = ?";
+        $sql = "SELECT * FROM Account WHERE User_name = ? and Password = ?";
         $prst = $conn->prepare($sql);
         $prst->bind_param("ss", $email, password_hash($pass, PASSWORD_BCRYPT));
         $prst->execute();
@@ -82,5 +82,4 @@ class AccountDB extends Connection implements BaseDB {
     public function update($old, $new) {
         
     }
-
 }

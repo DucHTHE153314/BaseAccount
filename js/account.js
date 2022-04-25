@@ -28,10 +28,10 @@ class Account {
             data: {
                 email: this.email
             },
-            success: function (data) {
-                $('#resultE').val(data);
+            success: function(data) {
+                this.Account.message[1] = data;
             },
-            error: function (xhr) {
+            error: function(xhr) {
                 //Do Something to handle error
             }
         });
@@ -49,10 +49,10 @@ class Account {
                 data: {
                     phone: this.phone
                 },
-                success: function (data) {
-                    $('#resultP').val(data);
+                success: function(data) {
+                    this.Account.message[2] = data;
                 },
-                error: function (xhr) {
+                error: function(xhr) {
                     //Do Something to handle error
                 }
             });
