@@ -1,5 +1,5 @@
 <?php
-
+namespace App\Models;
 require_once('Connection.php');
 require_once('BaseDB.php');
 /*
@@ -17,7 +17,7 @@ require_once('BaseDB.php');
  *
  * @author PC
  */
-class UserDB extends Connection implements BaseDB {
+class UserDB extends \Core\Model implements BaseDB {
 
     /**
      * 
@@ -47,12 +47,12 @@ class UserDB extends Connection implements BaseDB {
      */
     public function insert($obj) {
         ini_set('display_errors', 0);
-        $conn = $this->getConnection();
+        $conn = $this->getDB();
         $sql = "INSERT INTO User(Customer_id,Username,Status) Values (?,?,?)";
         $prst = $conn->prepare($sql);
         $prst->bind_param("isi", $obj->getCustomer()->getCustomer_id(), $obj->getAccount()->getUsername(), $obj->getStatus());
         $prst->execute();
-        $this->closeConnection($conn);
+        mysqli_close($conn);
     }
 
     /**

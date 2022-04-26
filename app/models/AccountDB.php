@@ -1,8 +1,7 @@
 <?php
+namespace App\Models;
 
-require_once('Connection.php');
-require_once('BaseDB.php');
-require_once('Account.php');
+require('Account.php');
 /*
  * Copyright(C) 2022, Base
  * Base Account:
@@ -18,7 +17,7 @@ require_once('Account.php');
  *
  * @author DucHT
  */
-class AccountDB extends Connection implements BaseDB {
+class AccountDB extends \Core\Model implements BaseDB{
 
     /**
      * 
@@ -49,31 +48,14 @@ class AccountDB extends Connection implements BaseDB {
     public function insert($obj) {
         ini_set('display_errors', 0);
         // Create connection
-        $conn = $this->getConnection();
+        $conn = $this->getDB();
         $sql = "INSERT INTO Account(User_name,Pass_word,Role_id) Values (?,?,?)";
         $prst = $conn->prepare($sql);
         $prst->bind_param("ssi", $obj->getUsername(), $obj->getPassword(), $obj->getRole()->getRole_id());
         $prst->execute();
-        $this->closeConnection($conn);
+        mysqli_close($conn);
     }
-
-    public function checkAccount($email, $pass) {
-        ini_set('display_errors', 0);
-        $conn = $this->getConnection();
-        $sql = "SELECT * FROM Account WHERE User_name = ? and Password = ?";
-        $prst = $conn->prepare($sql);
-        $prst->bind_param("ss", $email, password_hash($pass, PASSWORD_BCRYPT));
-        $prst->execute();
-        $result = $prst->get_result();
-        if (mysqli_num_rows($result) > 0) {
-            // output data of each row
-            $this->closeConnection($conn);
-            return '1';
-        }
-        $this->closeConnection($conn);
-        return '0';
-    }
-
+    
     /**
      * 
      * @param type $old

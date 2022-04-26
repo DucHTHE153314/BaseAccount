@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Models;
+
 /*
  * Copyright(C) 2022, Base
  * Base Account:
@@ -13,19 +15,22 @@
 /**
  * Description of Account
  *
- * @author PC
+ * @author DucHT
  */
 class Account {
 
     //put your code here
     private $username;
     private $password;
-    private $role;
 
-    function __construct($username, $password, $role) {
+    /**
+     * Make a constructor for an Account
+     * @param <code>String</code> $username username for Account
+     * @param <code>String</code> $password password for Account
+     */
+    function __construct($username, $password) {
         $this->username = $username;
         $this->password = $password;
-        $this->role = $role;
     }
 
     function getUsername() {
@@ -36,10 +41,6 @@ class Account {
         return $this->password;
     }
 
-    function getRole() {
-        return $this->role;
-    }
-
     function setUsername($username) {
         $this->username = $username;
     }
@@ -48,11 +49,8 @@ class Account {
         $this->password = $password;
     }
 
-    function setRole($role) {
-        $this->role = $role;
-    }
     public function __toString() {
-        return $this->getUsername().'++'.$this->getPassword().'++'.$this->getRole()->getDescription();
+        return $this->getUsername() . '++' . $this->getPassword();
     }
 
 }

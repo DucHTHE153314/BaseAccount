@@ -1,5 +1,5 @@
 <?php
-
+namespace App\Models;
 /*
  * Copyright(C) 2022, Base
  * Base Account:
