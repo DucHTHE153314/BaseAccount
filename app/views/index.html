@@ -47,11 +47,16 @@
                     </div>
 
                     <div class='user'>
-
-                        <a href='/App/Controllers/Account.php'>Đăng nhập</a>
-
-                        <a class='button js-signup-cta url' href='/Account/register'>Đăng ký</a>
-
+                        <form action="Account/login" method="POST" style="display: inline-block;">
+                            <button type="submit" class='button' style="border: none;background-color: transparent;">
+                                Đăng nhập
+                            </button>
+                        </form>
+                        <form action="Account/register" method="POST" style="display: inline-block;">
+                            <button type="submit" class='button js-signup-cta' style="border: none;">
+                                Đăng ký
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -34,6 +34,7 @@ class Account extends Controller
             $remember = $_POST["remember"];
             $logics = new AccountLogics();
             $logics->login($email, $pass, $remember);
+            die("OK");
             View::render('infor.php');
         }else{
             View::render('login.html');

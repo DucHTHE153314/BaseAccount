@@ -1,9 +1,5 @@
+Options All -Indexes
 
 RewriteEngine On
-
-RewriteBase /
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-l
-RewriteRule ^(.*)$ public/index.php [L,QSA]
+RewriteCond %{REQUEST_URI} !public/
+RewriteRule ^ public/index.php [L]
