@@ -26,6 +26,15 @@ body {
     float: right;
 }
 
+.right-col {
+    float: inline-end;
+}
+
+.col {
+    width: 45.8%;
+    display: inline-block;
+}
+
 .message-box {
     position: fixed;
     top: 0;

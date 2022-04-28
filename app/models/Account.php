@@ -22,15 +22,17 @@ class Account {
     //put your code here
     private $username;
     private $password;
+    private $role;
 
     /**
      * Make a constructor for an Account
      * @param <code>String</code> $username username for Account
      * @param <code>String</code> $password password for Account
      */
-    function __construct($username, $password) {
+    function __construct($username, $password, $role) {
         $this->username = $username;
         $this->password = $password;
+        $this->role = $role;
     }
 
     function getUsername() {
@@ -51,6 +53,14 @@ class Account {
 
     public function __toString() {
         return $this->getUsername() . '++' . $this->getPassword();
+    }
+
+    function getRole() {
+        return $this->role;
+    }
+
+    function setRole($role) {
+        $this->role = $role;
     }
 
 }

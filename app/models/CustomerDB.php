@@ -2,10 +2,6 @@
 
 namespace App\Models;
 
-require_once('Customer.php');
-require_once('UserDB.php');
-require_once('User.php');
-require_once('AccountDB.php');
 /*
  * Copyright(C) 2022, Base
  * Base Account:
@@ -52,9 +48,9 @@ class CustomerDB extends \Core\Model implements BaseDB {
     public function insert($obj) {
         ini_set('display_errors', 0);
         $conn = $this->getDB();
-        $sql = "INSERT INTO Customer(Gender,Name,birth_date,Phone,Email,Address) Values (?,?,?,?,?,?)";
+        $sql = "INSERT INTO Customer(first_name,last_name,position,birth_date,gender,email,phone,address,user_name) Values (?,?,?,?,?,?,?,?,?)";
         $prst = $conn->prepare($sql);
-        $prst->bind_param("isssss", $obj->getGender(), $obj->getName(), $obj->getDate_of_birth(), $obj->getPhone(), $obj->getEmail(), $obj->getAddress());
+        $prst->bind_param("ssssissss", $obj->getFirst_name(), $obj->getLast_name(), $obj->getPosition(), $obj->getBirth_date(), $obj->getGender(), $obj->getEmail(), $obj->getPhone(), $obj->getAddress(), $obj->getUser_name());
         $prst->execute();
         mysqli_close($conn);
     }
@@ -67,8 +63,5 @@ class CustomerDB extends \Core\Model implements BaseDB {
     public function update($old, $new) {
         
     }
-
-   
-
 
 }

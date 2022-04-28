@@ -15,13 +15,15 @@ namespace App\Models;
 /**
  * All Logic for <code>Customer</code> models
  */
-class CustomerLogics extends CustomerDB {
+class CustomerLogics extends CustomerDB
+{
 
     /**
      * Get the last Customer's id in the data
      * @return int
      */
-    private function getLast() {
+    private function getLast()
+    {
         ini_set('display_errors', 0);
         $conn = $this->getDB();
         $sql = "Select Max(Customer_id) as 'maxid' FROM Customer";
@@ -41,21 +43,16 @@ class CustomerLogics extends CustomerDB {
      * @param Customer $cus 
      * @param Account $acc
      */
-    public function register($full_name, $email, $phone, $password) {
-        try {
-            $cus = new Customer(0, $full_name, TRUE, NULL, $phone, $email, "");
-            $this->insert($cus);
-            $acc = new Account($email, $password);
-            $AccountDB = new AccountDB();
-            $AccountDB->insert($acc);
-            $UserDB = new UserDB();
-            $cus->setCustomer_id($this->getLast());
-            $user = new User($cus, $acc);
-            $UserDB->insert($user);
-            return TRUE;
-        } catch (Exception $ex) {
-            return FALSE;
-        }
+    public function register($first_name, $last_name, $phone, $email, $password)
+    {
+        $cus = new Customer(0, $first_name, $last_name, "", "", 1, $phone, $email, "", $email);
+        $this->insert($cus);
+        $password = password_hash($password,PASSWORD_BCRYPT);
+        $acc = new Account($email, $password, 2);
+        $AccountDB = new AccountDB();
+        $AccountDB->insert($acc);
+        $cus->setCustomer_id($this->getLast());
+        return true;
     }
 
     /**
@@ -64,7 +61,8 @@ class CustomerLogics extends CustomerDB {
      * @param <code>String</code> $email
      * @return string
      */
-    public function searchEmail($email) {
+    public function searchEmail($email)
+    {
         ini_set('display_errors', 0);
         $conn = $this->getDB();
         $sql = "SELECT * FROM Customer WHERE Email = ?";
@@ -86,7 +84,8 @@ class CustomerLogics extends CustomerDB {
      * @param type $phone
      * @return string
      */
-    public function searchPhone($phone) {
+    public function searchPhone($phone)
+    {
         ini_set('display_errors', 0);
         $conn = $this->getDB();
         $sql = "SELECT * FROM Customer WHERE Phone = ?";
@@ -102,5 +101,4 @@ class CustomerLogics extends CustomerDB {
         mysqli_close($conn);
         return '0';
     }
-
 }

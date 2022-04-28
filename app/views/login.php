@@ -24,24 +24,24 @@ and open the template in the editor.
                     </a>
                 </div>
                 <div class="form-wrap">
-                    <form id="login-form" action="/Account/login" method="post">
-                        <h1>Login</h1>
+                    <form id="login-form" action="#" method="post">
+                        <h1 style="padding: 2px;">Login</h1>
                         <div class="sub-title">Welcome back. Login to start working.</div>
                         <div class="form">
                             <div class="row">
                                 <div class="label">Email</div>
-                                <div class="input"><input type="text" name="lemail" placeholder="Your email"></div>
+                                <div class="input"><input type="text" name="lemail" placeholder="Your email" required></div>
                             </div>
                             <div class="row">
-                                <div class="label"><a class="right" href="#">Forget your password?</a>Password</div>
-                                <div class="input"><input type="lpassword" id="login-password" name="password" placeholder="Your password"></div>
+                                <div class="label"><a class="right" href="recovery">Forget your password?</a>Password</div>
+                                <div class="input"><input type="password" id="login-password" name="lpassword" placeholder="Your password" required></div>
                             </div>
                             <div class="row relative hd-ov">
                                 <div class="checkbox">
                                     <input type="checkbox" checked name="lremember"> &nbsp; Remember me
                                 </div>
                                 <a class="right" href="register">Don't have any account?</a>
-                                <button class="submit btn btn-login" onclick="">Login</button>
+                                <button type="submit" class="submit btn btn-login" onclick="">Login</button>
                                 <div class="another">
                                     <div class="label"><span>Or, login via single sign-on</span></div>
                                     <a class="another-login" href="#">Login with Google</a>
@@ -55,17 +55,6 @@ and open the template in the editor.
             </div>
         </div>
         <div id="bg-content"></div>
-        <!-- <div class="message-box" id="message-box-1">
-            <div class="card">
-                <div class="card-title">
-                    <img class="small-img" src="images/background.png" />
-                    <button id="cls">X</button>
-                </div>
-                <div class="card-body">
-
-                </div>
-            </div>
-        </div> -->
     </div>
     <script>
         $('#cls').click(function() {

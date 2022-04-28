@@ -24,33 +24,39 @@ and open the template in the editor.
                     </a>
                 </div>
                 <div class="form-wrap">
-                    <form id="login-form" action="register.php" method="post">
-                        <h1>Register</h1>
+                    <form id="login-form" action="register" method="post">
+                        <h1 style="padding: 2px;">Register</h1>
                         <div class="sub-title">Welcome to Base. Register to start working.</div>
                         <div class="form">
                             <div class="row">
-                                <div class="label">Full name</div>
-                                <div class="input"><input type="text" name="full_name" placeholder="Your name"></div>
+                                <div class="col">
+                                    <div class="label">Your name</div>
+                                    <div class="input"><input type="text" name="first_name" placeholder="First name" required></div>
+                                </div>
+                                <div class="col right-col" style="margin-left: 5%;">
+                                    <div class="label">&nbsp;</div>
+                                    <div class="input"><input type="text" name="last_name" placeholder="Last name" required></div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="label">Email</div>
-                                <div class="input"><input type="email" name="register_email" placeholder="Your email"></div>
+                                <div class="input"><input type="email" name="register_email" placeholder="Your email" required></div>
                             </div>
                             <div class="row">
                                 <div class="label">Phone</div>
-                                <div class="input"><input type="text" name="register_phone" placeholder="Your phone"></div>
+                                <div class="input"><input type="text" name="register_phone" placeholder="Your phone" required></div>
                             </div>
                             <div class="row">
                                 <div class="label">New Password</div>
-                                <div class="input"><input type="password" name="register_password" placeholder="New password"></div>
+                                <div class="input"><input type="password" name="register_password" placeholder="New password" required></div>
                             </div>
                             <div class="row">
                                 <div class="label">Confirm Password</div>
-                                <div class="input"><input type="password" name="confirm_password" placeholder="Confirm password"></div>
+                                <div class="input"><input type="password" name="confirm_password" placeholder="Confirm password" required></div>
                             </div>
                             <div class="row relative hd-ov">
                                 <a class="right" href="login">Have an account?</a>
-                                <div class="submit btn-register" onclick="">Register</div>
+                                <button type="submit" class="submit btn btn-register" onclick="">Register</button>
                             </div>
                         </div>
                     </form>

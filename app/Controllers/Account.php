@@ -28,16 +28,21 @@ class Account extends Controller
      */
     public function loginAction()
     {
-        if (isset($_POST["lemail"]) && isset($_POST["lpassword"]) && isset($_POST["remember"])) {
+        if (isset($_POST["lemail"]) && isset($_POST["lpassword"]) && isset($_POST["lremember"])) {
             $email = $_POST["lemail"];
             $pass = $_POST["lpassword"];
-            $remember = $_POST["remember"];
+            $remember = $_POST["lremember"];
             $logics = new AccountLogics();
-            $logics->login($email, $pass, $remember);
-            die("OK");
-            View::render('infor.php');
-        }else{
-            View::render('login.html');
+            $result = $logics->login($email, $pass, $remember);
+            if ($result === 1) {
+                View::render('infor.php');
+            } elseif ($result === 0) {
+                View::render('login.php');
+            } else {
+                View::render('login.php');
+            }
+        } else {
+            View::render('login.php');
         }
     }
 
@@ -47,16 +52,23 @@ class Account extends Controller
      */
     public function registerAction()
     {
-        if (isset($_POST["full_name"]) && isset($_POST["register_email"]) && isset($_POST["register_phone"]) && isset($_POST["register_password"])) {
-            $full_name = $_POST["fullname"];
-            $email = $_POST["email"];
-            $phone = $_POST["phone"];
-            $password = $_POST["password"];
+        if (isset($_POST["first_name"]) && isset($_POST["last_name"]) && isset($_POST["register_email"]) && isset($_POST["register_phone"]) && isset($_POST["register_password"])) {
+            $first_name = $_POST["first_name"];
+            $last_name = $_POST["last_name"];
+            $email = $_POST["register_email"];
+            $phone = $_POST["register_phone"];
+            $password = $_POST["register_password"];
             $Logics = new CustomerLogics();
-            $Logics->register($full_name, $email, $phone, $password);
+            $Logics->register($first_name, $last_name, $phone, $email, $password);
             View::render('infor.php');
-        } else{
-            View::render('register.html');
+        } else {
+            View::render('register.php');
+        }
+    }
+
+    public function recoverAction()
+    {
+        if (isset($_POST["remail"])) {
         }
     }
 }

@@ -115,8 +115,8 @@ class Router
     {
         $url = $this->removeQueryStringVariables($url);
         if ($this->match($url)) {
-            $controller = $this->params['controller'];
-            $controller = $this->getNamespace() . $controller;
+            $controller = $this->params['controller']; // Account
+            $controller = $this->getNamespace() . $controller; // App\Controllers\Account
             if (class_exists($controller)) {
                 $controller_object = new $controller($this->params);
                 $action = $this->params['action'];

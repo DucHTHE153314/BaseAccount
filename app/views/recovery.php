@@ -1,50 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel='icon' href="/BaseAccount/public/asset/images/logo.png" />
+    <link href="/BaseAccount/public/asset/css/content.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/BaseAccount/public/asset/css/common.css">
+    <title>Base Recovery</title>
 </head>
 
 <body>
-
-</body>
-<?php
-include 'content.html';
-?>
-<div class="form-wrap" style="position: fixed; z-index: 99;">
-    <form id="login-form" action="register.php" method="post">
-        <h1>Register</h1>
-        <div class="sub-title">Welcome to Base. Register to start working.</div>
-        <div class="form">
-            <div class="row">
-                <div class="label">Full name</div>
-                <div class="input"><input type="text" name="full_name" placeholder="Your name"></div>
-            </div>
-            <div class="row">
-                <div class="label">Email</div>
-                <div class="input"><input type="email" name="register_email" placeholder="Your email"></div>
-            </div>
-            <div class="row">
-                <div class="label">Phone</div>
-                <div class="input"><input type="text" name="register_phone" placeholder="Your phone"></div>
-            </div>
-            <div class="row">
-                <div class="label">New Password</div>
-                <div class="input"><input type="password" name="register_password" placeholder="New password"></div>
-            </div>
-            <div class="row">
-                <div class="label">Confirm Password</div>
-                <div class="input"><input type="password" name="confirm_password" placeholder="Confirm password"></div>
-            </div>
-            <div class="row relative hd-ov">
-                <a class="right" href="login.html">Have an account?</a>
-                <div class="submit btn-register" onclick="">Register</div>
+    <div id="container">
+        <div id="main-content">
+            <div class="concentrate">
+                <div class="logo">
+                    <a href="#">
+                        <img class="img-125" src="/BaseAccount/public/asset/images/logo.png">
+                    </a>
+                </div>
+                <div class="form-wrap">
+                    <form id="login-form" action="recover" method="post">
+                        <h1 style="padding: 2px;">Login</h1>
+                        <div class="sub-title">Welcome back. Login to start working.</div>
+                        <div class="form">
+                            <div class="row">
+                                <div class="label">Email</div>
+                                <div class="input"><input type="text" name="lemail" placeholder="Your email" required></div>
+                            </div>
+                            <div class="row">
+                                <div class="label"><a class="right" href="#">Forget your password?</a>Password</div>
+                                <div class="input"><input type="password" id="login-password" name="lpassword" placeholder="Your password" required></div>
+                            </div>
+                            <div class="row relative hd-ov">
+                                <div class="checkbox">
+                                    <input type="checkbox" checked name="lremember"> &nbsp; Remember me
+                                </div>
+                                <a class="right" href="register">Don't have any account?</a>
+                                <button type="submit" class="submit btn btn-login" onclick="">Login</button>
+                                <div class="another">
+                                    <div class="label"><span>Or, login via single sign-on</span></div>
+                                    <a class="another-login" href="#">Login with Google</a>
+                                    <a class="another-login" href="#">Login with Microsoft</a>
+                                    <a class="another-login right" href="#">Login with SAML</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </form>
-</div>
+        <div id="bg-content"></div>
+    </div>
+    <script>
+        $('#cls').click(function() {
+            document.getElementById('message-box-1').style.display = 'none';
+        });
+    </script>
+</body>
 
 </html>
