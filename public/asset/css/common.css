@@ -79,3 +79,7 @@ body {
     border-radius: 3px;
     margin-top: 40px;
 }
+
+.link {
+    text-decoration: none;
+}

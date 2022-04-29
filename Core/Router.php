@@ -121,8 +121,6 @@ class Router
                 $controller_object = new $controller($this->params);
                 $action = $this->params['action'];
                 if (preg_match('/action$/i', $action) == 0) {
-                    $action = $action . 'Action';
-//                    echo($controller . ' ' . $action);
                     $controller_object->$action();
                 } else {
                     throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method");

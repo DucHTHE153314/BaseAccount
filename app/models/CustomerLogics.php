@@ -47,7 +47,7 @@ class CustomerLogics extends CustomerDB
     {
         $cus = new Customer(0, $first_name, $last_name, "", "", 1, $phone, $email, "", $email);
         $this->insert($cus);
-        $password = password_hash($password,PASSWORD_BCRYPT);
+        $password = password_hash($password, PASSWORD_BCRYPT);
         $acc = new Account($email, $password, 2);
         $AccountDB = new AccountDB();
         $AccountDB->insert($acc);
@@ -73,10 +73,10 @@ class CustomerLogics extends CustomerDB
         if (mysqli_num_rows($result) > 0) {
             // output data of each row
             mysqli_close($conn);
-            return '1';
+            return true;
         }
         mysqli_close($conn);
-        return '0';
+        return false;
     }
 
     /**

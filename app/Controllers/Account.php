@@ -38,8 +38,16 @@ class Account extends Controller
                 View::render('infor.php');
             } elseif ($result === 0) {
                 View::render('login.php');
+                echo "<script>
+                $('#message').html('Mật Khẩu chưa chính xác');
+                $('#myModal').show();
+                </script>";
             } else {
                 View::render('login.php');
+                echo "<script>
+                $('#message').html('Email chưa được đăng ký!');
+                $('#myModal').show();
+                </script>";
             }
         } else {
             View::render('login.php');
@@ -66,9 +74,22 @@ class Account extends Controller
         }
     }
 
-    public function recoverAction()
+    public function recoveryAction()
     {
         if (isset($_POST["remail"])) {
+            $email = $_POST['remail'];
+            $Logics = new CustomerLogics();
+            $result = $Logics->searchEmail($email);
+            if ($result) {
+                echo 'Email exist!';
+            } else {
+                View::render('recovery.php');
+                echo "<script>
+                $('#myModal').show();
+                </script>";
+            }
+        } else {
+            View::render('recovery.php');
         }
     }
 }

@@ -174,19 +174,7 @@ and open the template in the editor.
     top: 0px;
 }
 
-#content .message-box {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 3;
-    width: calc(100vw);
-    height: calc(100vh);
-}
-
-.message-box .card {
-    position: absolute;
-    width: calc(36vw);
-    top: calc(30vh);
-    left: calc(32vw);
-    border: 1px solid black;
+#login-now {
+    text-decoration: none;
+    color: black;
 }

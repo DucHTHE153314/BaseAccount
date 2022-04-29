@@ -8,6 +8,7 @@
  * DATE            Version             AUTHOR           DESCRIPTION
  * 2022-04-26       1.0                DucHT           First Implement
  */
+
 namespace Core;
 
 /**
@@ -30,7 +31,7 @@ class View
         extract($args, EXTR_SKIP);
 
         $file = dirname(__DIR__) . "/App/Views/$view";  // relative to Core directory
-               if (is_readable($file)) {
+        if (is_readable($file)) {
             require $file;
         } else {
             throw new \Exception("$file not found");

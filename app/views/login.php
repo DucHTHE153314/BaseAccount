@@ -9,6 +9,7 @@ and open the template in the editor.
 <head>
     <meta charset="UTF-8">
     <link rel='icon' href="/BaseAccount/public/asset/images/logo.png" />
+    <link rel="stylesheet" href="/BaseAccount/public/asset/css/popup.css" />
     <link href="/BaseAccount/public/asset/css/content.css" rel="stylesheet" />
     <link rel="stylesheet" href="/BaseAccount/public/asset/css/common.css">
     <title>Base Login</title>
@@ -24,13 +25,13 @@ and open the template in the editor.
                     </a>
                 </div>
                 <div class="form-wrap">
-                    <form id="login-form" action="#" method="post">
+                    <form id="login-form" action="login" method="post">
                         <h1 style="padding: 2px;">Login</h1>
                         <div class="sub-title">Welcome back. Login to start working.</div>
                         <div class="form">
                             <div class="row">
                                 <div class="label">Email</div>
-                                <div class="input"><input type="text" name="lemail" placeholder="Your email" required></div>
+                                <div class="input"><input type="email" name="lemail" placeholder="Your email" required></div>
                             </div>
                             <div class="row">
                                 <div class="label"><a class="right" href="recovery">Forget your password?</a>Password</div>
@@ -53,14 +54,27 @@ and open the template in the editor.
                     </form>
                 </div>
             </div>
+            <!-- The Modal Error email -->
+            <div id="myModal" class="modal modal-unrequired">
+                <!-- Modal content -->
+                <div class="modal-content mc-20">
+                    <div class="modal-header">
+                        <h3 class="modal-title error">Login Failed!</h3>
+                        <span class="close btn-close">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <p id='message'>Email Không tồn tại</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-close btn-ok">Ok</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="bg-content"></div>
     </div>
-    <script>
-        $('#cls').click(function() {
-            document.getElementById('message-box-1').style.display = 'none';
-        });
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/BaseAccount/public/asset/js/popup.js"> </script>
 </body>
 
 </html>
