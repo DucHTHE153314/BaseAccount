@@ -9,7 +9,7 @@ namespace App\Models;
  *
  * Record of change:
  * DATE            Version             AUTHOR           DESCRIPTION
- * 2022-04-28       2.0                DucHT            New Structure
+ * 2022-04-29       3.0                DucHT            Merge with Account
  */
 
 /**
@@ -29,23 +29,25 @@ class Customer {
     private $phone;
     private $email;
     private $address;
-    private $user_name;
+    private $password;
+    private $role;
 
     /**
-     * Constructor for a Customer
+     * Constructor of each <code>Customer</code>
      * 
-     * @param int $customer_id required
-     * @param string $first_name required
-     * @param string $last_name required
-     * @param string $position
-     * @param date $birth_date
-     * @param boolean $gender
-     * @param string $phone required
-     * @param string $email required
-     * @param string $address
-     * @param string $user_name required
+     * @param type $customer_id
+     * @param type $first_name
+     * @param type $last_name
+     * @param type $position
+     * @param type $birth_date
+     * @param type $gender
+     * @param type $phone
+     * @param type $email
+     * @param type $address
+     * @param type $password
+     * @param type $role
      */
-    function __construct($customer_id, $first_name, $last_name, $position, $birth_date, $gender, $phone, $email, $address, $user_name) {
+    function __construct($customer_id, $first_name, $last_name, $position, $birth_date, $gender, $phone, $email, $address, $password, $role) {
         $this->customer_id = $customer_id;
         $this->first_name = $first_name;
         $this->last_name = $last_name;
@@ -55,7 +57,24 @@ class Customer {
         $this->phone = $phone;
         $this->email = $email;
         $this->address = $address;
-        $this->user_name = $user_name;
+        $this->password = $password;
+        $this->role = $role;
+    }
+
+    function getPassword() {
+        return $this->password;
+    }
+
+    function getRole() {
+        return $this->role;
+    }
+
+    function setPassword($password) {
+        $this->password = $password;
+    }
+
+    function setRole($role) {
+        $this->role = $role;
     }
 
     function getCustomer_id() {
@@ -94,10 +113,6 @@ class Customer {
         return $this->address;
     }
 
-    function getUser_name() {
-        return $this->user_name;
-    }
-
     function setCustomer_id($customer_id) {
         $this->customer_id = $customer_id;
     }
@@ -132,10 +147,6 @@ class Customer {
 
     function setAddress($address) {
         $this->address = $address;
-    }
-
-    function setUser_name($user_name) {
-        $this->user_name = $user_name;
     }
 
 }

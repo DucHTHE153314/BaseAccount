@@ -9,96 +9,70 @@ namespace App\Models;
  *
  * Record of change:
  * DATE            Version             AUTHOR           DESCRIPTION
- * 2022-04-26       1.0                DucHT           First Implement
+ * 2022-04-29       2.0                DucHT           Merge with AccountLogics
  */
 
 /**
  * All Logic for <code>Customer</code> models
  */
-class CustomerLogics extends CustomerDB
-{
+class CustomerLogics extends CustomerDB {
 
     /**
-     * Get the last Customer's id in the data
-     * @return int
+     * Check an valid of customer with customer's email and password.
+     * @param string $email
+     * @param string $pass
+     * @param boolean $remember
+     * @return int -1 if email not exist. 0 if wrong password. else 1.
      */
-    private function getLast()
-    {
-        ini_set('display_errors', 0);
-        $conn = $this->getDB();
-        $sql = "Select Max(Customer_id) as 'maxid' FROM Customer";
-        $result = mysqli_query($conn, $sql);
-        if (mysqli_num_rows($result) > 0) {
-            // output data of each row
-            while ($row = mysqli_fetch_assoc($result)) {
-                mysqli_close($conn);
-                return $row["maxid"];
-            }
+    public function login($email, $pass, $remember) {
+        $acc = $this->getOne($email);
+        if ($acc === null) {
+            return -1;
         }
+        if (password_verify($acc->getPassword(), $pass)) {
+            return 0;
+        }
+        if ($remember) {
+            setcookie("User", $email, time() + (86400 * 15), "/"); // 15 days
+        }
+        session_start();
+        $_SESSION["User"] = "";
         return 1;
     }
 
     /**
-     * Accept an Customer register in the system with his/her Account
+     * Accept an Customer register in the system with his/her Information
+     * 
      * @param Customer $cus 
      * @param Account $acc
      */
-    public function register($first_name, $last_name, $phone, $email, $password)
-    {
-        $cus = new Customer(0, $first_name, $last_name, "", "", 1, $phone, $email, "", $email);
+    public function register($first_name, $last_name, $phone, $email, $password) {
+        $hash_password = password_hash($password, PASSWORD_BCRYPT);
+        $cus = new Customer(0, $first_name, $last_name, "", "", 1, $phone, $email, "", $hash_password, 2);
         $this->insert($cus);
-        $password = password_hash($password, PASSWORD_BCRYPT);
-        $acc = new Account($email, $password, 2);
-        $AccountDB = new AccountDB();
-        $AccountDB->insert($acc);
-        $cus->setCustomer_id($this->getLast());
         return true;
     }
 
     /**
      * Find an email in the system.<br/>
      * Return 1 if existed. Else, return 0.
+     * 
      * @param <code>String</code> $email
-     * @return string
+     * @return bool
      */
-    public function searchEmail($email)
-    {
-        ini_set('display_errors', 0);
-        $conn = $this->getDB();
-        $sql = "SELECT * FROM Customer WHERE Email = ?";
-        $prst = $conn->prepare($sql);
-        $prst->bind_param("s", $email);
-        $prst->execute();
-        $result = $prst->get_result();
-        if (mysqli_num_rows($result) > 0) {
-            // output data of each row
-            mysqli_close($conn);
-            return true;
-        }
-        mysqli_close($conn);
-        return false;
+    public function searchEmail($email) {
+        $this->search("email", $email);
     }
 
     /**
+     * Find a phone in the system.<br/>
+     * Return 1 if existed. Else, return 0.
      * 
      * @param type $phone
-     * @return string
+     * @return bool
      */
-    public function searchPhone($phone)
-    {
-        ini_set('display_errors', 0);
-        $conn = $this->getDB();
-        $sql = "SELECT * FROM Customer WHERE Phone = ?";
-        $prst = $conn->prepare($sql);
-        $prst->bind_param("s", $phone);
-        $prst->execute();
-        $result = $prst->get_result();
-        if (mysqli_num_rows($result) > 0) {
-            // output data of each row
-            mysqli_close($conn);
-            return '1';
-        }
-        mysqli_close($conn);
-        return '0';
+    public function searchPhone($phone) {
+        return $this->search("Phone", $phone);
     }
+
 }

@@ -12,7 +12,6 @@ namespace App\Controllers;
  * 2022-04-26       1.0                DucHT           First Implement
  */
 
-use App\Models\AccountLogics;
 use App\Models\CustomerLogics;
 use \Core\View;
 use \Core\Controller;
@@ -20,19 +19,18 @@ use \Core\Controller;
 /**
  * Account Controller
  */
-class Account extends Controller
-{
+class Account extends Controller {
+
     /**
      * Handling login action of customer.
      * @return void
      */
-    public function loginAction()
-    {
+    public function loginAction() {
         if (isset($_POST["lemail"]) && isset($_POST["lpassword"]) && isset($_POST["lremember"])) {
             $email = $_POST["lemail"];
             $pass = $_POST["lpassword"];
             $remember = $_POST["lremember"];
-            $logics = new AccountLogics();
+            $logics = new CustomerLogics();
             $result = $logics->login($email, $pass, $remember);
             if ($result === 1) {
                 View::render('infor.php');
@@ -58,8 +56,7 @@ class Account extends Controller
      * Handling register action of customer.
      * @return void
      */
-    public function registerAction()
-    {
+    public function registerAction() {
         if (isset($_POST["first_name"]) && isset($_POST["last_name"]) && isset($_POST["register_email"]) && isset($_POST["register_phone"]) && isset($_POST["register_password"])) {
             $first_name = $_POST["first_name"];
             $last_name = $_POST["last_name"];
@@ -74,8 +71,7 @@ class Account extends Controller
         }
     }
 
-    public function recoveryAction()
-    {
+    public function recoveryAction() {
         if (isset($_POST["remail"])) {
             $email = $_POST['remail'];
             $Logics = new CustomerLogics();
@@ -92,4 +88,5 @@ class Account extends Controller
             View::render('recovery.php');
         }
     }
+
 }

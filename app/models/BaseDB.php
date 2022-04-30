@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Models;
+
 /*
  * Copyright(C) 2022, Base
  * Base Account:
@@ -25,4 +27,6 @@ interface BaseDB {
     public function delete($obj);
 
     public function update($old, $new);
+
+    public function search($param, $value);
 }

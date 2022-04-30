@@ -3,8 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/BaseAccount/App/Views/recovery.php</file>
-            <file>file:/C:/xampp/htdocs/BaseAccount/public/asset/css/common.css</file>
+            <file>file:/D:/Program%20Files/xampps/htdocs/BaseAccount/app/Configs.php</file>
+            <file>file:/D:/Program%20Files/xampps/htdocs/BaseAccount/app/models/Customer.php</file>
+            <file>file:/D:/Program%20Files/xampps/htdocs/BaseAccount/DB/base_account.sql</file>
+            <file>file:/D:/Program%20Files/xampps/htdocs/BaseAccount/app/models/CustomerDB.php</file>
+            <file>file:/D:/Program%20Files/xampps/htdocs/BaseAccount/app/models/BaseDB.php</file>
+            <file>file:/D:/Program%20Files/xampps/htdocs/BaseAccount/app/models/RoleDB.php</file>
+            <file>file:/D:/Program%20Files/xampps/htdocs/BaseAccount/app/Controllers/Account.php</file>
+            <file>file:/D:/Program%20Files/xampps/htdocs/BaseAccount/app/models/Role.php</file>
         </group>
     </open-files>
 </project-private>
