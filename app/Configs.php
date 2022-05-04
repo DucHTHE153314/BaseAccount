@@ -12,7 +12,7 @@ class Configs
      * Database host
      * @var string
      */
-    const DB_HOST = 'localhost';
+    const DB_HOST = 'mysql:host=localhost;dbname=base_account';
 
     /**
      * Database name

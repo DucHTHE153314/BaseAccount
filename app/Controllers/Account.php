@@ -19,18 +19,23 @@ use \Core\Controller;
 /**
  * Account Controller
  */
-class Account extends Controller {
-
+class Account extends Controller
+{
     /**
      * Handling login action of customer.
      * @return void
      */
-    public function loginAction() {
-        if (isset($_POST["lemail"]) && isset($_POST["lpassword"]) && isset($_POST["lremember"])) {
+    public function loginAction()
+    {
+        $logics = new CustomerLogics();
+        if (isset($_COOKIE["User"]) && $logics->search("email", $_COOKIE["User"])) {
+            View::render('infor.php');
+            return;
+        }
+        if (isset($_POST["lemail"]) && isset($_POST["lpassword"])) {
             $email = $_POST["lemail"];
             $pass = $_POST["lpassword"];
-            $remember = $_POST["lremember"];
-            $logics = new CustomerLogics();
+            $remember =  isset($_POST["lremember"]) ? $_POST["lremember"] : 0;
             $result = $logics->login($email, $pass, $remember);
             if ($result === 1) {
                 View::render('infor.php');
@@ -56,7 +61,12 @@ class Account extends Controller {
      * Handling register action of customer.
      * @return void
      */
-    public function registerAction() {
+    public function registerAction()
+    {
+        if (isset($_COOKIE["User"])) {
+            View::render('infor.php');
+            return;
+        }
         if (isset($_POST["first_name"]) && isset($_POST["last_name"]) && isset($_POST["register_email"]) && isset($_POST["register_phone"]) && isset($_POST["register_password"])) {
             $first_name = $_POST["first_name"];
             $last_name = $_POST["last_name"];
@@ -71,7 +81,8 @@ class Account extends Controller {
         }
     }
 
-    public function recoveryAction() {
+    public function recoveryAction()
+    {
         if (isset($_POST["remail"])) {
             $email = $_POST['remail'];
             $Logics = new CustomerLogics();
@@ -88,5 +99,18 @@ class Account extends Controller {
             View::render('recovery.php');
         }
     }
-
+    public function inforAction()
+    {
+        if (!isset($_COOKIE["User"]) && !isset($_SESSION["User"])) {
+            View::render('login.php');
+            return;
+        }
+        View::render('infor.php');
+    }
+    public function logoutAction()
+    {
+        unset($_SESSION["User"]);
+        setcookie("User", "", time() - 3600,"/");
+        View::render('index.html');
+    }
 }

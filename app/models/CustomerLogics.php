@@ -15,7 +15,8 @@ namespace App\Models;
 /**
  * All Logic for <code>Customer</code> models
  */
-class CustomerLogics extends CustomerDB {
+class CustomerLogics extends CustomerDB
+{
 
     /**
      * Check an valid of customer with customer's email and password.
@@ -24,8 +25,9 @@ class CustomerLogics extends CustomerDB {
      * @param boolean $remember
      * @return int -1 if email not exist. 0 if wrong password. else 1.
      */
-    public function login($email, $pass, $remember) {
-        $acc = $this->getOne($email);
+    public function login($email, $pass, $remember)
+    {
+        $acc = $this->search("email", $email);
         if ($acc === null) {
             return -1;
         }
@@ -36,7 +38,7 @@ class CustomerLogics extends CustomerDB {
             setcookie("User", $email, time() + (86400 * 15), "/"); // 15 days
         }
         session_start();
-        $_SESSION["User"] = "";
+        $_SESSION["User"] = "$email";
         return 1;
     }
 
@@ -46,10 +48,12 @@ class CustomerLogics extends CustomerDB {
      * @param Customer $cus 
      * @param Account $acc
      */
-    public function register($first_name, $last_name, $phone, $email, $password) {
+    public function register($first_name, $last_name, $phone, $email, $password)
+    {
         $hash_password = password_hash($password, PASSWORD_BCRYPT);
-        $cus = new Customer(0, $first_name, $last_name, "", "", 1, $phone, $email, "", $hash_password, 2);
-        $this->insert($cus);
+        $this->insert(["first_name" => $first_name, "last_name" => $last_name, "phone" => $phone, "email" => $email, "password" => $hash_password, "role_id" => 2]);
+        session_start();
+        $_SESSION["User"] = "$email";
         return true;
     }
 
@@ -60,7 +64,8 @@ class CustomerLogics extends CustomerDB {
      * @param <code>String</code> $email
      * @return bool
      */
-    public function searchEmail($email) {
+    public function searchEmail($email)
+    {
         $this->search("email", $email);
     }
 
@@ -71,8 +76,8 @@ class CustomerLogics extends CustomerDB {
      * @param type $phone
      * @return bool
      */
-    public function searchPhone($phone) {
+    public function searchPhone($phone)
+    {
         return $this->search("Phone", $phone);
     }
-
 }

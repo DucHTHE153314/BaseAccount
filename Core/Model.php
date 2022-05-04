@@ -8,7 +8,9 @@
  * DATE            Version             AUTHOR           DESCRIPTION
  * 2022-04-26       1.0                DucHT           First Implement
  */
+
 namespace Core;
+
 use App\Configs;
 
 /**
@@ -17,6 +19,7 @@ use App\Configs;
  */
 abstract class Model
 {
+    static \PDO $db;
 
     /**
      * Get the MYSQLi database connection
@@ -25,13 +28,8 @@ abstract class Model
      */
     protected static function getDB()
     {
-        static $db = null;
-
-        if ($db === null) {
-            $db = mysqli_connect(Configs::DB_HOST, Configs::DB_USER, Configs::DB_PASSWORD, Configs::DB_NAME);
-        }
-
+        $conn = null;
+        $db = new \PDO(Configs::DB_HOST, Configs::DB_USER, Configs::DB_PASSWORD);
         return $db;
     }
-
 }

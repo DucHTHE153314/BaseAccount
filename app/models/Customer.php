@@ -9,7 +9,7 @@ namespace App\Models;
  *
  * Record of change:
  * DATE            Version             AUTHOR           DESCRIPTION
- * 2022-04-29       3.0                DucHT            Merge with Account
+ * 2022-04-29       3.1                DucHT           Minimize Constructor
  */
 
 /**
@@ -17,7 +17,8 @@ namespace App\Models;
  *
  * @author PC
  */
-class Customer {
+class Customer
+{
 
     //put your code here
     private $customer_id;
@@ -33,120 +34,133 @@ class Customer {
     private $role;
 
     /**
-     * Constructor of each <code>Customer</code>
+     * Constructor for each Customer
      * 
-     * @param type $customer_id
-     * @param type $first_name
-     * @param type $last_name
-     * @param type $position
-     * @param type $birth_date
-     * @param type $gender
-     * @param type $phone
-     * @param type $email
-     * @param type $address
-     * @param type $password
-     * @param type $role
+     * @param type $params Array of Customer's properties include: 
+     * customer_id, first_name, last_name, position, birth_date, gender, phone, email, address, password, role_id
      */
-    function __construct($customer_id, $first_name, $last_name, $position, $birth_date, $gender, $phone, $email, $address, $password, $role) {
-        $this->customer_id = $customer_id;
-        $this->first_name = $first_name;
-        $this->last_name = $last_name;
-        $this->position = $position;
-        $this->birth_date = $birth_date;
-        $this->gender = $gender;
-        $this->phone = $phone;
-        $this->email = $email;
-        $this->address = $address;
-        $this->password = $password;
-        $this->role = $role;
+    function __construct($params)
+    {
+        $this->customer_id = isset($params['customer_id']) ? $params['customer_id'] : 0;
+        $this->first_name = isset($params['first_name']) ? $params['first_name'] : "";
+        $this->last_name = isset($params['last_name']) ? $params['last_name'] : "";
+        $this->position = isset($params['position']) ? $params['position'] : "";
+        $this->birth_date = isset($params['birth_date']) ? $params['birth_date'] : "";
+        $this->gender = isset($params['gender']) ? $params['gender'] : 1;
+        $this->phone = isset($params['phone']) ? $params['phone'] : "";
+        $this->email = isset($params['email']) ? $params['email'] : "";
+        $this->address = isset($params['address']) ? $params['address'] : "";
+        $this->password = isset($params['password']) ? $params['password'] : "";
+        $this->role = isset($params['role_id']) ? $params['role_id'] : 2;
     }
 
-    function getPassword() {
+    function getPassword()
+    {
         return $this->password;
     }
 
-    function getRole() {
+    function getRole()
+    {
         return $this->role;
     }
 
-    function setPassword($password) {
+    function setPassword($password)
+    {
         $this->password = $password;
     }
 
-    function setRole($role) {
+    function setRole($role)
+    {
         $this->role = $role;
     }
 
-    function getCustomer_id() {
+    function getCustomer_id()
+    {
         return $this->customer_id;
     }
 
-    function getFirst_name() {
+    function getFirst_name()
+    {
         return $this->first_name;
     }
 
-    function getLast_name() {
+    function getLast_name()
+    {
         return $this->last_name;
     }
 
-    function getPosition() {
+    function getPosition()
+    {
         return $this->position;
     }
 
-    function getBirth_date() {
+    function getBirth_date()
+    {
         return $this->birth_date;
     }
 
-    function getGender() {
+    function getGender()
+    {
         return $this->gender;
     }
 
-    function getPhone() {
+    function getPhone()
+    {
         return $this->phone;
     }
 
-    function getEmail() {
+    function getEmail()
+    {
         return $this->email;
     }
 
-    function getAddress() {
+    function getAddress()
+    {
         return $this->address;
     }
 
-    function setCustomer_id($customer_id) {
+    function setCustomer_id($customer_id)
+    {
         $this->customer_id = $customer_id;
     }
 
-    function setFirst_name($first_name) {
+    function setFirst_name($first_name)
+    {
         $this->first_name = $first_name;
     }
 
-    function setLast_name($last_name) {
+    function setLast_name($last_name)
+    {
         $this->last_name = $last_name;
     }
 
-    function setPosition($position) {
+    function setPosition($position)
+    {
         $this->position = $position;
     }
 
-    function setBirth_date($birth_date) {
+    function setBirth_date($birth_date)
+    {
         $this->birth_date = $birth_date;
     }
 
-    function setGender($gender) {
+    function setGender($gender)
+    {
         $this->gender = $gender;
     }
 
-    function setPhone($phone) {
+    function setPhone($phone)
+    {
         $this->phone = $phone;
     }
 
-    function setEmail($email) {
+    function setEmail($email)
+    {
         $this->email = $email;
     }
 
-    function setAddress($address) {
+    function setAddress($address)
+    {
         $this->address = $address;
     }
-
 }

@@ -83,3 +83,7 @@ body {
 .link {
     text-decoration: none;
 }
+
+.bg-black {
+    background-color: black;
+}

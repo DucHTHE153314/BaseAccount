@@ -1,14 +1,18 @@
 <?php
-spl_autoload_register(
-    function ($class) {
-        require __DIR__ . '\/../' . $class . '.php';
-    }
-);
+
+//TODO: tach rieng autoload
+
+use ATL\AutoLoad;
+
+require __DIR__ . '\/../' . 'ATL\AutoLoad' . '.php';
+ATL\AutoLoad::myAutoLoad();
 
 use Core\Router;
 
+
+//TODO: rename request path
+//TODO: use virtual host
 $request = str_replace("/BaseAccount/", '', $_SERVER['REQUEST_URI']);
-// echo "<script>alert('" . $request . "');</script>";
 /**
  * Routing
  */
