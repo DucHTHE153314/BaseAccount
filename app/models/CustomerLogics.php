@@ -28,29 +28,36 @@ class CustomerLogics extends CustomerDB
     public function login($email, $pass, $remember)
     {
         $acc = $this->search("email", $email);
+
         if ($acc === null) {
             return -1;
         }
-        if (password_verify($acc->getPassword(), $pass)) {
+        if (!password_verify($pass, $acc->getPassword())) {
             return 0;
         }
         if ($remember) {
             setcookie("User", $email, time() + (86400 * 15), "/"); // 15 days
         }
-        session_start();
-        $_SESSION["User"] = "$email";
+        if (session_id() === '') {
+            session_start();
+        }
+        $_SESSION['User'] = $email;
         return 1;
     }
 
     /**
      * Accept an Customer register in the system with his/her Information
      * 
-     * @param Customer $cus 
-     * @param Account $acc
+     * @param string $first_name
+     * @param string $last_name
+     * @param string $phone
+     * @param string $email
+     * @param string $password
+     * @return boolean
      */
     public function register($first_name, $last_name, $phone, $email, $password)
     {
-        $hash_password = password_hash($password, PASSWORD_BCRYPT);
+        $hash_password = password_hash($password, PASSWORD_DEFAULT);
         $this->insert(["first_name" => $first_name, "last_name" => $last_name, "phone" => $phone, "email" => $email, "password" => $hash_password, "role_id" => 2]);
         session_start();
         $_SESSION["User"] = "$email";

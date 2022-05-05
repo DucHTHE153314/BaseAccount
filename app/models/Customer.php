@@ -20,7 +20,6 @@ namespace App\Models;
 class Customer
 {
 
-    //put your code here
     private $customer_id;
     private $first_name;
     private $last_name;
@@ -36,7 +35,7 @@ class Customer
     /**
      * Constructor for each Customer
      * 
-     * @param type $params Array of Customer's properties include: 
+     * @param Array $params Array of Customer's properties include: 
      * customer_id, first_name, last_name, position, birth_date, gender, phone, email, address, password, role_id
      */
     function __construct($params)

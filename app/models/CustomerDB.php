@@ -9,7 +9,7 @@ namespace App\Models;
  *
  * Record of change:
  * DATE            Version             AUTHOR           DESCRIPTION
- * 2022-04-29       2.1                DucHT           Minimize Code
+ * 2022-05-04       2.1                DucHT           Minimize Code
  */
 
 /**

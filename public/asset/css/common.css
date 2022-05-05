@@ -35,23 +35,6 @@ body {
     display: inline-block;
 }
 
-.message-box {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 3;
-    width: calc(100vw);
-    height: calc(100vh);
-}
-
-.message-box .card {
-    position: absolute;
-    width: calc(36vw);
-    top: calc(30vh);
-    left: calc(32vw);
-    border: 1px solid black;
-}
-
 .img-125 {
     height: 25%;
     width: 25%;
@@ -85,5 +68,18 @@ body {
 }
 
 .bg-black {
-    background-color: black;
+    background-color: rgb(44, 43, 43);
+}
+
+.item-bottom {
+    margin-top: calc(48vh);
+}
+
+.warning {
+    color: red;
+}
+
+button {
+    margin-left: 10px;
+    padding: 0px 0px 10px 10px;
 }

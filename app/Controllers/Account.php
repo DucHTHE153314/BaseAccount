@@ -9,7 +9,7 @@ namespace App\Controllers;
  *
  * Record of change:
  * DATE            Version             AUTHOR           DESCRIPTION
- * 2022-04-26       1.0                DucHT           First Implement
+ * 2022-05-05       1.1                DucHT           Implement Session, Cookie
  */
 
 use App\Models\CustomerLogics;
@@ -23,12 +23,20 @@ class Account extends Controller
 {
     /**
      * Handling login action of customer.
+     * 
      * @return void
      */
     public function loginAction()
     {
         $logics = new CustomerLogics();
         if (isset($_COOKIE["User"]) && $logics->search("email", $_COOKIE["User"])) {
+            View::render('infor.php');
+            return;
+        }
+        if (session_id() === '') {
+            session_start();
+        }
+        if (isset($_SESSION['User']) && $logics->search("email", $_SESSION['User'])) {
             View::render('infor.php');
             return;
         }
@@ -109,8 +117,11 @@ class Account extends Controller
     }
     public function logoutAction()
     {
+        if (session_id() === '') {
+            session_start();
+        }
         unset($_SESSION["User"]);
-        setcookie("User", "", time() - 3600,"/");
+        setcookie("User", "", time() - 60, "/", "", 0);
         View::render('index.html');
     }
 }

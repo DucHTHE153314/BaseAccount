@@ -16,7 +16,7 @@ and open the template in the editor.
     left: 0px;
     height: 100%;
     z-index: 3;
-    width: 90px;
+    width: 100px;
 }
 
 .items {
@@ -30,23 +30,70 @@ and open the template in the editor.
     cursor: pointer;
     position: relative;
     color: rgba(255, 255, 255, 0.3);
+    z-index: 9999;
 }
 
 .item-inner {
     width: 70%;
-    height: 70%;
+    height: calc(8vh);
+    margin-left: 15%;
 }
 
 .active {
     color: #fff;
     background: rgba(0, 0, 0, 0.2);
+    font-weight: bold;
 }
 
 .user-ava {
+    margin-top: 15%;
     border-radius: 50%;
 }
 
 .img-sm {
     width: 55px;
     height: 55px;
+}
+
+.inner-icon {
+    padding-top: 10%;
+}
+
+.inner-content {
+    font-size: small;
+}
+
+.inner-content p {
+    font-weight: bold;
+}
+
+.main {
+    margin-left: 100px;
+    width: calc(80vw);
+}
+
+.main-header {
+    height: calc(8vh);
+    border-bottom: 2px solid #eee;
+}
+
+#header-title {
+    margin: 0%;
+    text-transform: uppercase;
+    color: #ccc;
+    font-size: 13px;
+    font-weight: normal;
+    padding-bottom: 3px;
+}
+
+#header-content {
+    margin: 0%;
+    font-size: 20px;
+    font-weight: 300;
+    color: #222;
+}
+
+.sub-infor .header-act {
+    width: 50%;
+    display: inline-block;
 }

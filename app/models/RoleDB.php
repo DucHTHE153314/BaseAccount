@@ -21,7 +21,7 @@ class RoleDB extends \Core\Model implements BaseDB {
 
     //put your code here
     public function delete($obj) {
-        throw new Exception('Unsupported medthod!');
+        throw new \Exception('Unsupported medthod!');
     }
 
     public function getAll() {
@@ -33,11 +33,11 @@ class RoleDB extends \Core\Model implements BaseDB {
     }
 
     public function insert($obj) {
-        throw new Exception('Unsupported medthod!');
+        throw new \Exception('Unsupported medthod!');
     }
 
     public function update($old, $new) {
-        throw new Exception('Unsupported medthod!');
+        throw new \Exception('Unsupported medthod!');
     }
 
 }

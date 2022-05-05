@@ -9,7 +9,7 @@ namespace App\Models;
  *
  * Record of change:
  * DATE            Version             AUTHOR           DESCRIPTION
- * 2022-04-19       2.0                DucHT           Build DB Common Logics
+ * 2022-05-04       2.0                DucHT           Build DB Common Logics
  */
 
 /**
