@@ -16,3 +16,10 @@ $('div .non-active').mouseover(function() {
 $('div .non-active').mouseout(function(event) {
     $(this).children('.item-inner').children('.inner-icon').css('color', 'rgba(255, 255, 255, 0.3)');
 });
+$('.box-act').mouseover(function() {
+    $(this).css('background-color', 'white');
+})
+$('.box-act').mouseout(function() {
+    $(this).css('background-color', '#f6f6f6');
+});
+$('#reload').click

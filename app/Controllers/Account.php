@@ -124,4 +124,7 @@ class Account extends Controller
         setcookie("User", "", time() - 60, "/", "", 0);
         View::render('index.html');
     }
+    public function updateAction()
+    {
+    }
 }

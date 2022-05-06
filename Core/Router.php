@@ -113,7 +113,7 @@ class Router
      */
     public function dispatch($url)
     {
-        $url = $this->removeQueryStringVariables($url);
+        $url = $this->removeURLVariables($url);
         //TODO: avoid nested if - Done
         if (!$this->match($url)) {
             throw new \Exception('No route matched.', 404);
@@ -154,11 +154,10 @@ class Router
      *
      * @return string The URL with the query string variables removed
      */
-    protected function removeQueryStringVariables($url)
+    protected function removeURLVariables($url)
     {
         if ($url != '') {
-            $parts = explode('&', $url, 2);
-
+            $parts = explode('?', $url, 2);
             if (strpos($parts[0], '=') === false) {
                 $url = $parts[0];
             } else {

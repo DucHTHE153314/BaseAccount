@@ -71,6 +71,11 @@ body {
     background-color: rgb(44, 43, 43);
 }
 
+.bg-gray {
+    background-color: #f6f6f6;
+    color: #999;
+}
+
 .item-bottom {
     margin-top: calc(48vh);
 }
@@ -83,3 +88,54 @@ button {
     margin-left: 10px;
     padding: 0px 0px 10px 10px;
 }
+
+.row {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.col-3 {
+    display: inline-block;
+    width: 30%
+}
+
+.col-7 {
+    display: inline-block;
+    width: 70%
+}
+
+.field-name {
+    font-weight: 500;
+    font-size: 16px;
+    width: 180px;
+}
+
+.input {
+    border: 1px solid #d3d3d3;
+    padding: 7px;
+    font-size: 15px;
+}
+
+.disabled {
+    color: black;
+    background-color: #f6f6f6;
+}
+
+select {
+    border: 1px solid #d3d3d3;
+    padding: 7px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #f6f6f6;
+}
+
+
+/* .col-7 .col-3:first-child {
+    margin-right: 7%;
+}
+
+.col-7 .col-3:nth-child(2) {
+    margin-right: 7%;
+} */

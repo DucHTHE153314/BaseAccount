@@ -20,8 +20,8 @@ body {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
-    padding-top: calc(35vh);
+    z-index: 9;
+    padding-top: 10%;
     left: 0;
     top: 0;
     width: 100%;
@@ -37,7 +37,7 @@ body {
 .modal-content {
     background-color: #fefefe;
     margin: auto;
-    padding: 0px 20px;
+    border-radius: calc(0.3rem - 1px);
 }
 
 .mc-100 {
@@ -85,6 +85,9 @@ body {
     border-bottom: 1px solid #dee2e6;
     border-top-left-radius: calc(0.3rem - 1px);
     border-top-right-radius: calc(0.3rem - 1px);
+    background-color: #f6f6f6;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .modal-header .modal-title {}
@@ -132,7 +135,7 @@ body {
     background-color: transparent;
     border-radius: 5px;
     padding: 5px;
-    width: 50px;
+    width: 70px;
     border: 1px solid #dc3545;
     color: #dc3545;
 }
@@ -144,6 +147,49 @@ body {
 }
 
 #message {
+    position: relative;
+    top: -10px;
     display: inline;
-    margin-bottom: 10px;
+}
+
+#icon {
+    display: inline;
+}
+
+.btn-skip,
+.btn-save {
+    padding: 10px;
+    width: 48%;
+    margin: auto;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-skip {
+    background-color: #dddddd;
+    color: #666666;
+}
+
+.btn-save {
+    background-color: #63b814;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+#btn-confirm {
+    font-size: 16px;
+    font-weight: bolder;
+    text-align: center;
+    cursor: pointer;
+    margin: auto;
+}
+
+#btn-confirm p {
+    margin: auto;
+    color: #63b814;
+}
+
+#btn-confirm:hover {
+    background-color: #eee;
+    transition-duration: 1s;
 }

@@ -6,18 +6,24 @@
 
 
 $(document).ready(function() {
+    $('.btn-tg-infor').click(function() {
+        $('#user-infor').show();
+    });
+    $('#clos-infor').click(function() {
+        $('#user-infor').hide();
+    });
     $('#myBtn').click(
         function() {
             $('#myModal').show();
         }
     );
-    $('#closeBtn').click(function() {
-        $('#myModal').hide();
+    $('.btn-close').click(function() {
+        $('.modal').hide();
     });
     $(window).click(
         function(event) {
             if (event.target.className.includes('modal-unrequired')) {
-                $('#myModal').hide();
+                $('.modal').hide();
             }
         }
     );
