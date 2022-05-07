@@ -10,6 +10,8 @@
  */
 namespace Core;
 
+use App\Models\CustomerLogics;
+
 /**
  * Base controller
  *

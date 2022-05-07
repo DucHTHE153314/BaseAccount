@@ -23,9 +23,10 @@ class Validate extends Controller
 {
     public function checkEmailAction()
     {
-        die('hehehehehe');
+        echo 'hehehe';
     }
     public function checkPhoneAction()
     {
+        
     }
 }

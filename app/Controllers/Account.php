@@ -109,11 +109,19 @@ class Account extends Controller
     }
     public function inforAction()
     {
-        if (!isset($_COOKIE["User"]) && !isset($_SESSION["User"])) {
-            View::render('login.php');
+        $logics = new CustomerLogics();
+        if (isset($_COOKIE["User"]) && $logics->search("email", $_COOKIE["User"])) {
+            View::render('infor.php');
             return;
         }
-        View::render('infor.php');
+        if (session_id() === '') {
+            session_start();
+        }
+        if (isset($_SESSION['User']) && $logics->search("email", $_SESSION['User'])) {
+            View::render('infor.php');
+            return;
+        }
+        View::render('login.php');
     }
     public function logoutAction()
     {
@@ -126,5 +134,21 @@ class Account extends Controller
     }
     public function updateAction()
     {
+        $logics = new CustomerLogics();
+        if (!isset($_COOKIE["User"]) || !$logics->search("email", $_COOKIE["User"])) {
+            View::render('login.php');
+            return;
+        }
+        if (session_id() === '') {
+            session_start();
+        }
+        if (!isset($_SESSION['User']) || !$logics->search("email", $_SESSION['User'])) {
+            View::render('infor.php');
+            return;
+        }
+        if (isset($_GET["first_name"]) && isset($_GET["last_name"]) && isset($_GET["position"]) && isset($_GET["dob"]) && isset($_GET["phone"]) && isset($_GET["address"])) {
+            // $logics->update(......);
+            echo '';
+        }
     }
 }

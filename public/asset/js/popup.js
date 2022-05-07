@@ -5,42 +5,44 @@
  */
 
 
-$(document).ready(function() {
-    $('.btn-tg-infor').click(function() {
+$(document).ready(function () {
+    $('.btn-tg-infor').click(function () {
+        // var h = ($(window).outerHeight() - $('#user-infor').outerHeight()) / 2;
+        // $('#user-infor').css('padding-top', h + 'px');
         $('#user-infor').show();
     });
-    $('#clos-infor').click(function() {
+    $('#clos-infor').click(function () {
         $('#user-infor').hide();
     });
     $('#myBtn').click(
-        function() {
+        function () {
             $('#myModal').show();
         }
     );
-    $('.btn-close').click(function() {
+    $('.btn-close').click(function () {
         $('.modal').hide();
     });
     $(window).click(
-        function(event) {
+        function (event) {
             if (event.target.className.includes('modal-unrequired')) {
                 $('.modal').hide();
             }
         }
     );
     $(window).click(
-        function(event) {
+        function (event) {
             if (event.target.className.includes('btn-close')) {
                 $('#myModal').hide();
             }
         }
     );
     $('#login-now').hover(
-        function() {
+        function () {
             $(this).css('text-decoration', 'underline');
         }
     );
     $('#login-now').mouseout(
-        function() {
+        function () {
             $(this).css('text-decoration', 'none');
         }
     );

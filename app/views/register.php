@@ -56,7 +56,7 @@ and open the template in the editor.
                             </div>
                             <div class="row relative hd-ov">
                                 <a class="right" href="login">Have an account?</a>
-                                <button type="submit" class="submit btn btn-register" onclick="">Register</button>
+                                <button type="button" class="submit btn btn-register" onclick="User.register();">Register</button>
                             </div>
                         </div>
                     </form>
@@ -65,23 +65,30 @@ and open the template in the editor.
         </div>
         <div id="bg-content"></div>
     </div>
+    <!-- The Modal Message -->
+    <div id="myMessage" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content mc-25" id="">
+            <div class="modal-header">
+                <h3 class="modal-title error" id="modal-title">Logout</h3>
+                <span class="close btn-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p id="icon"> <svg class="warning" xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                    </svg></p>
+                <p id='message'>
+                    &nbsp; Bạn có muốn đăng xuất khỏi hệ thống ngay bây giờ? </p>
+            </div>
+            <div class="modal-footer" id="btn-confirm">
+                <p>Ok</p>
+            </div>
+        </div>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="js/commonevent.js"></script>
-    <script>
-        $('#form-register').submit(function() {
-            var account = new AccountRegister($('#fullname').val(), $('#email').val(), $('#phone').val(), $('#password').val(), $('#passwordcf').val());
-            account.checkRegister();
-            account.showMess();
-            return false;
-        });
-    </script>
-    <script>
-        $.each($('.form-control'), function() {
-            $(this).focus(function() {
-                $(this).parent().children('.message').hide();
-            });
-        });
-    </script>
+    <script src="\BaseAccount\public\asset\js\account.js"></script>
+    <script src="\BaseAccount\public\asset\js\common.js"></script>
+    <script src="\BaseAccount\public\asset\js\popup.js"></script>
 </body>
 
 </html>

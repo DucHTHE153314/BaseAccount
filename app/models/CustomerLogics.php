@@ -63,6 +63,9 @@ class CustomerLogics extends CustomerDB
         $_SESSION["User"] = "$email";
         return true;
     }
+    public function update($email, $params)
+    {
+    }
 
     /**
      * Find an email in the system.<br/>

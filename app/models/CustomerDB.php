@@ -54,10 +54,10 @@ class CustomerDB extends BaseDB
 
     /**
      * 
-     * @param type $old
-     * @param type $new
+     * @param type $key
+     * @param Array $params
      */
-    public function update($old, $new)
+    public function update($key, $params)
     {
     }
 
@@ -70,7 +70,8 @@ class CustomerDB extends BaseDB
      */
     public function search($param, $value)
     {
-        return new Customer(parent::getOne(["$param" => "$value"]));
+        $params = parent::getOne(["$param" => "$value"]);
+        return $params === null ? null : new Customer($params);
     }
 
     /**

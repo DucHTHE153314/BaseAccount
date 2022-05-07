@@ -258,7 +258,7 @@ and open the template in the editor.
     <!-- The Modal Infor -->
     <div id="user-infor" class="modal">
         <!-- Modal content -->
-        <div class="modal-content mc-40">
+        <div class="modal-content mc-40" id="user-infor-content">
             <div class="modal-header">
                 <h3 class="modal-title">CHỈNH SỬA THÔNG TIN CÁ NHÂN</h3>
                 <span class="close btn-close">&times;</span>
@@ -310,7 +310,7 @@ and open the template in the editor.
                                 if ($i == 5) {
                                     echo "<option value='$i' selected>$i</option>";
                                 } else {
-                                echo "<option value='$i'>$i</option>";
+                                    echo "<option value='$i'>$i</option>";
                                 }
                             }
                             ?>
@@ -322,7 +322,7 @@ and open the template in the editor.
                                 if ($i == 2001) {
                                     echo "<option value='$i' selected>$i</option>";
                                 } else {
-                                echo "<option value='$i'>$i</option>";
+                                    echo "<option value='$i'>$i</option>";
                                 }
                             }
                             ?>
@@ -347,7 +347,7 @@ and open the template in the editor.
     <!-- The Modal Message -->
     <div id="myMessage" class="modal">
         <!-- Modal content -->
-        <div class="modal-content mc-25">
+        <div class="modal-content mc-25" id="">
             <div class="modal-header">
                 <h3 class="modal-title error" id="modal-title">Logout</h3>
                 <span class="close btn-close">&times;</span>
