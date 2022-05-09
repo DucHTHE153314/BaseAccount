@@ -6,9 +6,10 @@
 
 
 $(document).ready(function () {
+    $('.btn-tg-change-pass').click(function(){
+        $('#user-change-pass').show();
+    });
     $('.btn-tg-infor').click(function () {
-        // var h = ($(window).outerHeight() - $('#user-infor').outerHeight()) / 2;
-        // $('#user-infor').css('padding-top', h + 'px');
         $('#user-infor').show();
     });
     $('#clos-infor').click(function () {

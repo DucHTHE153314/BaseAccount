@@ -11,6 +11,7 @@ and open the template in the editor.
     <link rel='icon' href="/BaseAccount/public/asset/images/logo.png" />
     <link href="/BaseAccount/public/asset/css/content.css" rel="stylesheet" />
     <link rel="stylesheet" href="/BaseAccount/public/asset/css/common.css">
+    <link rel="stylesheet" href="/BaseAccount/public/asset/css/popup.css">
     <title>Base Register</title>
 </head>
 
@@ -31,28 +32,28 @@ and open the template in the editor.
                             <div class="row">
                                 <div class="col">
                                     <div class="label">Your name</div>
-                                    <div class="input"><input type="text" name="first_name" placeholder="First name" required></div>
+                                    <div class="input"><input type="text" id="first_name" name="first_name" placeholder="First name" required maxlength="32"></div>
                                 </div>
                                 <div class="col right-col" style="margin-left: 5%;">
                                     <div class="label">&nbsp;</div>
-                                    <div class="input"><input type="text" name="last_name" placeholder="Last name" required></div>
+                                    <div class="input"><input type="text" name="last_name" id="last_name" placeholder="Last name" required maxlength="32"></div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="label">Email</div>
-                                <div class="input"><input type="email" name="register_email" placeholder="Your email" required></div>
+                                <div class="input"><input type="email" name="register_email" id="register_email" placeholder="Your email" required maxlength="32"></div>
                             </div>
                             <div class="row">
                                 <div class="label">Phone</div>
-                                <div class="input"><input type="text" name="register_phone" placeholder="Your phone" required></div>
+                                <div class="input"><input type="text" name="register_phone" id="register_phone" placeholder="Your phone" required maxlength="32"></div>
                             </div>
                             <div class="row">
                                 <div class="label">New Password</div>
-                                <div class="input"><input type="password" name="register_password" placeholder="New password" required></div>
+                                <div class="input"><input type="password" name="register_password" id="register_password" placeholder="New password" required maxlength="32"></div>
                             </div>
                             <div class="row">
                                 <div class="label">Confirm Password</div>
-                                <div class="input"><input type="password" name="confirm_password" placeholder="Confirm password" required></div>
+                                <div class="input"><input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password" required maxlength="32"></div>
                             </div>
                             <div class="row relative hd-ov">
                                 <a class="right" href="login">Have an account?</a>
@@ -68,7 +69,7 @@ and open the template in the editor.
     <!-- The Modal Message -->
     <div id="myMessage" class="modal">
         <!-- Modal content -->
-        <div class="modal-content mc-25" id="">
+        <div class="modal-content mc-30" id="">
             <div class="modal-header">
                 <h3 class="modal-title error" id="modal-title">Logout</h3>
                 <span class="close btn-close">&times;</span>

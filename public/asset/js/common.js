@@ -4,22 +4,24 @@
  * and open the template in the editor.
  */
 
-$('#logout-tg').click(function() {
+$('#logout-tg').click(function () {
     $('#myModal').show();
 });
-$('#logout').click(function() {
+$('#logout').click(function () {
     $(location).attr('href', '/BaseAccount/Account/logout');
 });
-$('div .non-active').mouseover(function() {
+$('div .non-active').mouseover(function () {
     $(this).children('.item-inner').children('.inner-icon').css('color', '#fff');
 });
-$('div .non-active').mouseout(function(event) {
+$('div .non-active').mouseout(function (event) {
     $(this).children('.item-inner').children('.inner-icon').css('color', 'rgba(255, 255, 255, 0.3)');
 });
-$('.box-act').mouseover(function() {
+$('.box-act').mouseover(function () {
     $(this).css('background-color', 'white');
 })
-$('.box-act').mouseout(function() {
+$('.box-act').mouseout(function () {
     $(this).css('background-color', '#f6f6f6');
 });
-$('#reload').click
+$('#reload').click(function () {
+    $(location).reload();
+});

@@ -7,6 +7,8 @@ CREATE TABLE Customer(
     last_name text not null,
     birth_date Date not null,
     gender bit default 1,
+    position nvarchar(255) null,
+    avatar nvarchar(255) null,
     email varchar(255) not null,
     phone varchar(10) not null,
     address text null,

@@ -101,7 +101,7 @@ and open the template in the editor.
             </div>
             <div class="sub-infor">
                 <p id="header-title">TÀI KHOẢN</p>
-                <p id="header-content">Hoàng Trần Đức · Trainee Software Engineer</p>
+                <p id="header-content"><?php echo $cus->getFull_name(); ?> · <?php echo $cus->getPosition(); ?></p>
             </div>
             <button class="header-act btn-tg-infor"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-arrow-up-short" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5z" />
@@ -115,16 +115,16 @@ and open the template in the editor.
                     </div>
                     <div class="text">
                         <div class="title">
-                            Hoàng Trần Đức
+                            <?php echo $cus->getFull_name(); ?>
                         </div>
                         <div class="sub-title">
-                            Trainee Software Engineer
+                            <?php echo $cus->getPosition(); ?>
                         </div>
                         <div class="infor">
-                            <b>Địa chỉ email</b> ductranhoangk35dlnq@gmail.com
+                            <b>Địa chỉ email</b> <?php echo $cus->getEmail(); ?>
                         </div>
                         <div class="infor">
-                            <b>Số điện thoại</b> 0352629175
+                            <b>Số điện thoại</b> <?php echo $cus->getPhone(); ?>
                         </div>
                     </div>
                 </div>
@@ -134,10 +134,10 @@ and open the template in the editor.
     <div id="main-menu" class="bg-gray">
         <div class="header-title">
             <div class="name">
-                Hoàng Trần Đức
+                <?php echo $cus->getFull_name(); ?>
             </div>
             <div class="sub-title">
-                @duchoang · ductranhoangk35dlnq
+                @noname · <?php echo explode('@', $cus->getEmail())[0]; ?>
             </div>
         </div>
         <div class="menu-box">
@@ -163,7 +163,7 @@ and open the template in the editor.
                 </svg>&nbsp;
                 Ngôn ngữ
             </div>
-            <div class="box-act">
+            <div class="box-act btn-tg-change-pass">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                     <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
@@ -256,6 +256,34 @@ and open the template in the editor.
         </div>
     </div>
     <!-- The Modal Infor -->
+    <div id="user-change-pass" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content mc-40" id="" style="margin-top: 17%;">
+            <div class="modal-header">
+                <h3 class="modal-title">ĐỔI MẬT KHẨU</h3>
+                <span class="close btn-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-3 field-name">Mật khẩu cũ</div>
+                    <input class="col-7 input" type="password" id="old_pass" name="old_pass" placeholder="Mật khẩu cũ" value="">
+                </div>
+                <div class="row">
+                    <div class="col-3  field-name">Mật khẩu mới</div>
+                    <input class="col-7 input" type="password" id="new_pass" name="new_pass" placeholder="Mật khẩu mới" value="">
+                </div>
+                <div class="row">
+                    <div class="col-3 field-name">Xác nhận</div>
+                    <input class="col-7 input" type="password" id="cf_new_pass" name="cf_new_pass" value="" placeholder="Xác nhận">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-close btn-skip left" onclick="location.reload();">Bỏ qua</button>
+                <button type="button" id="" class="btn-save right" onclick="User.repass();">Cập nhật</button>
+            </div>
+        </div>
+    </div>
+    <!-- The Modal Infor -->
     <div id="user-infor" class="modal">
         <!-- Modal content -->
         <div class="modal-content mc-40" id="user-infor-content">
@@ -266,36 +294,36 @@ and open the template in the editor.
             <div class="modal-body">
                 <div class="row">
                     <div class="col-3 field-name">Tên của bạn</div>
-                    <input class="col-7 input" type="text" id="first_name" name="first_name" placeholder="Tên của bạn" value="Đức">
+                    <input class="col-7 input" type="text" id="first_name" name="first_name" placeholder="Tên của bạn" value="<?php echo $cus->getFirst_name(); ?>"  maxlength="32">
                 </div>
                 <div class="row">
                     <div class="col-3  field-name">Họ của bạn</div>
-                    <input class="col-7 input" type="text" id="last_name" name="last_name" placeholder="Họ của bạn" value="Hoàng Trần">
+                    <input class="col-7 input" type="text" id="last_name" name="last_name" placeholder="Họ của bạn" value="<?php echo $cus->getLast_name(); ?>"  maxlength="32">
                 </div>
                 <div class="row">
                     <div class="col-3 field-name">Email</div>
-                    <input class="col-7 input disabled" type="text" value="duc.hoang@platform.inc" disabled>
+                    <input class="col-7 input disabled" type="text" value="<?php echo $cus->getEmail(); ?>" disabled>
                 </div>
                 <div class="row">
                     <div class="col-3 field-name">Username</div>
-                    <input class="col-7 input disabled" type="text" value="@duchoang" disabled>
+                    <input class="col-7 input disabled" type="text" value="@noname" disabled>
                 </div>
                 <div class="row">
                     <div class="col-3 field-name">Vị trí công việc</div>
-                    <input class="col-7 input" type="text" id="position" name="position" placeholder="Vị trí công việc" value="Trainee Software Engineer">
+                    <input class="col-7 input" type="text" id="position" name="position" placeholder="Vị trí công việc" value="<?php echo $cus->getPosition(); ?>"  maxlength="32">
                 </div>
                 <div class="row">
                     <div class="col-3 field-name">Ảnh đại diện</div>
-                    <input class="col-7 input" type="file" name="avatar" placeholder="" value="">
+                    <input class="col-7 input" type="file" id="inf_avatar" name="avatar" placeholder="" value="">
                 </div>
                 <div class="row">
                     <div class="col-3 field-name">Ngày tháng năm sinh</div>
                     <div class="col-7">
                         <select class="col-3" name="date" id="dob_date">
-                            <option>-- Chọn ngày --</option>
+                            <option value="-- Chọn ngày --">-- Chọn ngày --</option>
                             <?php
                             for ($i = 1; $i <= 31; $i++) {
-                                if ($i == 19) {
+                                if ($i == $cus->getBirth_date()->format("d")) {
                                     echo "<option value='$i' selected>$i</option>";
                                 } else {
                                     echo "<option value='$i'>$i</option>";
@@ -304,10 +332,10 @@ and open the template in the editor.
                             ?>
                         </select>
                         <select class="col-3" name="month" id="dob_month">
-                            <option>-- Chọn tháng --</option>
+                            <option value="-- Chọn tháng --">-- Chọn tháng --</option>
                             <?php
                             for ($i = 1; $i <= 12; $i++) {
-                                if ($i == 5) {
+                                if ($i == $cus->getBirth_date()->format("m")) {
                                     echo "<option value='$i' selected>$i</option>";
                                 } else {
                                     echo "<option value='$i'>$i</option>";
@@ -316,10 +344,10 @@ and open the template in the editor.
                             ?>
                         </select>
                         <select class="col-3" name="year" id="dob_year">
-                            <option>-- Chọn năm --</option>
+                            <option value="-- Chọn năm --">-- Chọn năm --</option>
                             <?php
                             for ($i = 2010; $i >= 1930; $i--) {
-                                if ($i == 2001) {
+                                if ($i == $cus->getBirth_date()->format("Y")) {
                                     echo "<option value='$i' selected>$i</option>";
                                 } else {
                                     echo "<option value='$i'>$i</option>";
@@ -331,15 +359,15 @@ and open the template in the editor.
                 </div>
                 <div class="row">
                     <div class="col-3 field-name">Số điện thoại</div>
-                    <input class="col-7 input" type="text" id="phone" name="phone" placeholder="Số điện thoại" value="0352629715">
+                    <input class="col-7 input" type="text" id="phone" name="phone" placeholder="Số điện thoại" value="<?php echo $cus->getPhone(); ?>"  maxlength="10">
                 </div>
                 <div class="row">
                     <div class="col-3 field-name">Chỗ ở hiện nay</div>
-                    <input class="col-7 input" type="text" id="address" name="address" placeholder="Chỗ ở hiện nay" value="Kim Bông, Tân Xã, Thạch Thất, Hà Nội">
+                    <input class="col-7 input" type="text" id="address" name="address" placeholder="Chỗ ở hiện nay" value="<?php echo $cus->getAddress(); ?>"  maxlength="100">
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn-close btn-skip left">Bỏ qua</button>
+                <button type="button" class="btn-close btn-skip left" onclick="location.reload();">Bỏ qua</button>
                 <button type="button" id="logout" class="btn-save right" onclick="User.update();">Cập nhật</button>
             </div>
         </div>

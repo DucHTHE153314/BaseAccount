@@ -88,11 +88,25 @@ abstract class BaseDB extends \Core\Model
 
     /**
      * 
-     * @param type $old
-     * @param type $new
+     * @param Array $keys
+     * @param Array $params
      */
-    public function update($old, $new)
+    public function update($keys, $params)
     {
+        ini_set('display_errors', 0);
+        $tableName = static::tableName();
+        $attrs = implode(",", array_map(fn ($attr) => "$attr = :$attr", array_keys($params)));
+        $key_s = implode("AND", array_map(fn ($k) => "$k = :$k", array_keys($keys)));
+        $conn = $this->getDB();
+        $sql = "UPDATE $tableName SET $attrs WHERE $key_s ";
+        $prst = $conn->prepare($sql);
+        foreach ($params as $key => $item) {
+            $prst->bindValue(":$key", $item);
+        }
+        foreach ($keys as $key => $item) {
+            $prst->bindValue(":$key", $item);
+        }
+        return $prst->execute();
     }
 
     /**

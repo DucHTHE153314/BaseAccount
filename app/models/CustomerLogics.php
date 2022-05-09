@@ -53,7 +53,7 @@ class CustomerLogics extends CustomerDB
      * @param string $phone
      * @param string $email
      * @param string $password
-     * @return boolean
+     * @return Customer
      */
     public function register($first_name, $last_name, $phone, $email, $password)
     {
@@ -61,10 +61,11 @@ class CustomerLogics extends CustomerDB
         $this->insert(["first_name" => $first_name, "last_name" => $last_name, "phone" => $phone, "email" => $email, "password" => $hash_password, "role_id" => 2]);
         session_start();
         $_SESSION["User"] = "$email";
-        return true;
+        return $this->getOne($email);
     }
     public function update($email, $params)
     {
+        return parent::update($email, $params);
     }
 
     /**
@@ -89,5 +90,13 @@ class CustomerLogics extends CustomerDB
     public function searchPhone($phone)
     {
         return $this->search("Phone", $phone);
+    }
+    public function checkPass($email, $pass)
+    {
+        $acc = $this->search("email", $email);
+        if (!password_verify($pass, $acc->getPassword())) {
+            return false;
+        }
+        return true;
     }
 }

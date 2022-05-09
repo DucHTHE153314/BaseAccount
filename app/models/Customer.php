@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use DateTime;
+
 /*
  * Copyright(C) 2022, Base
  * Base Account:
@@ -52,7 +54,10 @@ class Customer
         $this->password = isset($params['password']) ? $params['password'] : "";
         $this->role = isset($params['role_id']) ? $params['role_id'] : 2;
     }
-
+    function getFull_name()
+    {
+        return "$this->last_name $this->first_name";
+    }
     function getPassword()
     {
         return $this->password;
@@ -95,7 +100,7 @@ class Customer
 
     function getBirth_date()
     {
-        return $this->birth_date;
+        return DateTime::createFromFormat("Y-m-d", $this->birth_date);
     }
 
     function getGender()

@@ -54,11 +54,12 @@ class CustomerDB extends BaseDB
 
     /**
      * 
-     * @param type $key
+     * @param string $email
      * @param Array $params
      */
-    public function update($key, $params)
+    public function update($email, $params)
     {
+        return parent::update(array('email' => $email), $params);
     }
 
     /**

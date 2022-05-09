@@ -31,18 +31,18 @@ and open the template in the editor.
                         <div class="form">
                             <div class="row">
                                 <div class="label">Email</div>
-                                <div class="input"><input type="email" name="lemail" placeholder="Your email" required></div>
+                                <div class="input"><input type="email" name="lemail" id="lemail" placeholder="Your email" required maxlength="32"></div>
                             </div>
                             <div class="row">
                                 <div class="label"><a class="right" href="recovery">Forget your password?</a>Password</div>
-                                <div class="input"><input type="password" id="login-password" name="lpassword" placeholder="Your password" required></div>
+                                <div class="input"><input type="password" id="lpassword" name="lpassword" placeholder="Your password" required  maxlength="32"></div>
                             </div>
                             <div class="row relative hd-ov">
                                 <div class="checkbox">
                                     <input type="checkbox" checked name="lremember"> &nbsp; Remember me
                                 </div>
                                 <a class="right" href="register">Don't have any account?</a>
-                                <button type="submit" class="submit btn btn-login" onclick="">Login</button>
+                                <button type="button" class="submit btn btn-login" onclick="User.login();">Login</button>
                                 <div class="another">
                                     <div class="label"><span>Or, login via single sign-on</span></div>
                                     <a class="another-login" href="#">Login with Google</a>
@@ -74,7 +74,9 @@ and open the template in the editor.
         <div id="bg-content"></div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/BaseAccount/public/asset/js/popup.js"> </script>
+    <script src="\BaseAccount\public\asset\js\account.js"></script>
+    <script src="\BaseAccount\public\asset\js\common.js"></script>
+    <script src="\BaseAccount\public\asset\js\popup.js"></script>
 </body>
 
 </html>

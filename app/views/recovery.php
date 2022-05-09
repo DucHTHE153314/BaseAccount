@@ -30,7 +30,7 @@
                             </div>
                             <iframe title="reCAPTCHA" src="https://www.google.com/recaptcha/api2/anchor?ar=2&amp;k=6LcTNZ0aAAAAADQo0bEL0USKOHpCTm_jw-WKezKA&amp;co=aHR0cHM6Ly9hY2NvdW50LmJhc2Uudm46NDQz&amp;hl=vi&amp;v=2W_gRz39xX8G13fM-OdyQPlc&amp;size=normal&amp;cb=pf3rctigpsxm" width="304" height="78" role="presentation" name="a-c7750uvy1k7" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe>
                             <div class="row relative hd-ov">
-                                <button type="submit" class="submit btn btn-login" onclick="">Recover password</button>
+                                <button type="button" class="submit btn btn-login" onclick="User.recover();">Recover password</button>
                                 <div class="another">
                                 </div>
                                 <p class="sub-title"><a href="login" id="login-now"><b>Login now</b></a> if your company was already on <b>Base Account</b></p>
@@ -54,7 +54,6 @@
                         <button type="button" class="btn-close btn-ok">Ok</button>
                     </div>
                 </div>
-
             </div>
         </div>
         <div id="bg-content"></div>
