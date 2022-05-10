@@ -64,7 +64,7 @@ class Account extends Controller
      */
     public function registerAction()
     {
-        if (isset($_POST["first_name"]) && isset($_POST["last_name"]) && isset($_POST["register_email"]) && isset($_POST["register_phone"]) && isset($_POST["register_password"])) {
+        if (isset($_POST["first_name"]) && isset($_POST["last_name"]) && isset($_POST["register_email"]) && isset($_POST["register_phone"]) && isset($_POST["register_password"]) && isset($_POST["cf_password"])) {
             $first_name = $_POST["first_name"];
             $last_name = $_POST["last_name"];
             $email = $_POST["register_email"];
@@ -80,18 +80,11 @@ class Account extends Controller
 
     public function recoveryAction()
     {
-        if (isset($_POST["remail"])) {
-            $email = $_POST['remail'];
+        if (isset($_GET["remail"])) {
+            $email = $_GET['remail'];
             $Logics = new CustomerLogics();
-            $result = $Logics->searchEmail($email);
-            if ($result) {
-                echo 'Email exist!';
-            } else {
-                View::render('recovery.php');
-                echo "<script>
-                $('#myModal').show();
-                </script>";
-            }
+            $result = $Logics->recovery($email);
+            echo $result;
         } else {
             View::render('recovery.php');
         }
@@ -133,6 +126,7 @@ class Account extends Controller
             View::render('login.php');
             return;
         }
+        $cus = $logics->search("email", $_SESSION['User']);
         if (isset($_POST["first_name"]) && isset($_POST["last_name"]) && isset($_POST["position"]) && isset($_POST["dob"]) && isset($_POST["phone"]) && isset($_POST["address"])) {
             $params = array(
                 'first_name' => $_POST["first_name"],
@@ -142,20 +136,38 @@ class Account extends Controller
                 'phone' => $_POST["phone"],
                 'address' => $_POST["address"]
             );
-            if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_FILES["avatar"])) {
-                $target_dir = "/BaseAccount/public/asset/images/";
-                $target_file = $target_dir . basename($_FILES['avatar']['name']);
-                $type_file = pathinfo($_FILES['fileUpload']['name'], PATHINFO_EXTENSION);
-                $type_fileAllow = array('png', 'jpg', 'jpeg', 'gif');
-                if (!in_array(strtolower($type_file), $type_fileAllow)) {
-                    $error['fileUpload'] = "File bạn vừa chọn hệ thống không hỗ trợ, bạn vui lòng chọn hình ảnh";
-                }
-                $uploaddir = '/BaseAccount/public/asset/images/' . $_SESSION['User'] . 'jpg';
-                move_uploaded_file($_FILES['avatar']['tmp_name'], $uploaddir);
-                $params['avatar'] = $_SESSION['User'] . 'jpg';
-            }
             $logics->update($_SESSION['User'], $params);
             return;
+        }
+        if (isset($_FILES["avatar"])) {
+            $image = $_FILES['avatar'];
+            //Stores the filename as it was on the client computer.
+            $imagename = $image['name'];
+            //Stores the filetype e.g image/jpeg
+            $imagetype = $image['type'];
+            //Stores any error codes from the upload.
+            $imageerror = $image['error'];
+            //Stores the tempname as it is given by the host when uploaded.
+            $imagetemp = $image['tmp_name'];
+
+            //The path you wish to upload the image to
+            $imagePath = 'C:/xampp/htdocs/BaseAccount/public/asset/images/';
+
+            if (is_uploaded_file($imagetemp)) {
+                $save_path = $imagePath . "C" . $cus->getCustomer_id() . "_avatar.png";
+                if (file_exists($save_path)) {
+                    unlink($save_path);
+                }
+                if (move_uploaded_file($imagetemp, $save_path)) {
+                    $params = array(
+                        'avatar' => "C" . $cus->getCustomer_id() . "_avatar.png"
+                    );
+                    $logics->update($_SESSION['User'], $params);
+                }
+            } else {
+            }
+        } else {
+            echo 'KO kem Anh';
         }
         $cus = $logics->search('email', $_SESSION["User"]);
         View::render('infor.php', array('cus' => $cus));

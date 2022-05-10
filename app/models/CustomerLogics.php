@@ -70,14 +70,14 @@ class CustomerLogics extends CustomerDB
 
     /**
      * Find an email in the system.<br/>
-     * Return 1 if existed. Else, return 0.
+     * Return a customer if existed. Else, return null.
      * 
      * @param <code>String</code> $email
-     * @return bool
+     * @return type
      */
     public function searchEmail($email)
     {
-        $this->search("email", $email);
+        return $this->search("email", $email);
     }
 
     /**
@@ -85,7 +85,7 @@ class CustomerLogics extends CustomerDB
      * Return 1 if existed. Else, return 0.
      * 
      * @param type $phone
-     * @return bool
+     * @return type
      */
     public function searchPhone($phone)
     {
@@ -98,5 +98,15 @@ class CustomerLogics extends CustomerDB
             return false;
         }
         return true;
+    }
+    public function recovery($email)
+    {
+        if ($this->searchEmail($email) == null) {
+            return '0';
+        } else {
+            $msg = "hehehehhehehehehhe";
+            mail("$email", "hihi", $msg);
+            return 1;
+        }
     }
 }

@@ -41,8 +41,9 @@ abstract class BaseDB extends \Core\Model
      */
     public function getOne($keys)
     {
+        ini_set('display_errors', 0);
         $tableName = static::tableName();
-        $query = implode("AND", array_map(fn ($attr) => "$attr = :$attr", array_keys($keys)));
+        $query = implode("AND", array_map(fn($attr) => "$attr = :$attr" , array_keys($keys)));
         $conn = $this->getDB();
         $sql = "SELECT * FROM $tableName where $query ";
         $prst = $conn->prepare($sql);

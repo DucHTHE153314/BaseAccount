@@ -19,8 +19,7 @@ use DateTime;
  *
  * @author PC
  */
-class Customer
-{
+class Customer {
 
     private $customer_id;
     private $first_name;
@@ -33,6 +32,7 @@ class Customer
     private $address;
     private $password;
     private $role;
+    private $avatar;
 
     /**
      * Constructor for each Customer
@@ -40,8 +40,7 @@ class Customer
      * @param Array $params Array of Customer's properties include: 
      * customer_id, first_name, last_name, position, birth_date, gender, phone, email, address, password, role_id
      */
-    function __construct($params)
-    {
+    function __construct($params) {
         $this->customer_id = isset($params['customer_id']) ? $params['customer_id'] : 0;
         $this->first_name = isset($params['first_name']) ? $params['first_name'] : "";
         $this->last_name = isset($params['last_name']) ? $params['last_name'] : "";
@@ -53,118 +52,107 @@ class Customer
         $this->address = isset($params['address']) ? $params['address'] : "";
         $this->password = isset($params['password']) ? $params['password'] : "";
         $this->role = isset($params['role_id']) ? $params['role_id'] : 2;
+        $this->avatar = isset($params['avatar']) ? $params['avatar'] : "";
     }
-    function getFull_name()
-    {
+
+    function getFull_name() {
         return "$this->last_name $this->first_name";
     }
-    function getPassword()
-    {
+
+    function getPassword() {
         return $this->password;
     }
 
-    function getRole()
-    {
+    function getRole() {
         return $this->role;
     }
 
-    function setPassword($password)
-    {
+    function setPassword($password) {
         $this->password = $password;
     }
 
-    function setRole($role)
-    {
+    function setRole($role) {
         $this->role = $role;
     }
 
-    function getCustomer_id()
-    {
+    function getCustomer_id() {
         return $this->customer_id;
     }
 
-    function getFirst_name()
-    {
+    function getAvatar() {
+        return $this->avatar;
+    }
+
+    function setAvatar($avatar) {
+        $this->avatar = $avatar;
+    }
+
+    function getFirst_name() {
         return $this->first_name;
     }
 
-    function getLast_name()
-    {
+    function getLast_name() {
         return $this->last_name;
     }
 
-    function getPosition()
-    {
+    function getPosition() {
         return $this->position;
     }
 
-    function getBirth_date()
-    {
+    function getBirth_date() {
         return DateTime::createFromFormat("Y-m-d", $this->birth_date);
     }
 
-    function getGender()
-    {
+    function getGender() {
         return $this->gender;
     }
 
-    function getPhone()
-    {
+    function getPhone() {
         return $this->phone;
     }
 
-    function getEmail()
-    {
+    function getEmail() {
         return $this->email;
     }
 
-    function getAddress()
-    {
+    function getAddress() {
         return $this->address;
     }
 
-    function setCustomer_id($customer_id)
-    {
+    function setCustomer_id($customer_id) {
         $this->customer_id = $customer_id;
     }
 
-    function setFirst_name($first_name)
-    {
+    function setFirst_name($first_name) {
         $this->first_name = $first_name;
     }
 
-    function setLast_name($last_name)
-    {
+    function setLast_name($last_name) {
         $this->last_name = $last_name;
     }
 
-    function setPosition($position)
-    {
+    function setPosition($position) {
         $this->position = $position;
     }
 
-    function setBirth_date($birth_date)
-    {
+    function setBirth_date($birth_date) {
         $this->birth_date = $birth_date;
     }
 
-    function setGender($gender)
-    {
+    function setGender($gender) {
         $this->gender = $gender;
     }
 
-    function setPhone($phone)
-    {
+    function setPhone($phone) {
         $this->phone = $phone;
     }
 
-    function setEmail($email)
-    {
+    function setEmail($email) {
         $this->email = $email;
     }
 
-    function setAddress($address)
-    {
+    function setAddress($address) {
         $this->address = $address;
     }
+
 }

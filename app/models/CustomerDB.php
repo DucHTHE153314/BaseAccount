@@ -67,7 +67,7 @@ class CustomerDB extends BaseDB
      * 
      * @param string $param An attribute of Customer.
      * @param string $value A value of this attribute.
-     * @return Customer True if exists. Else False.
+     * @return type True if exists. Else False.
      */
     public function search($param, $value)
     {

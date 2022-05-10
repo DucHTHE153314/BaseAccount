@@ -104,6 +104,15 @@ button {
     display: inline-block;
     width: 70%
 }
+.col-4 {
+    display: inline-block;
+    width: 40%
+}
+
+.col-6 {
+    display: inline-block;
+    width: 55%
+}
 
 .field-name {
     font-weight: 500;
@@ -131,6 +140,9 @@ select {
     background-color: #f6f6f6;
 }
 
+.no-padding {
+    padding: 0px;
+}
 
 /* .col-7 .col-3:first-child {
     margin-right: 7%;

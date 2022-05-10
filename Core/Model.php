@@ -10,7 +10,6 @@
  */
 
 namespace Core;
-
 use App\Configs;
 
 /**

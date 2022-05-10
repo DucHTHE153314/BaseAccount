@@ -29,9 +29,9 @@ class Validate extends Controller
             $email = $_GET["email"];
             $res = $logics->searchEmail($email);
             if ($res !== null) {
-                echo '';
-            } else {
                 echo ' Email has been use!';
+            } else {
+                echo '';
             }
         }
     }
@@ -41,7 +41,10 @@ class Validate extends Controller
             $logics = new CustomerLogics();
             $phone = $_GET["phone"];
             $res = $logics->searchPhone($phone);
-            if ($res !== null) {
+            if (session_id() === '') {
+                session_start();
+            }
+            if ($res !== null && ($res->getEmail() != $logics->searchEmail($_SESSION["User"])->getEmail())) {
                 echo ' Phone has been use!';
             } else {
                 echo '';

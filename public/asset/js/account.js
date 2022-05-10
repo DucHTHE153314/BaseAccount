@@ -4,19 +4,11 @@
  * and open the template in the editor.
  */
 class Account {
-    constructor(first_name, last_name, email, username, position, dob, phone, password, address, avatar) {
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.email = email;
-        this.username = username;
-        this.position = position;
-        this.dob = dob;
-        this.password = password;
-        this.phone = phone;
-        this.address = address;
-        this.avatar = avatar;
+    constructor() {
     }
     setInfor() {
+        $('#myMessage #myMessage-content').removeClass();
+        $('#myMessage #myMessage-content').addClass('modal-content mc-25');
         $('#myMessage #message').html('');
         this.first_name = $('#first_name').val();
         this.last_name = $('#last_name').val();
@@ -25,34 +17,29 @@ class Account {
             new Date('hehehehehe') : new Date($('#dob_year').val() + '-' + $('#dob_month').val() + '-' + $('#dob_date').val());
         this.phone = $('#phone').val();
         this.address = $('#address').val();
-        this.avatar = $('#inf_avatar').val();
     }
     setRegister() {
+        $('#myMessage #myMessage-content').removeClass();
+        $('#myMessage #myMessage-content').addClass('modal-content mc-25');
         $('#myMessage #message').html('');
         this.first_name = $('#first_name').val();
         this.last_name = $('#last_name').val();
         this.email = $('#register_email').val();
         this.phone = $('#register_phone').val();
         this.password = $('#register_password').val();
+        this.cf_password = $('#cf_new_pass').val();
     }
     setLogin() {
         $('#myMessage #message').html('');
+        $('#myMessage #myMessage-content').removeClass();
+        $('#myMessage #myMessage-content').addClass('modal-content mc-25');
         this.email = $('#lemail').val();
         this.password = $('#lpassword').val();
     }
     setRepass() {
         $('#myMessage #message').html('');
-    }
-    checkName() {
-        var reg = new RegExp(/[^a-zA-Z\s_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]/);
-        if (this.first_name === '' || this.last_name === '') {
-            $('#myMessage #message').html($('#myMessage #message').html() + ' Fill your name!');
-            return false;
-        } else if (reg.test(this.first_name) || reg.test(this.last_name)) {
-            $('#myMessage #message').html($('#myMessage #message').html() + ' Check your name again!');
-            return false;
-        }
-        return true;
+        $('#myMessage #myMessage-content').removeClass();
+        $('#myMessage #myMessage-content').addClass('modal-content mc-20');
     }
     checkEmail() {
         $.ajax({
@@ -68,13 +55,12 @@ class Account {
                 //Do Something to handle error
             }
         });
-    }
-    checkPhone(type) {
-        var reg = new RegExp(/^0[1-9]{2}[0-9]{7}$/);
-        if (!reg.test(this.phone)) {
+    };
+    async checkPhone() {
+        if (!(new RegExp(/^0[1-9]{2}[0-9]{7}$/)).test(this.phone)) {
             $('#myMessage #message').html($('#myMessage #message').html() + ' Error Phone Number!');
-        } else if (type !== 'update') {
-            $.ajax({
+        } else {
+            await $.ajax({
                 url: '/BaseAccount/Validate/checkPhone',
                 type: 'get', //send it through get method
                 data: {
@@ -89,6 +75,22 @@ class Account {
             });
         }
     }
+    checkDob() {
+        if (this.dob.toString() === 'Invalid Date' || (this.dob.getMonth() + 1) != $('#dob_month').val()) {
+            $('#myMessage #message').html($('#myMessage #message').html() + ' Date not exist!');
+        }
+    }
+    checkName() {
+        var reg = new RegExp(/[^a-zA-Z\s_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]/);
+        if (this.first_name === '' || this.last_name === '') {
+            $('#myMessage #message').html($('#myMessage #message').html() + ' Fill your name!');
+            return false;
+        } else if (reg.test(this.first_name) || reg.test(this.last_name)) {
+            $('#myMessage #message').html($('#myMessage #message').html() + ' Check your name again!');
+            return false;
+        }
+        return true;
+    }
     checkPassword() {
         var pass = this.password;
         var reg = new RegExp(/^[a-zA-Z0-9!@#$%^&*]{6,16}/);
@@ -97,11 +99,6 @@ class Account {
             return false;
         }
         return true;
-    }
-    checkDob() {
-        if (this.dob.toString() === 'Invalid Date' || (this.dob.getMonth() + 1) != $('#dob_month').val()) {
-            $('#myMessage #message').html($('#myMessage #message').html() + ' Date not exist!');
-        }
     }
     checkConfirm() {
         if (this.password !== this.confirm) {
@@ -112,21 +109,21 @@ class Account {
         this.setRegister();
         if (this.checkName()) {
             this.checkEmail();
-            this.checkPhone('register');
-        }
-        if (this.checkPassword()) {
-            this.checkConfirm();
+            this.checkPhone();
+            if (this.checkPassword()) {
+                this.checkConfirm();
+            }
         }
         if ($('#myMessage #message').html() === '') {
             $.ajax({
                 url: '/BaseAccount/Account/register',
-                type: 'get', //send it through get method
+                type: 'post', //send it through get method
                 data: {
                     first_name: this.first_name, // $_GET["first_name"]
                     last_name: this.last_name,
-                    phone: this.phone,
-                    email: this.email,
-                    password: this.password
+                    register_phone: this.phone,
+                    register_email: this.email,
+                    register_password: this.password
                 },
                 success: function () {
                     $('#myMessage #modal-title').html('Success');
@@ -162,15 +159,18 @@ class Account {
         }
         return false;
     }
-    update() {
+    async update() {
         this.setInfor();
+        await this.checkPhone();
         this.checkName();
-        this.checkPhone('update');
         this.checkDob();
+        await this.setUpdate();
+    }
+    async setUpdate() {
         if ($('#myMessage #message').html() === '') {
-            $.ajax({
+            await $.ajax({
                 url: '/BaseAccount/Account/update',
-                type: 'post', //send it through get method
+                type: 'post', //send it through post method
                 data: {
                     first_name: this.first_name,
                     last_name: this.last_name,
@@ -191,9 +191,8 @@ class Account {
                         "</svg>");
                     $('#myMessage #message').html('&nbsp; Cập nhật thành công!');
                     $('#myMessage #btn-confirm').click(function () {
-                        location.reload();
+                        $('#frm-avatar').submit();
                     });
-                    $('#myMessage').show();
                 },
                 error: function (xhr) {
                     //Do Something to handle error
@@ -210,8 +209,8 @@ class Account {
             $('#myMessage #btn-confirm').click(function () {
                 $('#myMessage').hide();
             });
-            $('#myMessage').show();
         }
+        $('#myMessage').show();
     }
     login() {
         this.setLogin();
@@ -224,12 +223,12 @@ class Account {
                     lpassword: this.password
                 },
                 success: function (data) {
+                    $('#icon').css('margin-left', '17%');
+                    $('#myModal').show();
                     if (data === '-1') {
                         $('#message').html('Email chưa được đăng ký!');
-                        $('#myModal').show();
                     } else if (data === '0') {
                         $('#message').html('Mật Khẩu chưa chính xác');
-                        $('#myModal').show();
                     } else {
                         window.location = '/BaseAccount/Account/login';
                     }
@@ -250,7 +249,7 @@ class Account {
                 cf: $('#cf_new_pass').val()
             },
             success: function (data) {
-                $('#myMessage #icon').css('margin-left', '5%');
+                $('#myMessage #icon').css('margin-left', '15%');
                 $('#myMessage #btn-confirm').click(function () {
                     $('#myMessage').hide();
                 });
@@ -258,7 +257,7 @@ class Account {
                 if (data !== '1') {
                     $('#myMessage #message').html(
                         data === '-2' ? 'Old password not correct!' :
-                            data === '-1' ? 'New password wrong format!' : 'Confirm error!');
+                            data === '-1' ? 'New password wrong format!' : '&emsp;&ensp;Confirm error!');
                     $('#myMessage #modal-title').html('Wrong');
                     $('#myMessage #modal-title').css('color', 'red');
                     $('#myMessage #icon').css('color', 'red');
@@ -288,4 +287,4 @@ class Account {
         });
     }
 }
-var User = new Account('', '', '', '', '', '', '', '', '', '');
+var User = new Account();
