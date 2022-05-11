@@ -40,7 +40,7 @@ class CustomerDB extends BaseDB
      */
     public function getOne($key)
     {
-        return parent::getOne(["{$this->primaryKey()}" => "$key"]);
+        return parent::getOne([$this->primaryKey() => "$key"]);
     }
 
     /**
@@ -71,7 +71,7 @@ class CustomerDB extends BaseDB
      */
     public function search($param, $value)
     {
-        $params = parent::getOne(["$param" => "$value"]);
+        $params = parent::getOne([$param => $value]);
         return $params === null ? null : new Customer($params);
     }
 
@@ -92,6 +92,6 @@ class CustomerDB extends BaseDB
      */
     public static function primaryKey(): string
     {
-        return "Customer_id";
+        return "customer_id";
     }
 }

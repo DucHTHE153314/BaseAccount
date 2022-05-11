@@ -2,7 +2,7 @@
     <div class="items">
         <div class="item">
             <div class="item-inner">
-                <img class="img-sm user-ava" src="/BaseAccount/public/asset/images/<?php echo $cus->getAvatar() ? $cus->getAvatar() : '765-default-avatar.png'; ?>" />
+                <img class="img-sm user-ava" src="/public/asset/images/<?php echo $cus->getAvatar() ? $cus->getAvatar() : '765-default-avatar.png'; ?>" />
             </div>
         </div>
         <div class="item <?php echo $act == 'personal' ? 'active' : 'non-active'; ?>">

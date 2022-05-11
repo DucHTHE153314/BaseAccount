@@ -37,17 +37,20 @@ class Validate extends Controller
     }
     public function checkPhoneAction()
     {
-        if (isset($_GET["phone"])) {
+        if (isset($_GET["phone"]) && isset($_GET["act"])) {
             $logics = new CustomerLogics();
             $phone = $_GET["phone"];
             $res = $logics->searchPhone($phone);
             if (session_id() === '') {
                 session_start();
             }
-            if ($res !== null && ($res->getEmail() != $logics->searchEmail($_SESSION["User"])->getEmail())) {
-                echo ' Phone has been use!';
-            } else {
+            if ($res == null) {
                 echo '';
+                return;
+            }
+            if (($_GET["act"] == 'register')||($_GET["act"] == 'update' && ($res->getEmail() != $logics->searchEmail($_SESSION["User"])->getEmail()))) {
+                echo ' Phone has been use!';
+                return;
             }
         }
     }
@@ -56,23 +59,27 @@ class Validate extends Controller
         if (session_id() === '') {
             session_start();
         }
-        if (isset($_GET["pass"]) && isset($_GET["new"]) && isset($_GET["cf"]) && isset($_SESSION['User'])) {
+        if (isset($_POST["pass"]) && isset($_POST["new"]) && isset($_POST["cf"]) && isset($_SESSION['User']) && isset($_POST["force_logout"])) {
             $logics = new CustomerLogics();
-            $pass = $_GET["pass"];
+            $pass = $_POST["pass"];
             if (!$logics->checkPass($_SESSION['User'], $pass)) {
                 echo -2;
                 return;
             }
             $pattern = '/^[a-zA-Z0-9!@#$%^&*]{6,16}$/';
-            if (!preg_match($pattern, $_GET["new"])) {
+            if (!preg_match($pattern, $_POST["new"])) {
                 echo -1;
                 return;
             }
-            if ($_GET["new"] !== $_GET["cf"]) {
+            if ($_POST["new"] !== $_POST["cf"]) {
                 echo 0;
                 return;
             };
-            $logics->update($_SESSION['User'], array('password' => password_hash($_GET["new"], PASSWORD_DEFAULT)));
+            $logics->update($_SESSION['User'], array('password' => password_hash($_POST["new"], PASSWORD_DEFAULT)));
+            if ($_POST["force_logout"] == '1') {
+                unset($_SESSION['User']);
+                setcookie("User", "", time() - 60, "/", "", 0);
+            }
             echo 1;
         }
     }

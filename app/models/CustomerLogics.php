@@ -53,13 +53,15 @@ class CustomerLogics extends CustomerDB
      * @param string $phone
      * @param string $email
      * @param string $password
-     * @return Customer
+     * @return type
      */
     public function register($first_name, $last_name, $phone, $email, $password)
     {
         $hash_password = password_hash($password, PASSWORD_DEFAULT);
-        $this->insert(["first_name" => $first_name, "last_name" => $last_name, "phone" => $phone, "email" => $email, "password" => $hash_password, "role_id" => 2]);
-        session_start();
+        $this->insert(array("first_name" => $first_name, "last_name" => $last_name, "phone" => $phone, "email" => $email, "password" => $hash_password, "role_id" => 2));
+        if (session_id() === '') {
+            session_start();
+        }
         $_SESSION["User"] = "$email";
         return $this->getOne($email);
     }
@@ -89,7 +91,7 @@ class CustomerLogics extends CustomerDB
      */
     public function searchPhone($phone)
     {
-        return $this->search("Phone", $phone);
+        return $this->search("phone", $phone);
     }
     public function checkPass($email, $pass)
     {

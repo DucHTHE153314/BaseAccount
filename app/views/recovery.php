@@ -3,10 +3,10 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/BaseAccount/public/asset/css/popup.css" />
-    <link rel='icon' href="/BaseAccount/public/asset/images/logo.png" />
-    <link href="/BaseAccount/public/asset/css/content.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/BaseAccount/public/asset/css/common.css">
+    <link rel="stylesheet" href="/public/asset/css/popup.css" />
+    <link rel='icon' href="/public/asset/images/logo.png" />
+    <link href="/public/asset/css/content.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/public/asset/css/common.css">
     <title>Base Recovery</title>
 </head>
 
@@ -16,7 +16,7 @@
             <div class="concentrate">
                 <div class="logo">
                     <a href="#">
-                        <img class="img-125" src="/BaseAccount/public/asset/images/logo.png">
+                        <img class="img-125" src="/public/asset/images/logo.png">
                     </a>
                 </div>
                 <div class="form-wrap">
@@ -40,7 +40,7 @@
                 </div>
             </div>
             <!-- The Modal Message -->
-            <div id="myModal" class="modal modal-unrequired">
+            <div id="myModal" class="modal modal-mess modal-unrequired">
                 <!-- Modal content -->
                 <div class="modal-content mc-20" id="">
                     <div class="modal-header">
@@ -63,8 +63,8 @@
         <div id="bg-content"></div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/BaseAccount/public/asset/js/common.js"></script>
-    <script src="/BaseAccount/public/asset/js/popup.js"></script>
+    <script src="/public/asset/js/common.js"></script>
+    <script src="/public/asset/js/popup.js"></script>
 </body>
 
 </html>

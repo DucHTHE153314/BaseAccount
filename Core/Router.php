@@ -116,17 +116,20 @@ class Router
         $url = $this->removeURLVariables($url);
         //TODO: avoid nested if - Done
         if (!$this->match($url)) {
-            throw new \Exception('No route matched.', 404);
+            View::render("error-404.php");
+            // throw new \Exception('No route matched.', 404);
         }
         $controller = $this->params['controller']; // Account
         $controller = $this->getNamespace() . $controller; // App\Controllers\Account
         if (!class_exists($controller)) {
-            throw new \Exception("Controller class $controller not found");
+            View::render("error-404.php");
+            // throw new \Exception("Controller class $controller not found");
         }
         $controller_object = new $controller($this->params);
         $action = $this->params['action'];
         if (preg_match('/action$/i', $action) !== 0) {
-            throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method");
+            View::render("error-404.php");
+            // throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method");
         }
         $controller_object->$action();
     }

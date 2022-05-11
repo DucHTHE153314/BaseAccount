@@ -144,6 +144,7 @@ body {
     color: #dc3545;
     border-right: 1px solid #aaa;
 }
+
 .btn-ok {
     color: #0dcaf0;
 }
@@ -200,4 +201,8 @@ body {
 #btn-confirm:hover {
     background-color: #eee;
     transition-duration: 1s;
+}
+
+.modal-mess {
+    text-align: center;
 }

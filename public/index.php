@@ -12,12 +12,12 @@ use Core\Router;
 
 //TODO: rename request path
 //TODO: use virtual host
-$request = str_replace("/BaseAccount/", '', $_SERVER['REQUEST_URI']);
+$request = $_SERVER['REQUEST_URI'];
 /**
  * Routing
  */
 $router = new Router();
 // Add the routes
-$router->add('', ['controller' => 'Home', 'action' => 'index']);
-$router->add('{controller}/{action}');
+$router->add('/', ['controller' => 'Home', 'action' => 'index']);
+$router->add('/{controller}/{action}');
 $router->dispatch($request);

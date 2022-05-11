@@ -1,5 +1,5 @@
 <!-- The Modal Logout -->
-<div id="myModal" class="modal modal-unrequired">
+<div id="myModal" class="modal modal-mess modal-unrequired">
     <!-- Modal content -->
     <div class="modal-content mc-25">
         <div class="modal-header">

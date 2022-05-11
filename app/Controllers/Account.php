@@ -64,15 +64,16 @@ class Account extends Controller
      */
     public function registerAction()
     {
-        if (isset($_POST["first_name"]) && isset($_POST["last_name"]) && isset($_POST["register_email"]) && isset($_POST["register_phone"]) && isset($_POST["register_password"]) && isset($_POST["cf_password"])) {
+        if (isset($_POST["first_name"]) && isset($_POST["last_name"]) && isset($_POST["register_email"]) && isset($_POST["register_phone"])) {
+            echo ("<script>console.log('hehe');</script>");
             $first_name = $_POST["first_name"];
             $last_name = $_POST["last_name"];
             $email = $_POST["register_email"];
             $phone = $_POST["register_phone"];
             $password = $_POST["register_password"];
             $Logics = new CustomerLogics();
-            $cus = $Logics->register($first_name, $last_name, $phone, $email, $password);
-            View::render('infor.php', array('cus' => $cus));
+            echo ("<script>console.log('$first_name, $last_name, $phone, $email, $password');</script>");
+            $Logics->register($first_name, $last_name, $phone, $email, $password);
         } else {
             View::render('register.php');
         }
@@ -141,17 +142,10 @@ class Account extends Controller
         }
         if (isset($_FILES["avatar"])) {
             $image = $_FILES['avatar'];
-            //Stores the filename as it was on the client computer.
-            $imagename = $image['name'];
-            //Stores the filetype e.g image/jpeg
-            $imagetype = $image['type'];
-            //Stores any error codes from the upload.
-            $imageerror = $image['error'];
-            //Stores the tempname as it is given by the host when uploaded.
             $imagetemp = $image['tmp_name'];
 
             //The path you wish to upload the image to
-            $imagePath = 'C:/xampp/htdocs/BaseAccount/public/asset/images/';
+            $imagePath = __DIR__ . '\/../../' . 'public/asset/images/';
 
             if (is_uploaded_file($imagetemp)) {
                 $save_path = $imagePath . "C" . $cus->getCustomer_id() . "_avatar.png";
@@ -166,11 +160,8 @@ class Account extends Controller
                 }
             } else {
             }
-        } else {
-            echo 'KO kem Anh';
         }
         $cus = $logics->search('email', $_SESSION["User"]);
         View::render('infor.php', array('cus' => $cus));
-        return;
     }
 }

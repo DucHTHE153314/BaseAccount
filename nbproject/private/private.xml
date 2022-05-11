@@ -4,14 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/BaseAccount/public/asset/js/common.js</file>
-            <file>file:/C:/xampp/htdocs/BaseAccount/App/Models/BaseDB.php</file>
-            <file>file:/C:/xampp/htdocs/BaseAccount/public/asset/css/popup.css</file>
-            <file>file:/C:/xampp/htdocs/BaseAccount/App/Models/CustomerLogics.php</file>
-            <file>file:/C:/xampp/htdocs/BaseAccount/Core/Router.php</file>
+            <file>file:/C:/xampp/htdocs/BaseAccount/App/Models/Customer.php</file>
+            <file>file:/C:/xampp/htdocs/BaseAccount/App/Views/recovery.php</file>
             <file>file:/C:/xampp/htdocs/BaseAccount/public/asset/js/account.js</file>
-            <file>file:/C:/xampp/htdocs/BaseAccount/App/Controllers/Validate.php</file>
-            <file>file:/C:/xampp/htdocs/BaseAccount/App/Views/infor.php</file>
-            <file>file:/C:/xampp/htdocs/BaseAccount/public/asset/css/infor.css</file>
         </group>
     </open-files>
 </project-private>

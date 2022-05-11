@@ -20,8 +20,11 @@ $(document).ready(function () {
             $('#myModal').show();
         }
     );
-    $('.btn-close').click(function () {
-        $('.modal').hide();
+    $('.modal-mess .btn-close ').click(function () {
+        $('.modal-mess').hide();
+    });
+    $('.modal-edit .btn-close').click(function(){
+        $('.modal-edit').hide();
     });
     $(window).click(
         function (event) {

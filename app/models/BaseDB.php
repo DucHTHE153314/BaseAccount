@@ -67,16 +67,15 @@ abstract class BaseDB extends \Core\Model
     {
         ini_set('display_errors', 0);
         $tableName = static::tableName();
-        $attrs = implode(",", array_map(fn ($attr) => "$attr", array_keys($attributes)));
-        $values = implode(",", array_map(fn ($attr) => ":$attr", array_keys($attributes)));
+        $attrs = implode(",", array_map(fn($attr) => "$attr", array_keys($attributes)));
+        $values = implode(",", array_map(fn($attr) => ":$attr", array_keys($attributes)));
         $conn = $this->getDB();
-        $sql = "INSERT INTO $tableName( $attrs ) VALUES ($values) ";
+        $sql = "INSERT INTO $tableName ( $attrs ) VALUES ($values) ";
         $prst = $conn->prepare($sql);
         foreach ($attributes as $key => $item) {
             $prst->bindValue(":$key", $item);
         }
         $prst->execute();
-        return true;
     }
 
     /**

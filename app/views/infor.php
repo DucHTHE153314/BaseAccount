@@ -8,11 +8,11 @@ and open the template in the editor.
 
 <head>
     <meta charset="UTF-8">
-    <link rel='icon' href="/BaseAccount/public/asset/images/logo.png" />
-    <link rel="stylesheet" href="/BaseAccount/public/asset/css/popup.css" />
-    <link href="/BaseAccount/public/asset/css/content.css" rel="stylesheet" />
-    <link href="/BaseAccount/public/asset/css/infor.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/BaseAccount/public/asset/css/common.css">
+    <link rel='icon' href="/public/asset/images/logo.png" />
+    <link rel="stylesheet" href="/public/asset/css/popup.css" />
+    <link href="/public/asset/css/content.css" rel="stylesheet" />
+    <link href="/public/asset/css/infor.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/public/asset/css/common.css">
     <title>Account</title>
 </head>
 
@@ -41,7 +41,7 @@ and open the template in the editor.
             <div id="profile">
                 <div class="main">
                     <div class="image">
-                        <img class="img-md user-ava" id="user-avatar" src="/BaseAccount/public/asset/images/<?php echo $cus->getAvatar() ? $cus->getAvatar() : '765-default-avatar.png'; ?>" />
+                        <img class="img-md user-ava" id="user-avatar" src="/public/asset/images/<?php echo $cus->getAvatar() ? $cus->getAvatar() : '765-default-avatar.png'; ?>" />
                     </div>
                     <div class="text">
                         <div class="title">
@@ -166,12 +166,12 @@ and open the template in the editor.
     </div>
     <?php require 'logout.php'; ?>
     <!-- The Modal Changepass -->
-    <div id="user-change-pass" class="modal">
+    <div id="user-change-pass" class="modal modal-edit">
         <!-- Modal content -->
-        <div class="modal-content mc-25" id="" style="margin-top: 17%;">
+        <div class="modal-content mc-25" id="" style="margin-top: 15%;">
             <div class="modal-header">
                 <h3 class="modal-title">ĐỔI MẬT KHẨU</h3>
-                <span class="close btn-close">&times;</span>
+                <span class="close btn-close reload">&times;</span>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -186,20 +186,30 @@ and open the template in the editor.
                     <div class="col-4 field-name">Xác nhận</div>
                     <input class="col-6 input" type="password" id="cf_new_pass" name="cf_new_pass" value="" placeholder="Xác nhận">
                 </div>
+                <div class="row">
+                    <div class="col-4 field-name">Force logout</div>
+                    <select class="col-6 input input-select" id="force_logout" value="">
+                        <option value="1">Có</option>
+                        <option value="0">Không</option>
+                    </select>
+                </div>
+                <div class="row note">
+                    Thay đổi mật khẩu có thể bắt buộc yêu cầu bạn phải đăng nhập lại trên tất cả các thiết bị mobiles
+                </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" style="padding: 20px;">
                 <button type="button" class="btn-close btn-skip left" onclick="location.reload();">Bỏ qua</button>
                 <button type="button" id="" class="btn-save right" onclick="User.repass();">Cập nhật</button>
             </div>
         </div>
     </div>
     <!-- The Modal Infor -->
-    <div id="user-infor" class="modal">
+    <div id="user-infor" class="modal modal-edit">
         <!-- Modal content -->
         <div class="modal-content mc-40" id="user-infor-content">
             <div class="modal-header">
                 <h3 class="modal-title">CHỈNH SỬA THÔNG TIN CÁ NHÂN</h3>
-                <span class="close btn-close" onclick="location.reload();">&times;</span>
+                <span class="close btn-close reload">&times;</span>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -222,7 +232,7 @@ and open the template in the editor.
                     <div class="col-3 field-name">Vị trí công việc</div>
                     <input class="col-7 input" type="text" id="position" name="position" placeholder="Vị trí công việc" value="<?php echo $cus->getPosition(); ?>" maxlength="32">
                 </div>
-                <form class="row" id="frm-avatar" action="/BaseAccount/Account/update" method="post" enctype="multipart/form-data">
+                <form class="row" id="frm-avatar" action="/Account/update" method="post" enctype="multipart/form-data">
                     <div class="col-3 field-name">Ảnh đại diện</div>
                     <input class="col-7 input" type="file" id="inf_avatar" name="avatar" placeholder="" value="">
                 </form>
@@ -283,19 +293,19 @@ and open the template in the editor.
         </div>
     </div>
     <!-- The Modal Message -->
-    <div id="myMessage" class="modal">
+    <div id="myMessage" class="modal modal-mess modal-unrequired">
         <!-- Modal content -->
         <div class="modal-content mc-25" id="myMessage-content">
             <div class="modal-header">
                 <h3 class="modal-title error" id="modal-title">Logout</h3>
                 <span class="close btn-close">&times;</span>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="text-align: center">
                 <p id="icon"> <svg class="warning" xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
                     </svg></p>
-                <p id='message'>
-                    &nbsp; Bạn có muốn đăng xuất khỏi hệ thống ngay bây giờ? </p>
+                <div id='message'>
+                    &nbsp; Bạn có muốn đăng xuất khỏi hệ thống ngay bây giờ? </div>
             </div>
             <div class="modal-footer" id="btn-confirm">
                 <p>Ok</p>
@@ -303,9 +313,9 @@ and open the template in the editor.
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/BaseAccount/public/asset/js/common.js"></script>
-    <script src="/BaseAccount/public/asset/js/popup.js"></script>
-    <script src="/BaseAccount/public/asset/js/account.js"></script>
+    <script src="/public/asset/js/common.js"></script>
+    <script src="/public/asset/js/popup.js"></script>
+    <script src="/public/asset/js/account.js"></script>
 </body>
 
 </html>
