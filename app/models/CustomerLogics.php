@@ -19,30 +19,19 @@ class CustomerLogics extends CustomerDB
 {
 
     /**
-     * Check an valid of customer with customer's email and password.
+     * Allow user to login into system.
+     * 
      * @param string $email
-     * @param string $pass
-     * @param boolean $remember
-     * @return int -1 if email not exist. 0 if wrong password. else 1.
+     * @param bool $remember
+     * @return Customer|type
      */
-    public function login($email, $pass, $remember)
+    public function login($email, $remember): Customer
     {
-        $acc = $this->search("email", $email);
-
-        if ($acc === null) {
-            return -1;
-        }
-        if (!password_verify($pass, $acc->getPassword())) {
-            return 0;
-        }
         if ($remember) {
             setcookie("User", $email, time() + (86400 * 15), "/"); // 15 days
         }
-        if (session_id() === '') {
-            session_start();
-        }
         $_SESSION['User'] = $email;
-        return 1;
+        return $this->search('email', $email);
     }
 
     /**
@@ -53,35 +42,43 @@ class CustomerLogics extends CustomerDB
      * @param string $phone
      * @param string $email
      * @param string $password
-     * @return type
+     * @return Customer|type
      */
     public function register($first_name, $last_name, $phone, $email, $password)
     {
         $hash_password = password_hash($password, PASSWORD_DEFAULT);
         $this->insert(array("first_name" => $first_name, "last_name" => $last_name, "phone" => $phone, "email" => $email, "password" => $hash_password, "role_id" => 2));
-        if (session_id() === '') {
-            session_start();
-        }
         $_SESSION["User"] = "$email";
-        return $this->getOne($email);
+        return $this->search('email', $email);
     }
+
+    /**
+     * Allow update <code>Customer</code> information.
+     * 
+     * @param type $email
+     * @param type $params
+     * @return type
+     */
     public function update($email, $params)
     {
         return parent::update($email, $params);
     }
 
     /**
-     * Find an email in the system.<br/>
-     * Return a customer if existed. Else, return null.
      * 
-     * @param <code>String</code> $email
-     * @return type
+     * @param type $email
+     * @return string|int
      */
-    public function searchEmail($email)
+    public function recovery($email)
     {
-        return $this->search("email", $email);
+        if ($this->search('email', $email) == null) {
+            return '0';
+        } else {
+            $msg = "hehehehhehehehehhe";
+            mail("$email", "hihi", $msg);
+            return 1;
+        }
     }
-
     /**
      * Find a phone in the system.<br/>
      * Return 1 if existed. Else, return 0.
@@ -93,22 +90,15 @@ class CustomerLogics extends CustomerDB
     {
         return $this->search("phone", $phone);
     }
-    public function checkPass($email, $pass)
+    /**
+     * Find an email in the system.<br/>
+     * Return a customer if existed. Else, return null.
+     * 
+     * @param <code>String</code> $email
+     * @return type
+     */
+    public function searchEmail($email)
     {
-        $acc = $this->search("email", $email);
-        if (!password_verify($pass, $acc->getPassword())) {
-            return false;
-        }
-        return true;
-    }
-    public function recovery($email)
-    {
-        if ($this->searchEmail($email) == null) {
-            return '0';
-        } else {
-            $msg = "hehehehhehehehehhe";
-            mail("$email", "hihi", $msg);
-            return 1;
-        }
+        return $this->search("email", $email);
     }
 }

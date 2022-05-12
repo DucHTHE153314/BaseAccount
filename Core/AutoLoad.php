@@ -6,27 +6,36 @@
  * and open the template in the editor.
  */
 
-namespace ATL;
+namespace Core;
 
 /**
  * Description of AutoLoad
  *
  * @author PC
  */
-class AutoLoad
-{
+class AutoLoad {
 
-    //put your code here
-    function __construct()
-    {
+    /**
+     * Constructor for Autoload
+     */
+    function __construct() {
+        
     }
 
-    static function myAutoLoad()
-    {
+    /**
+     * Allow an autoload call back
+     * @return type 
+     */
+    static function myAutoLoad() {
         spl_autoload_register(
-            function ($class) {
+                function ($class) {
+            try {
                 require __DIR__ . '\/../' . $class . '.php';
+            } catch (\Exception $e) {
+                throw $e;
             }
+        }
         );
     }
+
 }

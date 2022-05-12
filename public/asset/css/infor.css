@@ -23,16 +23,15 @@ and open the template in the editor.
     position: absolute;
     top: 0px;
     right: 0px;
-    height: 100%;
+    height: 120%;
     z-index: 3;
-    width: calc(16vw);
+    width: 270px;
     border-left: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 #main-menu .header-title {
-    height: calc(8vh);
+    height: 74px;
     padding-left: 10px;
-    padding-bottom: 5px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -40,7 +39,9 @@ and open the template in the editor.
     padding-bottom: 20px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
-
+#main-menu .menu-box:last-child{
+    border-bottom: none;
+}
 .header-title .name {
     padding-top: 10px;
     padding-bottom: 5px;
@@ -56,11 +57,21 @@ and open the template in the editor.
 
 .item {
     text-align: center;
-    font-size: 24px;
     cursor: pointer;
     position: relative;
     color: rgba(255, 255, 255, 0.3);
     z-index: 9999;
+    height: 83px;
+    box-sizing: border-box;
+    padding-top: 10px;
+    font-weight: bold;
+}
+
+
+.item:first-child {
+    padding-top: 7%;
+    height: 59px;
+    box-sizing: border-box;
 }
 
 .item-inner {
@@ -82,13 +93,14 @@ and open the template in the editor.
 }
 
 .img-sm {
-    width: 55px;
-    height: 55px;
+    width: 32px;
+    height: 32px;
 }
 
 .img-md {
-    width: 155px;
-    height: 155px;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
 }
 
 .inner-icon {
@@ -96,7 +108,7 @@ and open the template in the editor.
 }
 
 .inner-content {
-    font-size: small;
+    font-size: 12px;
 }
 
 .inner-content p {
@@ -109,35 +121,48 @@ and open the template in the editor.
 }
 
 .main-header {
-    height: calc(8vh);
+    height: 74px;
+    margin-left: 10px;
     border-bottom: 2px solid #eee;
+    width: calc(100vw - 420px);
 }
 
 #header-title {
     margin: 0%;
     text-transform: uppercase;
     color: #ccc;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: normal;
     padding-bottom: 3px;
 }
 
+.sub-title {
+    font-size: 14px;
+}
+
 #header-content {
     margin: 0%;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 300;
     color: #222;
 }
 
 .sub-infor {
     float: left;
+    padding-top: 15px;
+}
+
+.infor {
+    padding-top: 8px;
+    font-size: 14px;
 }
 
 .header-act {
     float: right;
     border: none;
     background-color: #17C286;
-    padding: 10px;
+    margin-top: 18px;
+    padding: 9px 15px;
     border-radius: 5px;
     color: aliceblue;
     font-size: 15px;
@@ -146,7 +171,7 @@ and open the template in the editor.
 
 .btn-back {
     float: left;
-    padding: 10px;
+    padding: 17px 10px;
     color: #ccc;
     cursor: pointer;
 }
@@ -156,29 +181,77 @@ and open the template in the editor.
     width: calc(20vw);
 }
 
-#profile .main {
-    margin-left: calc(20vw);
+#profile {
+    margin: auto;
+    width: 600px;
+    /*padding: 20px 20px 0px calc((80vw - 550px) / 2);*/
+}
+#profile .list {
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+#profile .list .title {
+    font-weight: 500;
+    font-size: 13px;
+    color: #aaa;
     position: relative;
-    top: 10px;
+    text-transform: uppercase;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+}
+#profile .list .contact-info {
+    font-size: 14px;
+    padding: 13px 0 13px 0;
+    border-bottom: 1px dotted #ddd;
+}
+#profile .list .item-none {
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center;
+    color: #888;
+    background-color: #f8f8f8;
     padding: 20px;
-    width: calc(40vw);
+    margin-top: 25px;
+}
+#profile .list .add{
     display: inline-block;
+    float: right;
+    cursor: pointer;
+}
+#profile .list .add:hover{
+    color: #0dcaf0;
+}
+#profile .main {
+    display: inline-block;
+    box-sizing: content-box;
+    margin: auto;
+    width: auto;
 }
 
 .image {
-    position: absolute;
+    /* position: absolute;
     top: 10px;
-    left: 10px;
-    width: 150px;
-    height: 150px;
+    left: 10px; */
+    display: inline-block;
+    width: 100px;
+    height: 100px;
     margin: 0px;
 }
 
 .text {
-    position: absolute;
+    /* position: absolute;
     top: 10px;
-    left: 160px;
-    padding: 30px;
+    left: 160px; */
+    display: inline-block;
+    padding: 10px;
+}
+
+b {
+    display: inline-block;
+    color: #666;
+    font-weight: 500;
+    width: 110px;
+    left: 0px;
 }
 
 #profile .title {
@@ -192,8 +265,6 @@ and open the template in the editor.
     color: #aaa;
     padding: 8px 0px;
 }
-
-#profile .info b {}
 
 .menu-box .box-title {
     padding: 15px;

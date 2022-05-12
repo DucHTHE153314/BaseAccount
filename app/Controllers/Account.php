@@ -20,86 +20,82 @@ use DateTime;
 /**
  * Account Controller
  */
-class Account extends Controller
-{
+class Account extends Controller {
+
     /**
-     * Handling login action of customer.
+     * Handling login action of customer. </br>
+     * Redirect to default page in this app if success. Else, stay in login page.
      * 
      * @return void
      */
-    public function loginAction()
-    {
+    public function loginAction() {
+
         $logics = new CustomerLogics();
         if (isset($_COOKIE["User"]) && $logics->search("email", $_COOKIE["User"])) {
             $cus = $logics->search('email', $_COOKIE["User"]);
             View::render('infor.php', array('cus' => $cus));
             return;
-        }
-        if (session_id() === '') {
-            session_start();
         }
         if (isset($_SESSION['User']) && $logics->search("email", $_SESSION['User'])) {
             $cus = $logics->search('email', $_SESSION["User"]);
             View::render('infor.php', array('cus' => $cus));
             return;
         }
-        if (isset($_POST["lemail"]) && isset($_POST["lpassword"])) {
+        if (isset($_POST["lemail"])) {
             $email = $_POST["lemail"];
-            $pass = $_POST["lpassword"];
-            $remember =  isset($_POST["lremember"]) ? $_POST["lremember"] : 0;
-            $result =  $logics->login($email, $pass, $remember);
-            if ($result === 1) {
-                $cus = $logics->search('email', $email);
-                View::render('infor.php', array('cus' => $cus));
-            }
-            echo $result;
-        } else {
-            View::render('login.php');
+            var_dump($email);
+            $remember = isset($_POST["lremember"]) ? 1 : 0;
+            $cus = $logics->login($email, $remember);
+            View::render('infor.php', array('cus' => $cus));
+            return;
         }
+        View::render('login.php');
     }
 
     /**
-     * Handling register action of customer.
+     * Handling register action of customer. </br>
+     * Redirect to default page in this app if success. Else, stay in register page.
      * @return void
      */
-    public function registerAction()
-    {
+    public function registerAction() {
         if (isset($_POST["first_name"]) && isset($_POST["last_name"]) && isset($_POST["register_email"]) && isset($_POST["register_phone"])) {
-            echo ("<script>console.log('hehe');</script>");
             $first_name = $_POST["first_name"];
             $last_name = $_POST["last_name"];
             $email = $_POST["register_email"];
             $phone = $_POST["register_phone"];
             $password = $_POST["register_password"];
             $Logics = new CustomerLogics();
-            echo ("<script>console.log('$first_name, $last_name, $phone, $email, $password');</script>");
             $Logics->register($first_name, $last_name, $phone, $email, $password);
         } else {
             View::render('register.php');
         }
     }
 
-    public function recoveryAction()
-    {
-        if (isset($_GET["remail"])) {
-            $email = $_GET['remail'];
-            $Logics = new CustomerLogics();
-            $result = $Logics->recovery($email);
-            echo $result;
-        } else {
+    /**
+     * Handling recovery action of customer.  </br>
+     * Redirect to default page in this app if success. Else, stay in recovery page.
+     * @return void
+     */
+    public function recoveryAction() {
+        if (!isset($_GET["remail"])) {
             View::render('recovery.php');
         }
+        $email = $_GET['remail'];
+        $Logics = new CustomerLogics();
+        $result = $Logics->recovery($email);
+        echo $result;
     }
-    public function inforAction()
-    {
+
+    /**
+     * Accept an User has been login in the system do infor action.
+     * @return type
+     */
+    public function inforAction() {
         $logics = new CustomerLogics();
         if (isset($_COOKIE["User"]) && $logics->search("email", $_COOKIE["User"])) {
             $cus = $logics->search('email', $_COOKIE["User"]);
             View::render('infor.php', array('cus' => $cus));
             return;
-        }
-        if (session_id() === '') {
-            session_start();
         }
         if (isset($_SESSION['User']) && $logics->search("email", $_SESSION['User'])) {
             $cus = $logics->search('email', $_SESSION["User"]);
@@ -108,21 +104,23 @@ class Account extends Controller
         }
         View::render('login.php');
     }
-    public function logoutAction()
-    {
-        if (session_id() === '') {
-            session_start();
-        }
+
+    /**
+     * Help user log out System. Delete all Coockie, Session related to them.
+     * @return void 
+     */
+    public function logoutAction() {
         unset($_SESSION["User"]);
         setcookie("User", "", time() - 60, "/", "", 0);
         View::render('index.html');
     }
-    public function updateAction()
-    {
+
+    /**
+     * Accept an User has been login in the system update his information.
+     * @return type
+     */
+    public function updateAction() {
         $logics = new CustomerLogics();
-        if (session_id() === '') {
-            session_start();
-        }
         if (!isset($_SESSION['User']) || !$logics->search("email", $_SESSION['User'])) {
             View::render('login.php');
             return;
@@ -148,20 +146,20 @@ class Account extends Controller
             $imagePath = __DIR__ . '\/../../' . 'public/asset/images/';
 
             if (is_uploaded_file($imagetemp)) {
-                $save_path = $imagePath . "C" . $cus->getCustomer_id() . "_avatar.png";
+                $save_path = $imagePath . "C" . $cus->getCustomerId() . "_avatar.png";
                 if (file_exists($save_path)) {
                     unlink($save_path);
                 }
                 if (move_uploaded_file($imagetemp, $save_path)) {
                     $params = array(
-                        'avatar' => "C" . $cus->getCustomer_id() . "_avatar.png"
+                        'avatar' => "C" . $cus->getCustomerId() . "_avatar.png"
                     );
                     $logics->update($_SESSION['User'], $params);
                 }
-            } else {
             }
         }
         $cus = $logics->search('email', $_SESSION["User"]);
         View::render('infor.php', array('cus' => $cus));
     }
+
 }

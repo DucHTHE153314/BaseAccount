@@ -1,17 +1,17 @@
 <?php
 
-//TODO: tach rieng autoload
+require __DIR__ . '\/../' . 'Core\AutoLoad' . '.php';
+Core\AutoLoad::myAutoLoad();
 
-use ATL\AutoLoad;
-
-require __DIR__ . '\/../' . 'ATL\AutoLoad' . '.php';
-ATL\AutoLoad::myAutoLoad();
+// if (session_id() === '') {
+//     session_start();
+// }
 
 use Core\Router;
 
-
-//TODO: rename request path
-//TODO: use virtual host
+if (session_id() == '') {
+    session_start();
+}
 $request = $_SERVER['REQUEST_URI'];
 /**
  * Routing

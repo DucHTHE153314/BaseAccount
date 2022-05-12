@@ -10,7 +10,9 @@
  */
 
 namespace Core;
+
 use App\Configs;
+use PDO;
 
 /**
  * Base model
@@ -18,17 +20,18 @@ use App\Configs;
  */
 abstract class Model
 {
-    static \PDO $db;
+    static $db;
 
     /**
-     * Get the MYSQLi database connection
+     * Get the PDO database connection
      *
      * @return mixed
      */
     protected static function getDB()
     {
-        $conn = null;
-        $db = new \PDO(Configs::DB_HOST, Configs::DB_USER, Configs::DB_PASSWORD);
-        return $db;
+        if (static::$db == null) {
+            static::$db = new \PDO(Configs::DB_HOST, Configs::DB_USER, Configs::DB_PASSWORD);
+        }
+        return static::$db;
     }
 }

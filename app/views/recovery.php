@@ -44,7 +44,7 @@
                 <!-- Modal content -->
                 <div class="modal-content mc-20" id="">
                     <div class="modal-header">
-                        <h3 class="modal-title error" id="modal-title">Logout</h3>
+                        <div class="modal-title error" id="modal-title">Logout</div>
                         <span class="close btn-close">&times;</span>
                     </div>
                     <div class="modal-body">

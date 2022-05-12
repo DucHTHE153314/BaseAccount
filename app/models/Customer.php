@@ -21,17 +21,76 @@ use DateTime;
  */
 class Customer {
 
+    /**
+     *
+     * @var int 
+     */
     private $customer_id;
+
+    /**
+     *
+     * @var string 
+     */
     private $first_name;
+
+    /**
+     *
+     * @var string 
+     */
     private $last_name;
+
+    /**
+     *
+     * @var string 
+     */
     private $position;
+
+    /**
+     *
+     * @var date 
+     */
     private $birth_date;
+
+    /**
+     *
+     * @var bool
+     */
     private $gender;
+
+    /**
+     *
+     * @var string
+     */
     private $phone;
+
+    /**
+     *
+     * @var string 
+     */
     private $email;
+
+    /**
+     *
+     * @var string 
+     */
     private $address;
+
+    /**
+     *
+     * @var string 
+     */
     private $password;
+
+    /**
+     *
+     * @var int 
+     */
     private $role;
+
+    /**
+     *
+     * @var string 
+     */
     private $avatar;
 
     /**
@@ -55,7 +114,12 @@ class Customer {
         $this->avatar = isset($params['avatar']) ? $params['avatar'] : "";
     }
 
-    function getFull_name() {
+    /**
+     * Get <code>Customer</code>'s fullname by his/her first name and last name.
+     * 
+     * @return string
+     */
+    function getFullName(): string {
         return "$this->last_name $this->first_name";
     }
 
@@ -75,7 +139,7 @@ class Customer {
         $this->role = $role;
     }
 
-    function getCustomer_id() {
+    function getCustomerId() {
         return $this->customer_id;
     }
 
@@ -87,11 +151,11 @@ class Customer {
         $this->avatar = $avatar;
     }
 
-    function getFirst_name() {
+    function getFirstName() {
         return $this->first_name;
     }
 
-    function getLast_name() {
+    function getLastName() {
         return $this->last_name;
     }
 
@@ -99,7 +163,7 @@ class Customer {
         return $this->position;
     }
 
-    function getBirth_date() {
+    function getBirthDate() {
         return DateTime::createFromFormat("Y-m-d", $this->birth_date);
     }
 
@@ -119,15 +183,15 @@ class Customer {
         return $this->address;
     }
 
-    function setCustomer_id($customer_id) {
+    function setCustomerId($customer_id) {
         $this->customer_id = $customer_id;
     }
 
-    function setFirst_name($first_name) {
+    function setFirstName($first_name) {
         $this->first_name = $first_name;
     }
 
-    function setLast_name($last_name) {
+    function setLastName($last_name) {
         $this->last_name = $last_name;
     }
 

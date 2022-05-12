@@ -3,7 +3,7 @@
     <!-- Modal content -->
     <div class="modal-content mc-25">
         <div class="modal-header">
-            <h3 class="modal-title error">Logout</h3>
+            <div class="modal-title error">Logout</div>
             <span class="close btn-close">&times;</span>
         </div>
         <div class="modal-body" id="body-mess">

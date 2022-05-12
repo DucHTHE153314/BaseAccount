@@ -20,7 +20,7 @@ class Router
 {
 
     /**
-     * Associative array of routes (the routing table)
+     * Routing table
      * @var array
      */
     protected $routes = [];
@@ -72,9 +72,9 @@ class Router
      *
      * @param string $url The route URL
      *
-     * @return boolean  true if a match found, false otherwise
+     * @return bool  true if a match found, false otherwise
      */
-    public function match($url)
+    public function match($url): bool
     {
         foreach ($this->routes as $route => $params) {
             if (preg_match($route, $url, $matches)) {
@@ -84,7 +84,6 @@ class Router
                         $params[$key] = $match;
                     }
                 }
-
                 $this->params = $params;
                 return true;
             }
@@ -114,50 +113,38 @@ class Router
     public function dispatch($url)
     {
         $url = $this->removeURLVariables($url);
-        //TODO: avoid nested if - Done
         if (!$this->match($url)) {
-            View::render("error-404.php");
-            // throw new \Exception('No route matched.', 404);
+            View::render("error.php", array('error' => 'No route matched.'));
         }
-        $controller = $this->params['controller']; // Account
-        $controller = $this->getNamespace() . $controller; // App\Controllers\Account
+        $controller = $this->params['controller'];
+        if ($controller == 'Validate') {
+            $controller = 'App\Services\\' . $controller;
+        } else {
+            $controller = 'App\Controllers\\' . $controller;
+        }
         if (!class_exists($controller)) {
-            View::render("error-404.php");
-            // throw new \Exception("Controller class $controller not found");
+            View::render("error.php", array('error' => "Controller not found!"));
         }
         $controller_object = new $controller($this->params);
         $action = $this->params['action'];
         if (preg_match('/action$/i', $action) !== 0) {
-            View::render("error-404.php");
-            // throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method");
+            View::render("error.php", array('error' => "Method \"".$action."\" cannot be called directly - remove the Action suffix to call this method!"));
         }
-        $controller_object->$action();
+        try {
+            $controller_object->$action();
+        } catch (\Exception $e) {
+            View::render("error.php", array('error' => "Method $action not exist!"));
+        }
     }
 
     /**
-     * Remove the query string variables from the URL (if any). As the full
-     * query string is used for the route, any variables at the end will need
-     * to be removed before the route is matched to the routing table. For
-     * example:
-     *
-     *   URL                           $_SERVER['QUERY_STRING']  Route
-     *   -------------------------------------------------------------------
-     *   localhost                     ''                        ''
-     *   localhost/?                   ''                        ''
-     *   localhost/?page=1             page=1                    ''
-     *   localhost/posts?page=1        posts&page=1              posts
-     *   localhost/posts/index         posts/index               posts/index
-     *   localhost/posts/index?page=1  posts/index&page=1        posts/index
-     *
-     * A URL of the format localhost/?page (one variable name, no value) won't
-     * work however. (NB. The .htaccess file converts the first ? to a & when
-     * it's passed through to the $_SERVER variable).
+     * Remove the query string variables from the URL.
      *
      * @param string $url The full URL
      *
      * @return string The URL with the query string variables removed
      */
-    protected function removeURLVariables($url)
+    protected function removeURLVariables($url): string
     {
         if ($url != '') {
             $parts = explode('?', $url, 2);
@@ -169,22 +156,5 @@ class Router
         }
 
         return $url;
-    }
-
-    /**
-     * Get the namespace for the controller class. The namespace defined in the
-     * route parameters is added if present.
-     *
-     * @return string The request URL
-     */
-    protected function getNamespace()
-    {
-        $namespace = 'App\Controllers\\';
-
-        if (array_key_exists('namespace', $this->params)) {
-            $namespace .= $this->params['namespace'] . '\\';
-        }
-
-        return $namespace;
     }
 }

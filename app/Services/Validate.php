@@ -7,11 +7,12 @@
  *
  * Record of change:
  * DATE            Version             AUTHOR           DESCRIPTION
- * 2022-005-06      1.0                DucHT           First Implement
+ * 2022-05-06      1.0                DucHT           First Implement
  */
 
-namespace App\Controllers;
+namespace App\Services;
 
+use App\Models\CustomerDB;
 use App\Models\CustomerLogics;
 use Core\Controller;
 
@@ -22,6 +23,10 @@ use Core\Controller;
  */
 class Validate extends Controller
 {
+
+    /**
+     * 
+     */
     public function checkEmailAction()
     {
         if (isset($_GET["email"])) {
@@ -35,34 +40,39 @@ class Validate extends Controller
             }
         }
     }
+
+    /**
+     * 
+     * @return type
+     */
     public function checkPhoneAction()
     {
         if (isset($_GET["phone"]) && isset($_GET["act"])) {
             $logics = new CustomerLogics();
             $phone = $_GET["phone"];
             $res = $logics->searchPhone($phone);
-            if (session_id() === '') {
-                session_start();
-            }
             if ($res == null) {
                 echo '';
                 return;
             }
-            if (($_GET["act"] == 'register')||($_GET["act"] == 'update' && ($res->getEmail() != $logics->searchEmail($_SESSION["User"])->getEmail()))) {
+            if (($_GET["act"] == 'register') || ($_GET["act"] == 'update' && ($res->getEmail() != $logics->searchEmail($_SESSION["User"])->getEmail()))) {
                 echo ' Phone has been use!';
                 return;
             }
         }
     }
+
+    /**
+     * 
+     * @return type
+     */
     public function checkPassAction()
     {
-        if (session_id() === '') {
-            session_start();
-        }
         if (isset($_POST["pass"]) && isset($_POST["new"]) && isset($_POST["cf"]) && isset($_SESSION['User']) && isset($_POST["force_logout"])) {
             $logics = new CustomerLogics();
             $pass = $_POST["pass"];
-            if (!$logics->checkPass($_SESSION['User'], $pass)) {
+            $acc = $logics->searchEmail($_SESSION['User']);
+            if (!password_verify($pass, $acc->getPassword())) {
                 echo -2;
                 return;
             }
@@ -82,5 +92,26 @@ class Validate extends Controller
             }
             echo 1;
         }
+    }
+
+    /**
+     * 
+     */
+    public function checkLoginAction()
+    {
+        if (!isset($_GET['lemail']) || !isset($_GET['lpassword'])) {
+            return;
+        }
+        $data = new CustomerDB();
+        $acc = $data->search('email', $_GET['lemail']);
+        if ($acc->getCustomerId() == null) {
+            echo ' Email chưa được đăng ký!';
+            return;
+        }
+        if (!password_verify($_GET['lpassword'], $acc->getPassword())) {
+            echo ' Mật khẩu chưa chính xác!';
+            return;
+        }
+        echo '';
     }
 }
