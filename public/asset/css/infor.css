@@ -39,9 +39,11 @@ and open the template in the editor.
     padding-bottom: 20px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
-#main-menu .menu-box:last-child{
+
+#main-menu .menu-box:last-child {
     border-bottom: none;
 }
+
 .header-title .name {
     padding-top: 10px;
     padding-bottom: 5px;
@@ -67,6 +69,10 @@ and open the template in the editor.
     font-weight: bold;
 }
 
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
 
 .item:first-child {
     padding-top: 7%;
@@ -186,10 +192,12 @@ and open the template in the editor.
     width: 600px;
     /*padding: 20px 20px 0px calc((80vw - 550px) / 2);*/
 }
+
 #profile .list {
     padding-top: 40px;
     padding-bottom: 20px;
 }
+
 #profile .list .title {
     font-weight: 500;
     font-size: 13px;
@@ -199,11 +207,13 @@ and open the template in the editor.
     padding: 15px 0;
     border-bottom: 1px solid #ddd;
 }
+
 #profile .list .contact-info {
     font-size: 14px;
     padding: 13px 0 13px 0;
     border-bottom: 1px dotted #ddd;
 }
+
 #profile .list .item-none {
     font-size: 14px;
     font-weight: 300;
@@ -213,14 +223,17 @@ and open the template in the editor.
     padding: 20px;
     margin-top: 25px;
 }
-#profile .list .add{
+
+#profile .list .add {
     display: inline-block;
     float: right;
     cursor: pointer;
 }
-#profile .list .add:hover{
+
+#profile .list .add:hover {
     color: #0dcaf0;
 }
+
 #profile .main {
     display: inline-block;
     box-sizing: content-box;
