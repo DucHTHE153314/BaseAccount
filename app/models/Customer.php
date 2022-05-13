@@ -47,7 +47,7 @@ class Customer {
 
     /**
      *
-     * @var date 
+     * @var string 
      */
     private $birth_date;
 

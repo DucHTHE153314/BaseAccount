@@ -9,7 +9,7 @@ namespace App\Models;
  *
  * Record of change:
  * DATE            Version             AUTHOR           DESCRIPTION
- * 2022-04-29       2.0                DucHT           Merge with AccountLogics
+ * 2022-05-12       2.1                DucHT           Change logics
  */
 
 /**
@@ -30,7 +30,7 @@ class CustomerLogics extends CustomerDB
         if ($remember) {
             setcookie("User", $email, time() + (86400 * 15), "/"); // 15 days
         }
-        
+
         $_SESSION['User'] = $email;
 
         return $this->search('email', $email);
