@@ -21,12 +21,14 @@ class Router
 
     /**
      * Routing table
+     * 
      * @var array
      */
     protected $routes = [];
 
     /**
      * Parameters from the matched route
+     * 
      * @var array
      */
     protected $params = [];
@@ -39,8 +41,7 @@ class Router
      *
      * @return void
      */
-    public function add($route, $params = [])
-    {
+    public function add($route, $params = []){
         // Convert the route to a regular expression: escape forward slashes
         $route = preg_replace('/\//', '\\/', $route);
 
@@ -61,8 +62,7 @@ class Router
      *
      * @return array
      */
-    public function getRoutes()
-    {
+    public function getRoutes(){
         return $this->routes;
     }
 
@@ -74,21 +74,22 @@ class Router
      *
      * @return bool  true if a match found, false otherwise
      */
-    public function match($url): bool
-    {
+    public function match($url): bool {
         foreach ($this->routes as $route => $params) {
-            if (preg_match($route, $url, $matches)) {
-                // Get named capture group values
-                foreach ($matches as $key => $match) {
-                    if (is_string($key)) {
-                        $params[$key] = $match;
-                    }
-                }
-                $this->params = $params;
-                return true;
-            }
-        }
 
+            if (!preg_match($route, $url, $matches)) {
+                continue;
+            }
+
+            foreach ($matches as $key => $match) {
+                if (is_string($key)) {
+                    $params[$key] = $match;
+                }
+            }
+
+            $this->params = $params;
+            return true;
+        }
         return false;
     }
 
@@ -97,8 +98,7 @@ class Router
      *
      * @return array
      */
-    public function getParams()
-    {
+    public function getParams(){
         return $this->params;
     }
 
@@ -110,30 +110,33 @@ class Router
      *
      * @return void
      */
-    public function dispatch($url)
-    {
+    public function dispatch($url){
+
         $url = $this->removeURLVariables($url);
+
         if (!$this->match($url)) {
-            View::render("error.php", array('error' => 'No route matched.'));
+            View::render("error.php", ['error' => 'No route matched.']);
         }
+
         $controller = $this->params['controller'];
-        if ($controller == 'Validate') {
-            $controller = 'App\Services\\' . $controller;
-        } else {
-            $controller = 'App\Controllers\\' . $controller;
-        }
+
+        $controller = ($controller == 'Validate')? 'App\Services\\' . $controller : $controller = 'App\Controllers\\' . $controller;
+
         if (!class_exists($controller)) {
-            View::render("error.php", array('error' => "Controller not found!"));
+            View::render("error.php", ['error' => "Controller not found!"]);
         }
+
         $controller_object = new $controller($this->params);
         $action = $this->params['action'];
+
         if (preg_match('/action$/i', $action) !== 0) {
-            View::render("error.php", array('error' => "Method \"".$action."\" cannot be called directly - remove the Action suffix to call this method!"));
+            View::render("error.php", ['error' => "Method \"".$action."\" cannot be called directly - remove the Action suffix to call this method!"]);
         }
+
         try {
             $controller_object->$action();
         } catch (\Exception $e) {
-            View::render("error.php", array('error' => "Method $action not exist!"));
+            View::render("error.php", ['error' => "Method $action not exist!"]);
         }
     }
 
@@ -144,17 +147,11 @@ class Router
      *
      * @return string The URL with the query string variables removed
      */
-    protected function removeURLVariables($url): string
-    {
-        if ($url != '') {
-            $parts = explode('?', $url, 2);
-            if (strpos($parts[0], '=') === false) {
-                $url = $parts[0];
-            } else {
-                $url = '';
-            }
+    protected function removeURLVariables($url): string {
+        if ($url == '') {
+            return $url;
         }
 
-        return $url;
+        return explode('?', $url, 2)[0];
     }
 }

@@ -16,7 +16,7 @@
             <div class="concentrate">
                 <div class="logo">
                     <a href="#">
-                        <img class="img-125" src="/public/asset/images/logo.png">
+                        <img class="img-64" src="/public/asset/images/logo.full.png">
                     </a>
                 </div>
                 <div class="form-wrap">

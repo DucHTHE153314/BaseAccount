@@ -106,13 +106,14 @@ and open the template in the editor.
 
 #main-content .form-wrap .form .row .input input {
     font-size: 15px;
-    padding: 10px;
+    padding: 10px 12px;
     width: 95%;
 }
 
 .btn-login {
     background-color: rgb(43, 209, 78);
     width: 100%;
+    margin-left: 0px;
 }
 
 .btn-register {
@@ -153,8 +154,11 @@ and open the template in the editor.
     padding: 10px 10px;
     border-radius: 3px;
     margin-top: 20px;
-    margin-right: 2%;
+    margin-right: 15px;
     width: 31%;
+}
+#main-content .form-wrap .form .row .another-login:last-child{
+    margin-right: 0%;
 }
 
 #main-content .form-wrap .form .row .another-login .right {

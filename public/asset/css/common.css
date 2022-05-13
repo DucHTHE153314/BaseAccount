@@ -36,9 +36,9 @@ body {
     display: inline-block;
 }
 
-.img-125 {
-    height: 25%;
-    width: 25%;
+.img-64 {
+    height: 64px;
+    width: 64px;
     margin: 7.5px;
 }
 
@@ -94,32 +94,46 @@ button {
     width: 100%;
     margin-top: 10px;
     margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .col-3 {
-    display: inline-block;
-    width: 30%
+    flex: 3 0 0%;
 }
 
 .col-7 {
-    display: inline-block;
-    width: 70%
+    flex: 7 0 0%;
 }
 
 .col-4 {
-    display: inline-block;
-    width: 40%
+    flex: 4 0 0%;
 }
 
 .col-6 {
-    display: inline-block;
-    width: 55%
+    flex: 6 0 0%;
 }
-
+.col-7 .col-3{
+    margin-left: 10px;    
+    flex: 1 0 0%;
+}
+.col-7 .col-3:first-child{
+    margin-left: -5px;    
+    flex: 1 0 0%;
+}
 .field-name {
     font-weight: 500;
     font-size: 16px;
-    width: 180px;
+    /* width: 180px; */
+}
+.field-name label{
+    font-weight: normal;
+    font-size: 12px;
+    color: #999;
+}
+.row .row{
+    margin: 0px;
+    padding: 0px;
 }
 
 .input {
@@ -149,10 +163,12 @@ select {
 .no-padding {
     padding: 0%;
 }
-option{
+
+option {
     border-radius: 0%;
 }
-.note{
+
+.note {
     box-sizing: border-box;
     background-color: #eee;
     color: #999;

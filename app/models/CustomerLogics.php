@@ -25,12 +25,14 @@ class CustomerLogics extends CustomerDB
      * @param bool $remember
      * @return Customer|type
      */
-    public function login($email, $remember): Customer
-    {
+    public function login($email, $remember): Customer {
+
         if ($remember) {
             setcookie("User", $email, time() + (86400 * 15), "/"); // 15 days
         }
+        
         $_SESSION['User'] = $email;
+
         return $this->search('email', $email);
     }
 
@@ -44,11 +46,12 @@ class CustomerLogics extends CustomerDB
      * @param string $password
      * @return Customer|type
      */
-    public function register($first_name, $last_name, $phone, $email, $password)
-    {
+    public function register($first_name, $last_name, $phone, $email, $password)  {
+        
         $hash_password = password_hash($password, PASSWORD_DEFAULT);
         $this->insert(array("first_name" => $first_name, "last_name" => $last_name, "phone" => $phone, "email" => $email, "password" => $hash_password, "role_id" => 2));
         $_SESSION["User"] = "$email";
+
         return $this->search('email', $email);
     }
 
@@ -59,8 +62,7 @@ class CustomerLogics extends CustomerDB
      * @param type $params
      * @return type
      */
-    public function update($email, $params)
-    {
+    public function update($email, $params) {
         return parent::update($email, $params);
     }
 
@@ -69,15 +71,14 @@ class CustomerLogics extends CustomerDB
      * @param type $email
      * @return string|int
      */
-    public function recovery($email)
-    {
+    public function recovery($email) {
         if ($this->search('email', $email) == null) {
             return '0';
-        } else {
-            $msg = "hehehehhehehehehhe";
-            mail("$email", "hihi", $msg);
-            return 1;
         }
+
+        $msg = "hehehehhehehehehhe";
+        mail("$email", "hihi", $msg);
+        return 1;
     }
     /**
      * Find a phone in the system.<br/>
@@ -86,8 +87,7 @@ class CustomerLogics extends CustomerDB
      * @param type $phone
      * @return type
      */
-    public function searchPhone($phone)
-    {
+    public function searchPhone($phone) {
         return $this->search("phone", $phone);
     }
     /**
@@ -97,8 +97,7 @@ class CustomerLogics extends CustomerDB
      * @param <code>String</code> $email
      * @return type
      */
-    public function searchEmail($email)
-    {
+    public function searchEmail($email) {
         return $this->search("email", $email);
     }
 }

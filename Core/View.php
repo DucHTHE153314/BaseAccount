@@ -28,12 +28,15 @@ class View
      */
     public static function render($view, $args = [])
     {
+        // Convert keys in $args to variables to use
         extract($args, EXTR_SKIP);
-        $file = dirname(__DIR__) . "/App/Views/$view";  // relative to Core directory
+        $file = dirname(__DIR__) . "/App/Views/$view";  
+
         if (is_readable($file)) {
             require $file;
-        } else {
-            throw new \Exception("$file not found");
+            return;
         }
+
+        throw new \Exception("$file not found");
     }
 }

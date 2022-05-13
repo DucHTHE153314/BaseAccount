@@ -32,6 +32,7 @@ abstract class Model
         if (static::$db == null) {
             static::$db = new \PDO(Configs::DB_HOST, Configs::DB_USER, Configs::DB_PASSWORD);
         }
+        
         return static::$db;
     }
 }

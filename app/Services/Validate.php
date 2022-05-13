@@ -29,16 +29,20 @@ class Validate extends Controller
      */
     public function checkEmailAction()
     {
-        if (isset($_GET["email"])) {
-            $logics = new CustomerLogics();
-            $email = $_GET["email"];
-            $res = $logics->searchEmail($email);
-            if ($res !== null) {
-                echo ' Email has been use!';
-            } else {
-                echo '';
-            }
+        if (!isset($_GET["email"])) {
+           return;
         }
+
+        $logics = new CustomerLogics();
+        $email = $_GET["email"];
+        $res = $logics->searchEmail($email);
+
+        if ($res !== null) {
+            echo ' Email has been use!';
+            return;
+        }
+        
+        echo '';
     }
 
     /**
@@ -47,18 +51,22 @@ class Validate extends Controller
      */
     public function checkPhoneAction()
     {
-        if (isset($_GET["phone"]) && isset($_GET["act"])) {
-            $logics = new CustomerLogics();
-            $phone = $_GET["phone"];
-            $res = $logics->searchPhone($phone);
-            if ($res == null) {
-                echo '';
-                return;
-            }
-            if (($_GET["act"] == 'register') || ($_GET["act"] == 'update' && ($res->getEmail() != $logics->searchEmail($_SESSION["User"])->getEmail()))) {
-                echo ' Phone has been use!';
-                return;
-            }
+        if (!isset($_GET["phone"]) || !isset($_GET["act"])) {
+            return;
+        }
+
+        $logics = new CustomerLogics();
+        $phone = $_GET["phone"];
+        $res = $logics->searchPhone($phone);
+
+        if ($res == null) {
+            echo '';
+            return;
+        }
+
+        if (($_GET["act"] == 'register') || ($_GET["act"] == 'update' && ($res->getEmail() != $logics->searchEmail($_SESSION["User"])->getEmail()))) {
+            echo ' Phone has been use!';
+            return;
         }
     }
 
@@ -68,30 +76,38 @@ class Validate extends Controller
      */
     public function checkPassAction()
     {
-        if (isset($_POST["pass"]) && isset($_POST["new"]) && isset($_POST["cf"]) && isset($_SESSION['User']) && isset($_POST["force_logout"])) {
-            $logics = new CustomerLogics();
-            $pass = $_POST["pass"];
-            $acc = $logics->searchEmail($_SESSION['User']);
-            if (!password_verify($pass, $acc->getPassword())) {
-                echo -2;
-                return;
-            }
-            $pattern = '/^[a-zA-Z0-9!@#$%^&*]{6,16}$/';
-            if (!preg_match($pattern, $_POST["new"])) {
-                echo -1;
-                return;
-            }
-            if ($_POST["new"] !== $_POST["cf"]) {
-                echo 0;
-                return;
-            };
-            $logics->update($_SESSION['User'], array('password' => password_hash($_POST["new"], PASSWORD_DEFAULT)));
-            if ($_POST["force_logout"] == '1') {
-                unset($_SESSION['User']);
-                setcookie("User", "", time() - 60, "/", "", 0);
-            }
-            echo 1;
+        if (!isset($_POST["pass"]) || !isset($_POST["new"]) || !isset($_POST["cf"]) || !isset($_SESSION['User']) || !isset($_POST["force_logout"])) {
+            return;
         }
+        $logics = new CustomerLogics();
+        $pass = $_POST["pass"];
+        $acc = $logics->searchEmail($_SESSION['User']);
+
+        if (!password_verify($pass, $acc->getPassword())) {
+            echo -2;
+            return;
+        }
+
+        $pattern = '/^[a-zA-Z0-9!@#$%^&*]{6,16}$/';
+        
+        if (!preg_match($pattern, $_POST["new"])) {
+            echo -1;
+            return;
+        }
+
+        if ($_POST["new"] !== $_POST["cf"]) {
+            echo 0;
+            return;
+        };
+
+        $logics->update($_SESSION['User'], array('password' => password_hash($_POST["new"], PASSWORD_DEFAULT)));
+
+        if ($_POST["force_logout"] == '1') {
+            unset($_SESSION['User']);
+            setcookie("User", "", time() - 60, "/", "", 0);
+        }
+
+        echo 1;
     }
 
     /**
@@ -102,16 +118,20 @@ class Validate extends Controller
         if (!isset($_GET['lemail']) || !isset($_GET['lpassword'])) {
             return;
         }
+
         $data = new CustomerDB();
         $acc = $data->search('email', $_GET['lemail']);
+
         if ($acc->getCustomerId() == null) {
-            echo ' Email chưa được đăng ký!';
+            echo ' Email is not registered!';
             return;
         }
+
         if (!password_verify($_GET['lpassword'], $acc->getPassword())) {
-            echo ' Mật khẩu chưa chính xác!';
+            echo ' Password is not correct!';
             return;
         }
+
         echo '';
     }
 }

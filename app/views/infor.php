@@ -254,39 +254,47 @@ View::render('base_panel.php', array('act' => 'personal', 'cus' => $cus));
         <!-- The Modal Infor -->
         <div id="user-infor" class="modal modal-edit">
             <!-- Modal content -->
-            <div class="modal-content mc-40" id="user-infor-content">
+            <div class="modal-content mc-40" id="user-infor-content" style="margin-top: 5%;">
                 <div class="modal-header">
                     <div class="modal-title">CHỈNH SỬA THÔNG TIN CÁ NHÂN</div>
                     <span class="close btn-close reload">&times;</span>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-3 field-name">Tên của bạn</div>
+                        <div class="col-3 field-name">Tên của bạn<br>
+                            <label>Tên của bạn</label>
+                        </div>
                         <input class="col-7 input" type="text" id="first_name" name="first_name" placeholder="Tên của bạn" value="<?php echo $cus->getFirstName(); ?>" maxlength="32">
                     </div>
                     <div class="row">
-                        <div class="col-3  field-name">Họ của bạn</div>
+                        <div class="col-3  field-name">Họ của bạn<br>
+                            <label>Họ của bạn</label></div>
                         <input class="col-7 input" type="text" id="last_name" name="last_name" placeholder="Họ của bạn" value="<?php echo $cus->getLastName(); ?>" maxlength="32">
                     </div>
                     <div class="row">
-                        <div class="col-3 field-name">Email</div>
+                        <div class="col-3 field-name">Email<br>
+                            <label>Email của bạn</label></div>
                         <input class="col-7 input disabled" type="text" value="<?php echo $cus->getEmail(); ?>" disabled>
                     </div>
                     <div class="row">
-                        <div class="col-3 field-name">Username</div>
+                        <div class="col-3 field-name">Username<br>
+                            <label>Username của bạn</label></div>
                         <input class="col-7 input disabled" type="text" value="@noname" disabled>
                     </div>
                     <div class="row">
-                        <div class="col-3 field-name">Vị trí công việc</div>
+                        <div class="col-3 field-name">Vị trí công việc<br>
+                            <label>Vị trí công việc</label></div>
                         <input class="col-7 input" type="text" id="position" name="position" placeholder="Vị trí công việc" value="<?php echo $cus->getPosition(); ?>" maxlength="32">
                     </div>
                     <form class="row" id="frm-avatar" action="/Account/update" method="post" enctype="multipart/form-data">
-                        <div class="col-3 field-name">Ảnh đại diện</div>
+                        <div class="col-3 field-name">Ảnh đại diện<br>
+                            <label>Ảnh đại diện</label></div>
                         <input class="col-7 input" type="file" id="inf_avatar" name="avatar" placeholder="" value="">
                     </form>
                     <div class="row">
-                        <div class="col-3 field-name">Ngày tháng năm sinh</div>
-                        <div class="col-7">
+                        <div class="col-3 field-name">Ngày tháng năm sinh<br>
+                            <label>Ngày tháng năm sinh</label></div>
+                        <div class="col-7 row">
                             <select class="col-3" name="date" id="dob_date">
                                 <option value="-- Chọn ngày --">-- Chọn ngày --</option>
                                 <?php
@@ -326,11 +334,13 @@ View::render('base_panel.php', array('act' => 'personal', 'cus' => $cus));
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-3 field-name">Số điện thoại</div>
+                        <div class="col-3 field-name">Số điện thoại<br>
+                            <label>Số điện thoại</label></div>
                         <input class="col-7 input" type="text" id="phone" name="phone" placeholder="Số điện thoại" value="<?php echo $cus->getPhone(); ?>" maxlength="10">
                     </div>
                     <div class="row">
-                        <div class="col-3 field-name">Chỗ ở hiện nay</div>
+                        <div class="col-3 field-name">Chỗ ở hiện nay<br>
+                            <label>Chỗ ở hiện nay</label></div>
                         <input class="col-7 input" type="text" id="address" name="address" placeholder="Chỗ ở hiện nay" value="<?php echo $cus->getAddress(); ?>" maxlength="100">
                     </div>
                 </div>
