@@ -83,12 +83,11 @@ class Account extends Controller
     {
         if (!isset($_GET["remail"])) {
             View::render('recovery.php');
-        }
-        
+            return;
+        }        
         $email = $_GET['remail'];
         $Logics = new CustomerLogics();
-        $result = $Logics->recovery($email);
-        echo $result;
+        echo $Logics->recovery($email);
     }
 
     /**

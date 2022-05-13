@@ -3,9 +3,6 @@
 require __DIR__ . '\/../' . 'Core\AutoLoad' . '.php';
 Core\AutoLoad::myAutoLoad();
 
-// if (session_id() === '') {
-//     session_start();
-// }
 
 use Core\Router;
 
@@ -21,3 +18,4 @@ $router = new Router();
 $router->add('/', ['controller' => 'Home', 'action' => 'index']);
 $router->add('/{controller}/{action}');
 $router->dispatch($request);
+
